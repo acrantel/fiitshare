@@ -3,9 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 20%;
     padding:10px;
-    margin-top: 10px;
+    margin: 20px;
     background-color: #fff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
