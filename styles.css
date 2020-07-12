@@ -2,3 +2,12 @@ body {
     height: 100%;
     margin:0px;
 }
+
+h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.my-groups-container {
+    display: flex;
+    flex-direction: row;
+}

@@ -1,9 +1,28 @@
 import React, { Component, Link } from 'react';
+import Header from '../components/header.js';
 import GroupCard from '../components/cards/group-card.js';
+import {userData} from '../database/database.js';
 
+
+const USERID = 'user1';
 class Groups extends React.Component {
+   
     render() {
-        return <div><GroupCard groupID='group1'/></div>
+        var myGroupsRender = [];
+        // for each of the user's groups
+        for (let userGroup of (userData[USERID].groups))
+        {
+            myGroupsRender.push(<GroupCard groupID={userGroup} />);
+        }
+        return <div>
+            <Header />
+            <h2>My Groups</h2>
+
+            <div className='my-groups-container'>
+                {myGroupsRender}
+            </div>
+        </div>
+        
     }
 }
 export default Groups
