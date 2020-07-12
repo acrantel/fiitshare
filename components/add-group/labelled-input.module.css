@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    overflow: hidden;
+    margin: 10px 0;
+    height: 30px;
+}
+.slideIn {
+    animation: slide-in .5s forwards;
+}
+.label,
+.input {
+    flex: 1 0 0;
+}
+.input {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    margin-left: 10px;
+    width: 50%;
+    border-radius: 5px;
+}
+@keyframes slide-in {
+    from {
+        margin: 0;
+        height: 0;
+    }
+    to {
+        margin: 10px 0;
+        height: 30px;
+    }
+}

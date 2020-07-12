@@ -25,7 +25,7 @@ function Recent({ userId }) {
         <h1 className='section-title'><span>Recent</span></h1>
         <ul className={styles.sectionList}>
             {userData[userId]['recent_workouts'].map(function (item) {
-                return <li className={styles.listItem}>
+                return <li className={styles.listItem} key={item}>
                     <WorkoutCard
                         workoutId={item}
                         workoutDatum={workoutData[item]}
@@ -53,7 +53,7 @@ function DashboardRight({ userId }) {
             userData[userId]['groups'].length == 0
                 ? <a href="#">Join a Group</a>
                 : userData[userId]['groups'].map(function (item) {
-                    return <a href="#" className={styles.groupLink}>{item}</a>
+                    return <a href="#" className={styles.groupLink} key={item}>{item}</a>
                 })
         }
     </div>;
