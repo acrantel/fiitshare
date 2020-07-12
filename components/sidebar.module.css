@@ -1,0 +1,49 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    padding:10px;
+    margin-top: 10px;
+    background-color: #eee;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.title {
+    font-weight: normal;
+    color: rgb(77, 77, 77);
+}
+
+.image {
+    object-fit: cover;
+    width:250px;
+    height:250px;
+    border-radius: 125px;
+}
+
+.bottom {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.info {
+    margin-right:10px;
+    display:flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.icon {
+    padding:2px;
+    font-size:large;
+    color: rgb(71, 71, 71);
+}
+
+.label {
+    padding:2px;
+    font-size: large;
+    color: rgb(71, 71, 71);
+}

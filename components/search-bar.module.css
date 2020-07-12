@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin-left:auto;
     border-radius: 10px;
     padding-left: 2px;
     padding-right: 10px;
@@ -10,6 +9,7 @@
 }
 
 .searchIcon {
+    font-size: larger;
     color: rgb(32, 32, 32);
     padding:5px;
 }
