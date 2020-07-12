@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-color: rgb(180, 180, 180);
+    width: 300; height: 300;
+}
+
+.groupImg {
+    justify-content: center;
+    width: 60; height: 60;
+
+
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.infoParagraph {
+    flex: 1;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
