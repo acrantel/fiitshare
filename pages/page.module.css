@@ -8,6 +8,7 @@
     flex: auto;
     display: flex;
     align-items: flex-start;
+    justify-content: center;
     max-width: 1400px;
     width: 100%;
 }
