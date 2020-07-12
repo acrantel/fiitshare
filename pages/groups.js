@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Header from '../components/header.js';
 import GroupCard from '../components/cards/group-card.js';
 import {userData} from '../database/database.js';
+import styles from './page.module.css';
 
 
 const USERID = 'user1';
@@ -15,12 +16,14 @@ class Groups extends React.Component {
         {
             myGroupsRender.push(<GroupCard groupID={userGroup} />);
         }
-        return <div>
+        return <div className={styles.pageWrapper}>
             <Header />
-            <h2>My Groups</h2>
-
-            <div className='my-groups-container'>
-                {myGroupsRender}
+            <div className={styles.pageContent} style={{flexDirection: 'column'}}>
+                <h2>My Groups</h2>
+    
+                <div className={styles.myGroupsContainer}>
+                    {myGroupsRender}
+                </div>
             </div>
         </div>
         

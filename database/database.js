@@ -1,7 +1,7 @@
 var userData = {
     user1: {
         workouts: ['wk1', 'wk2', 'wk3', 'wk4', 'wk5'],
-        recent_workouts: ['wk2', 'wk3', 'wk5'],
+        recent_workouts: ['wk1', 'wk3', 'wk5'],
         groups: ['group1', 'group2'],
         name: 'John Doe',
         picture: '/images/user1.jpeg',
@@ -24,6 +24,7 @@ var workoutData = {
         exercises: {
             exerciseId: [1, 2, 1],
             time: [50, 40, 40],
+        }
     },
     wk2: {
 
@@ -35,7 +36,6 @@ var workoutData = {
 
     }
 
-}
 };
 
 var exerciseData = {
