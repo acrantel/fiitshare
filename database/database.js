@@ -1,9 +1,10 @@
-userData= {
+var userData = {
     user1: {
         workouts: ['wk1', 'wk2', 'wk3', 'wk4', 'wk5'],
         recent_workouts: ['wk2', 'wk3', 'wk5'],
         groups: ['group1', 'group2'],
         name: 'John Doe',
+        picture: '/images/user1.jpeg',
         calories: 2000,
         // minutes
         time_spent: 540,
@@ -13,7 +14,7 @@ userData= {
     },
 };
 
-workoutData = {
+var workoutData = {
     wk1: {
         creator: 'user1',
         name: 'Morning',
@@ -37,18 +38,18 @@ workoutData = {
 }
 };
 
-exerciseData = {
+var exerciseData = {
     1: {
         name: 'squats',
-        video_link: '../public/exercise/1.gif'
+        video_link: '/exercise/1.gif'
     },
     2: {
         name: 'pushups',
-        video_link: '../public/exercise/2.gif'
+        video_link: '/exercise/2.gif'
     }
 }
 
-groupData = {
+var groupData = {
     group1: {
         name: 'G Period',
         description: "Anderson's G Period PE Class",
@@ -69,3 +70,5 @@ groupData = {
 
     }
 }
+
+export { userData, workoutData, exerciseData, groupData};
