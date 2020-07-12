@@ -11,3 +11,8 @@
     max-width: 1400px;
     width: 100%;
 }
+
+.myGroupsContainer {
+    display: flex;
+    flex-direction: row;
+}

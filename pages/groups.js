@@ -20,7 +20,7 @@ class Groups extends React.Component {
             <div className={styles.pageContent} style={{flexDirection: 'column'}}>
                 <h2>My Groups</h2>
     
-                <div className='my-groups-container'>
+                <div className={styles.myGroupsContainer}>
                     {myGroupsRender}
                 </div>
             </div>
