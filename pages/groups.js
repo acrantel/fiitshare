@@ -2,7 +2,7 @@ import React, { Component, Link } from 'react';
 import Header from '../components/header.js';
 import GroupCard from '../components/cards/group-card.js';
 import {userData} from '../database/database.js';
-
+import { MdSearch } from 'react-icons/md'
 
 const USERID = 'user1';
 class Groups extends React.Component {
@@ -14,12 +14,21 @@ class Groups extends React.Component {
         {
             myGroupsRender.push(<GroupCard groupID={userGroup} />);
         }
-        return <div>
+        return <div className='groups'>
             <Header />
-            <h2>My Groups</h2>
-
             <div className='my-groups-container'>
-                {myGroupsRender}
+                <h2 className='groups-title'>My Groups</h2>
+
+                <div className='my-groups-list'>
+                    {myGroupsRender}
+                </div>
+            </div>
+            <div className='find-groups-container'>
+                <h2 className='groups-title'>Find Groups</h2>
+                <div className='find-groups-filter'>
+                <MdSearch className='searchIcon'/>
+            <input placeholder="Name" type="text"></input>
+                </div>
             </div>
         </div>
         

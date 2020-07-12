@@ -8,7 +8,44 @@ h2 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+input {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-style: none;
+    display:flex;
+    background-color: inherit;
+}
+
+.searchIcon {
+    font-size: larger;
+    color: rgb(32, 32, 32);
+    padding:5px;
+}
+
+
+.groups {
+    display: flex;
+    flex-direction: column;
+}
+.groups-title {
+    margin-left: 50px;
+}
 .my-groups-container {
     display: flex;
+    flex-direction: column;
+    align-content: space-around;
+}
+.my-groups-list {
+    display: flex;
     flex-direction: row;
+}
+.find-groups-container {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+}
+.find-groups-filter {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    margin-left: 50px;
 }
