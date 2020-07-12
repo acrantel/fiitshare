@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
     render() {
         return <div className={styles.searchBar}>
             <MdSearch className={styles.searchIcon}/>
-            <input style={{justifySelf:'end'}} className={styles.input} type="text"></input>
+            <input style={{justifySelf:'end'}} type="text"></input>
         </div>
     }
 }
