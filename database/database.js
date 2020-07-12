@@ -53,7 +53,7 @@ var groupData = {
     group1: {
         name: 'G Period',
         image: "/groups/group1.jpg",
-        
+        level: 'Beginner',
         description: "Anderson's G Period PE Class",
         members: ['user1', 'user2'], // user id's
         admins: ['user1'], // user id's
@@ -71,7 +71,7 @@ var groupData = {
     group2: {
         name: 'A Period',
         image: "/groups/group1.jpg",
-        
+        level: 'Intermediate',
         description: "Anderson's A Period PE Class",
         members: ['user1', 'user2'], // user id's
         admins: ['user1'], // user id's

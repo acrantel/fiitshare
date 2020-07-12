@@ -1,4 +1,5 @@
-import React, { Component, Link } from 'react';
+import React, { Component } from 'react';
+import Link from 'next/link'
 import Header from '../components/header.js';
 import GroupCard from '../components/cards/group-card.js';
 import {userData} from '../database/database.js';
