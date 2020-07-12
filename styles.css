@@ -1,7 +1,15 @@
+html {
+    height: 100%;
+}
 body {
     height: 100%;
     margin:0px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+body > div {
+    flex: auto;
 }
 
 h2 {

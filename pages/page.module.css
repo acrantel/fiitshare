@@ -1,0 +1,15 @@
+.pageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+.pageContent {
+    /* ??? I don't know why the background was set to pink but I'm keeping it? */
+    background-color: pink;
+    flex: auto;
+    display: flex;
+    align-items: flex-start;
+    max-width: 1400px;
+    width: 100%;
+}

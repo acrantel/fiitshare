@@ -1,42 +1,80 @@
 .dashboardCenter {
+    /* Width of 0 so it tries to be the smallest it can be, but it FLEXES to the
+    /* minimum size needed to fill the space. */
+    width: 0;
+    flex: auto;
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    width: 40%;
-    margin-top:10px;
-    margin-left: 10px;
+    margin: 20px 0;
     padding: 10px;
 }
 
 .dashboard {
-    display: 'flex';
-    flex-direction: 'row'; 
-    margin-left: 'auto';
-    margin-right: 'auto';
-    justify-content: 'center';
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    flex: auto;
  }
 
 .dashboardRight {
     display:flex;
     flex-direction:column;
     background-color:#fff;
-    width:20%    
+    /* width:20%; */
+    margin: 20px;
+    padding: 10px;
+}
+
+.sectionTitle {
+    text-transform: uppercase;
+    font-size: 1.5em;
+    margin: 0;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+.sectionTitle > span {
+    position: relative;
+    z-index: 0;
+}
+.sectionTitle > span::after {
+    content: '';
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    right: 0;
+    background-color: #ff73d7;
+    height: 10px;
+    z-index: -1;
+}
+.dashboardRight .sectionTitle {
+    margin-top: 0;
 }
 
 .recentSection {
     display: inline;
 }
 .sectionList {
-    margin:12px;
-    padding: 0;
+    margin: 0;
+    padding: 12px;
     list-style: none;
     display: inline-flex;
     text-align: left;
     flex-wrap: nowrap;
     vertical-align: middle;
-    justify-content: center;
+    overflow-x: auto;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .listItem {
-    display: inline;
+    display: inline-block;
+}
+
+.groupLink {
+    display: block;
+    color: inherit;
+    text-decoration: none;
 }

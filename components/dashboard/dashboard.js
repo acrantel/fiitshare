@@ -14,13 +14,15 @@ class Dashboard extends React.Component {
 
 function DashboardCenter({ userId }) {
     return <div className={styles.dashboardCenter}>
+        <a href="#">Create new</a>
         <Recent userId={userId} />
+        <Feed />
     </div>
 }
 
 function Recent({ userId }) {
     return <div className={styles.recentSection}>
-        <h1 className={styles.sectionTitle}>Recent</h1>
+        <h1 className={styles.sectionTitle}><span>Recent</span></h1>
         <ul className={styles.sectionList}>
             {userData[userId]['recent_workouts'].map(function (item) {
                 return <li className={styles.listItem}><WorkoutCard workoutId={item} /></li>
@@ -29,25 +31,27 @@ function Recent({ userId }) {
     </div>
 }
 
+function Feed() {
+    return <div>
+        <h1 className={styles.sectionTitle}><span>Feed</span></h1>
+    </div>
+}
+
 function DashboardRight({ userId }) {
     let result;
     if (userData[userId]['groups'] === undefined) {
         userData[userId]['groups'] = []
     }
-    if (userData[userId]['groups'].length == 0) {
-        result = <div className={styles.dashboardRight}>
-            <h1>Groups</h1>
-            <href>Join a Group</href>
-        </div>
-    } else {
-        result = <div>
-            <h1>Groups</h1>
-            {userData[userId]['groups'].map(function (item) {
-                return <href>{item}</href>
-            })}
-        </div>
-    }
-    return result;
+    return <div className={styles.dashboardRight}>
+        <h1 className={styles.sectionTitle}><span>Groups</span></h1>
+        {
+            userData[userId]['groups'].length == 0
+                ? <a href="#">Join a Group</a>
+                : userData[userId]['groups'].map(function (item) {
+                    return <a href="#" className={styles.groupLink}>{item}</a>
+                })
+        }
+    </div>;
 }
 
 
