@@ -7,11 +7,17 @@
     margin: 20px;
     background-color: #fff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: fit-content;
 }
 
 .title {
     font-weight: 100;
     color: rgb(77, 77, 77);
+}
+
+.description {
+    color: rgb(50, 50, 50);
+    font-weight: 100;
 }
 
 .image {

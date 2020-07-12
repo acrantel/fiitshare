@@ -7,7 +7,7 @@ import { FaRegChartBar } from 'react-icons/fa';
 
 function Sidebar({ imageSrc, title, workoutTime, calories, numWorkouts }) {
     return <div className={styles.sidebar}>
-            <img className={styles.image} src={imageSrc} alt={title} />
+        <img className={styles.image} src={imageSrc} alt={title} />
         <h1 className={styles.title}>{title}</h1>
         <div className={styles.bottom}>
             <div className={styles.info}>

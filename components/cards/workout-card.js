@@ -1,10 +1,11 @@
 import styles from './workout-card.module.css';
+import { MdNotificationsNone } from 'react-icons/md';
 
 export default class WorkoutCard extends React.Component {
     render() {
         const {
             workoutId,
-            workoutDatum = {}
+            workoutDatum = {},
         } = this.props
         const {
             name = 'Unknown Workout',
@@ -36,6 +37,15 @@ export default class WorkoutCard extends React.Component {
                     <h3 className={styles.infoTitle}>Time</h3>
                     <div className={styles.infoValue}>{`${length} min.`}</div>
                 </div>
+                {/* Do by: this is used for schedules */
+                this.props.dueBy === null ?
+                    <div></div> :
+                    <div className={styles.infoEntry}>
+                        <h3 className={styles.infoTitle}>Due By</h3>
+                        <div className={styles.infoValue}>{`${this.props.dueBy}`}</div>
+                    </div>
+                }
+
             </div>
         </div>
     }
