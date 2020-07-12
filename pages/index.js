@@ -19,8 +19,5 @@ class Home extends React.Component {
             </div>
         </div>
     }
-    componentDidMount() {
-        document.body.style.backgroundColor = '#f7f7fa';
-    }
 }
 export default Home
