@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Link from 'next/link'
 import styles from './search-bar.module.css'
-import { Search } from '@material-ui/icons';
+import { MdSearch } from 'react-icons/md'
 
 class SearchBar extends React.Component {
     render() {
         return <div className={styles.searchBar}>
-            <Search className={styles.searchIcon}/>
+            <MdSearch className={styles.searchIcon}/>
             <input style={{justifySelf:'end'}} className={styles.input} type="text"></input>
         </div>
     }
