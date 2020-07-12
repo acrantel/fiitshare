@@ -52,6 +52,8 @@ var exerciseData = {
 var groupData = {
     group1: {
         name: 'G Period',
+        image: "/groups/group1.jpg",
+        
         description: "Anderson's G Period PE Class",
         members: ['user1', 'user2'], // user id's
         admins: ['user1'], // user id's
@@ -67,7 +69,22 @@ var groupData = {
         ]
     },
     group2: {
-
+        name: 'A Period',
+        image: "/groups/group1.jpg",
+        
+        description: "Anderson's A Period PE Class",
+        members: ['user1', 'user2'], // user id's
+        admins: ['user1'], // user id's
+        schedule: [
+            {
+                workoutId: 'wk1',
+                dueBy: '19 Jul 2020 10:50:00 GMT'
+            },
+            {
+                workoutId: 'wk1',
+                dueBy: '21 Jul 2020 10:50:00 GMT'
+            }
+        ]
     }
 }
 

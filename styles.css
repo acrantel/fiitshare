@@ -3,3 +3,12 @@ body {
     margin:0px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.my-groups-container {
+    display: flex;
+    flex-direction: row;
+}
