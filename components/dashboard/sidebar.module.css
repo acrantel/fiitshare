@@ -6,12 +6,12 @@
     width: 300px;
     padding:10px;
     margin-top: 10px;
-    background-color: #eee;
+    background-color: #fff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .title {
-    font-weight: normal;
+    font-weight: 100;
     color: rgb(77, 77, 77);
 }
 
@@ -44,6 +44,7 @@
 
 .label {
     padding:2px;
-    font-size: large;
+    font-size: medium;
+    font-weight: 100;
     color: rgb(71, 71, 71);
 }
