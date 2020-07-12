@@ -34,3 +34,8 @@
     flex: 1;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.joinButton {
+    font-family: Verdana;
+    flex: 1;
+}

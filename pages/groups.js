@@ -12,7 +12,7 @@ class Groups extends React.Component {
         // for each of the user's groups
         for (let userGroup of (userData[USERID].groups))
         {
-            myGroupsRender.push(<GroupCard groupID={userGroup} />);
+            myGroupsRender.push(<GroupCard groupID={userGroup} isYours={true} />);
         }
         return <div className='groups'>
             <Header />
