@@ -22,7 +22,7 @@ function DashboardCenter({ userId }) {
 
 function Recent({ userId }) {
     return <div className={styles.recentSection}>
-        <h1 className={styles.sectionTitle}><span>Recent</span></h1>
+        <h1 className='section-title'><span>Recent</span></h1>
         <ul className={styles.sectionList}>
             {userData[userId]['recent_workouts'].map(function (item) {
                 return <li className={styles.listItem}>
@@ -38,7 +38,7 @@ function Recent({ userId }) {
 
 function Feed() {
     return <div>
-        <h1 className={styles.sectionTitle}><span>Feed</span></h1>
+        <h1 className='section-title'><span>Feed</span></h1>
     </div>
 }
 
@@ -48,7 +48,7 @@ function DashboardRight({ userId }) {
         userData[userId]['groups'] = []
     }
     return <div className={styles.dashboardRight}>
-        <h1 className={styles.sectionTitle}><span>Groups</span></h1>
+        <h1 className='section-title'><span>Groups</span></h1>
         {
             userData[userId]['groups'].length == 0
                 ? <a href="#">Join a Group</a>

@@ -1,0 +1,42 @@
+.mainSection {
+    /* Width of 0 so it tries to be the smallest it can be, but it FLEXES to the
+    /* minimum size needed to fill the space. */
+    width: 0;
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    margin: 20px;
+    margin-left:0px;
+    padding: 20px;
+}
+
+.userCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin:10px;
+    height:50px;
+}
+
+.userCard a {
+    margin:10px;
+    text-decoration: none;
+    font-weight: lighter;
+    color: rgb(41, 41, 41);
+}
+.userCard a:hover {
+    margin:10px;
+    text-decoration: underline;
+}
+
+.userImage {
+    padding:10px;
+    height:30px;
+}
+
+.adminIcon {
+    color: rgb(230, 189, 54);
+}

@@ -11,6 +11,8 @@ var userData = {
         completed_workouts: 12,
     },
     user2: {
+        name: 'Jane Doe',
+        picture: '/images/user1.jpeg',
     },
 };
 

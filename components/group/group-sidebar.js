@@ -9,7 +9,7 @@ export default function GroupSidebar({ groupID }) {
     return <div className={styles.sidebar}>
         <img className={styles.image} src={group['image']} alt={group['name']} />
         <h1 className={styles.title}>{group['name']}</h1>
-        <h2 className={styles.description}>{group['description']}</h2>
+        <p className={styles.description}>{group['description']}</p>
         <div className={styles.bottom}>
             <div className={styles.info}>
                 <BsFillPeopleFill className={styles.icon} />
