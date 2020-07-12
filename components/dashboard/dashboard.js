@@ -25,7 +25,9 @@ function Recent({ userId }) {
         <h1 className={styles.sectionTitle}><span>Recent</span></h1>
         <ul className={styles.sectionList}>
             {userData[userId]['recent_workouts'].map(function (item) {
-                return <li className={styles.listItem}><WorkoutCard workoutId={item} /></li>
+                return <li className={styles.listItem}>
+                    <WorkoutCard workoutDatum={workoutData[item]} />
+                </li>
             })}
         </ul>
     </div>

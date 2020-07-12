@@ -7,7 +7,7 @@
     flex-direction: column;
     background-color: #fff;
     margin: 20px 0;
-    padding: 10px;
+    padding: 20px;
 }
 
 .dashboard {
@@ -25,7 +25,7 @@
     background-color:#fff;
     /* width:20%; */
     margin: 20px;
-    padding: 10px;
+    padding: 20px;
 }
 
 .sectionTitle {
@@ -58,7 +58,7 @@
 }
 .sectionList {
     margin: 0;
-    padding: 12px;
+    padding: 10px 0;
     list-style: none;
     display: inline-flex;
     text-align: left;
