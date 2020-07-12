@@ -5,7 +5,10 @@ import {groupData} from '../../database/database.js';
 
 // component displaying a Group card 
 class GroupCard extends React.Component {
-    //groupID = this.props.groupID;
+    constructor(props){
+        super(props);
+    }
+
     render() {
         let groupID = this.props.groupID;
         return <div className={styles.container}>
@@ -17,8 +20,30 @@ class GroupCard extends React.Component {
                     <p className={styles.infoParagraph}>
                         Members: {groupData[groupID].members.length + groupData[groupID].admins.length}</p>
                     <p className={styles.infoParagraph}>Level: Beginner</p>
+                <JoinButton isYours={this.props.isYours} groupID={groupID} />
                 </div>
         </div>
     }
 }
+
+
+function JoinButton(props)
+{
+    // if this is part of  "Your Groups"
+    if (props.isYours)
+    {
+        // no button will be displayed
+        return null;
+    }
+    // otherwise display a Join Button
+    return <button className={styles.joinButton} onClick={joinOnClick(props.groupID)}>Join</button>;
+}
+
+function joinOnClick(groupID)
+{
+    // add new values into database
+    
+}
+
+
 export default GroupCard
