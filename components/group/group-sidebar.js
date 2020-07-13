@@ -4,8 +4,10 @@ import { userData, workoutData, exerciseData, groupData } from '../../database/d
 import { BsFillPeopleFill} from 'react-icons/bs';
 import {AiFillThunderbolt} from 'react-icons/ai';
 
-export default function GroupSidebar({ groupID }) {
-    let group = groupData[groupID]
+export default function GroupSidebar({ groupId }) {
+
+    console.log(groupId);
+    let group = groupData[groupId]
     return <div className={styles.sidebar}>
         <img className={styles.image} src={group['image']} alt={group['name']} />
         <h1 className={styles.title}>{group['name']}</h1>
