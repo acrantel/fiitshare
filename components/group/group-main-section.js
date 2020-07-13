@@ -34,7 +34,7 @@ function GroupSchedule({ groupSchedule }) {
 function GroupMembers({ members, admins }) {
     return <div>
         {members.map(function (userId) {
-            return <UserCard userId={userId} admin={admins.includes(userId)} />
+            return <UserCard key={userId} userId={userId} admin={admins.includes(userId)} />
         })}
     </div>
 }
