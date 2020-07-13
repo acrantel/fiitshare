@@ -13,10 +13,28 @@
     width: 100%;
 }
 
+.headingWrapper {
+    display: flex;
+    align-items: center;
+}
+.content {
+    background-color: white;
+    flex: auto;
+}
+
 .myGroupsContainer {
     display: flex;
     flex-direction: column;
 }
 
-
-
+.workoutContainer {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.myWorkoutsLibrary {
+    display: flex;
+    flex-wrap: wrap;
+}
