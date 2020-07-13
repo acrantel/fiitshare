@@ -57,30 +57,29 @@ class Groups extends React.Component {
         var myGroupsRender = [];
         // for each of the user's groups
         for (let userGroup of (userData[USERID].groups)) {
-            myGroupsRender.push(<GroupCard groupID={userGroup} isYours={true} />);
+            myGroupsRender.push(<GroupCard key={userGroup} groupID={userGroup} isYours={true} />);
         }
 
         var searchResultsRender = [];
         for (let groupID of (this.state.searchResults)) {
-            searchResultsRender.push(<GroupCard groupID={groupID} isYours={false} />);
+            searchResultsRender.push(<GroupCard key={groupID} groupID={groupID} isYours={false} />);
         }
 
         return <div className={styles.pageWrapper}>
             <Header />
             <div className={styles.pageContent} style={{ flexDirection: 'column' }}>
                 <div className={styles.myGroupsContainer}>
-                    <h1 class='section-title'><span>My Groups</span></h1>
-
+                    <h1 className='section-title'><span>My Groups</span></h1>
                     <div className={styles.myGroupsList}>{myGroupsRender}</div>
                 </div>
 
                 <div className={styles.findGroupsContainer}>
-                    <h1 class='section-title'><span>Find Groups</span></h1>
+                    <h1 className='section-title'><span>Find Groups</span></h1>
                     <div className={styles.groupSearchSection}>
                         <div className={styles.groupSearchBar}>
                             <SearchBar onSearch={this.searchGroups} onChange={this.nameChangeHandler} placeholder="Group Name"/>
-                            <select className={styles.groupSelectLevel} onChange={this.levelChangeHandler}>
-                                <option selected value={0}>None</option>
+                            <select defaultValue={0} className={styles.groupSelectLevel} onChange={this.levelChangeHandler}>
+                                <option value={0}>None</option>
                                 <option value="beginner">Beginner</option>
                                 <option value="intermediate">Intermediate</option>
                                 <option value="advanced">Advanced</option>
