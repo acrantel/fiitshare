@@ -1,0 +1,45 @@
+.workout {
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    margin: 20px;
+    min-height: 80px;
+    overflow: hidden;
+}
+.datetime {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    width: 60px;
+}
+.time {
+    font-size: 0.7em;
+}
+.label {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    flex: auto;
+}
+.icon {
+    width: 80px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    color: #eee;
+}
+.circle {
+    background-color: currentColor;
+    width: calc(5em / 6);
+    height: calc(5em / 6);
+    border-radius: 50%;
+}
+.completed .icon {
+    background-color: #66cc21;
+    color: white;
+}
