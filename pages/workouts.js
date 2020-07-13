@@ -5,6 +5,30 @@ import Tabs from '../components/tabs.js';
 import SearchBar from '../components/search-bar.js';
 import { userData, workoutData, USERID } from '../database/database.js';
 import Workout from '../components/workout/workout.js';
+import WorkoutCard from '../components/cards/workout-card.js'
+
+function ScheduledWorkouts ({ userId }) {
+    return userData[userId].workouts.map(workoutId => (
+        <Workout
+            key={workoutId}
+            workoutId={workoutId}
+            workoutDatum={workoutData[workoutId]}
+            completed={/* TEMP */ workoutId === 'wk2'}
+        />
+    ));
+}
+
+function MyLibrary ({ userId }) {
+    return <div className={styles.myWorkoutsLibrary}>
+        {userData[userId].workouts.map(workoutId => (
+            <WorkoutCard
+                key={workoutId}
+                workoutId={workoutId}
+                workoutDatum={workoutData[workoutId]}
+            />
+        ))}
+    </div>;
+}
 
 class Workouts extends React.Component {
     render() {
@@ -20,17 +44,10 @@ class Workouts extends React.Component {
                 <div className={styles.content}>
                     <Tabs>
                         <div label="Scheduled Workouts">
-                            {userData[userId].workouts.map(workoutId => (
-                                <Workout
-                                    key={workoutId}
-                                    workoutId={workoutId}
-                                    workoutDatum={workoutData[workoutId]}
-                                    completed={/* TEMP */ workoutId === 'wk2'}
-                                />
-                            ))}
+                            <ScheduledWorkouts userId={userId} />
                         </div>
                         <div label="My Library">
-                            {/* TODO */}
+                            <MyLibrary userId={userId} />
                         </div>
                         <SearchBar />
                     </Tabs>
