@@ -68,3 +68,18 @@ h2 {
     height: 10px;
     z-index: -1;
 }
+
+button {
+    width: fit-content;
+    border: 1px solid #ff73d7;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: white;
+    color: #ff73d7;
+    font-size: large;
+    font-weight: 400;
+    align-self: center;
+}
+button:hover {
+    cursor: pointer;
+}
