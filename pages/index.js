@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import Header from '../components/header.js';
 import Sidebar from '../components/dashboard/sidebar.js';
 import Dashboard from '../components/dashboard/dashboard.js';
-import { userData, workoutData, exerciseData, groupData } from '../database/database.js';
+import { userData, workoutData, exerciseData, groupData, USERID } from '../database/database.js';
 import styles from './page.module.css';
-
-const USERID = 'user1';
 
 class Home extends React.Component {
     render() {

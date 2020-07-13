@@ -41,6 +41,7 @@ h2 {
     list-style: none;
     margin-bottom: -1px;
     padding: 0.5rem 0.75rem;
+    cursor: pointer;
 }
 
 .tab-list-active {
@@ -58,7 +59,9 @@ h2 {
     position: relative;
     z-index: 0;
 }
-.section-title > span::after, .tab-list-active > span::after {
+.section-title > span::after,
+.tab-list-active > span::after,
+.tab-list-item:hover > span::after {
     content: '';
     position: absolute;
     bottom: 1px;
@@ -82,4 +85,7 @@ button {
 }
 button:hover {
     cursor: pointer;
+}
+.tab-list-item:not(.tab-list-active):hover > span::after {
+    background-color: #ddd;
 }

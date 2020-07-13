@@ -1,5 +1,6 @@
 import styles from './workout-card.module.css';
 import { MdNotificationsNone } from 'react-icons/md';
+import { formatDateTime } from '../../utils/datetime.js';
 
 export default class WorkoutCard extends React.Component {
     render() {
@@ -12,7 +13,8 @@ export default class WorkoutCard extends React.Component {
             creator = 'Anonymous',
             intensity = 'Intense!',
             calories = 0,
-            length = 0
+            length = 0,
+            dueBy = [],
         } = workoutDatum
         return <div className={styles.card}>
             {/* Could put the image here if there needs to be one */}
@@ -42,7 +44,7 @@ export default class WorkoutCard extends React.Component {
                         (<div className={styles.infoEntry}>
                             <h3 className={styles.infoTitle}>Due By</h3>
                             <div className={styles.infoValue}>
-                                {(new Date(...this.props.dueBy)).toLocaleString('en-US', {day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute:'2-digit'})}
+                                {formatDateTime(new Date(...dueBy))}
                             </div>
                         </div>)
                         : <></>

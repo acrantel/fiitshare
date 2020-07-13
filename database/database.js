@@ -145,4 +145,6 @@ var groupData = {
     }
 }
 
-export { userData, workoutData, exerciseData, groupData};
+const USERID = 'user1';
+
+export { userData, workoutData, exerciseData, groupData, USERID };

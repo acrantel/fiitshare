@@ -24,6 +24,15 @@
     padding: 10px;
 }
 
+.headingWrapper {
+    display: flex;
+    align-items: center;
+}
+.content {
+    background-color: white;
+    flex: auto;
+}
+
 .myGroupsList, .foundGroups {
     margin-top: 10px;
     display: flex;
@@ -66,4 +75,15 @@
     background-color: #eeeeee;
     border-style: none;
     cursor: pointer;
+}
+.workoutContainer {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.myWorkoutsLibrary {
+    display: flex;
+    flex-wrap: wrap;
 }
