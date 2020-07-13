@@ -6,17 +6,18 @@
     padding-left: 2px;
     padding-right: 10px;
     background-color: #eeeeee;
+    font-family: 'Roboto', sans-serif;
 }
 
 .searchIcon {
     font-size: larger;
     color: rgb(32, 32, 32);
     padding:5px;
+    cursor: pointer;
 }
 
-.input {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+.searchInput {
     border-style: none;
     display:flex;
-    background-color: inherit;
+    background-color: #eeeeee;
 }

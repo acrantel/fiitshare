@@ -7,16 +7,159 @@
 .pageContent {
     flex: auto;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     max-width: 1400px;
     width: 100%;
 }
 
-.myGroupsContainer {
+.myGroupsContainer, .findGroupsContainer{
     display: flex;
     flex-direction: column;
+    background-color: #fff;
+    width: 80%;
+    flex: auto;
+    margin: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.myGroupsList, .foundGroups {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.groups {
+    display: flex;
+    flex-direction: column;
+    margin-left:50px;
+    margin-right: 50px;
+}
+
+.groupSearchSection {
+    margin: 5px;
+    margin-top: 10px;
+    padding: 5px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.groupSearchBar {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.groupSelectLevel {
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    border: none;
+    border-color: #eeeeee;
+}
+.groupSelectLevel:hover {
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    border-style: none;
+    cursor: pointer;
+}
+
+.join-group-id-button-container {
+    flex: 1;
+    justify-self: right;
+}
+.join-group-id-button {
+    width: 100px;
+}
+.find-groups-filter {
+}
+.find-groups-container input {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-style: solid;
+    border-width: 1px;
+    width: 200px;
+}
+.groups select {
+    width: 150px;
+}
+.groups button.searchIcon {
+
+    width: 50px;
+}
+.find-groups-line-3 {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
 }
 
 
+.groups {
+    display: flex;
+    flex-direction: column;
+    margin-left:50px;
+    margin-right: 50px;
+}
+.groups-title {
+}
+.my-groups-container {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+}
+.my-groups-list {
+    display: flex;
+    flex-direction: row;
+}
+.find-groups-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+}
+.find-groups-line-2 {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.join-group-id-button-container {
+    flex: 1;
+    justify-self: right;
+}
+.join-group-id-button {
+    width: 100px;
+}
+.find-groups-filter {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+.find-groups-container input {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-style: solid;
+    border-width: 1px;
+    width: 200px;
+}
+.groups select {
+    width: 150px;
+}
+.groups button.searchIcon {
 
+    width: 50px;
+}
+.find-groups-line-3 {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}
+
+.searchIcon {
+    font-size: larger;
+    color: rgb(32, 32, 32);
+    padding:5px;
+}

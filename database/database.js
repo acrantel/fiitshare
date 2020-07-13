@@ -76,7 +76,7 @@ var groupData = {
         image: "/groups/group1.jpg",
         level: 'Beginner',
         description: "Anderson's G Period PE Class",
-        members: ['user2'], // user id's
+        members: ['user1', 'user2'], // user id's
         admins: ['user1'], // user id's
         schedule: [
             {
@@ -94,8 +94,8 @@ var groupData = {
         image: "/groups/group1.jpg",
         level: 'Intermediate',
         description: "Anderson's A Period PE Class",
-        members: ['user2'], // user id's
-        admins: ['user1'], // user id's
+        members: ['user1', 'user2', 'user3'], // user id's
+        admins: ['user2'], // user id's
         schedule: [
             {
                 workoutId: 'wk1',

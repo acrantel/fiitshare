@@ -6,8 +6,9 @@ import { MdSearch } from 'react-icons/md'
 class SearchBar extends React.Component {
     render() {
         return <div className={styles.searchBar}>
-            <MdSearch className={styles.searchIcon}/>
-            <input style={{justifySelf:'end'}} type="text"></input>
+            <MdSearch onClick={this.props.onSearch} className={styles.searchIcon} />
+            <input className={styles.searchInput} style={{ justifySelf: 'end' }} type="text"
+                onChange={this.props.onChange} placeholder={this.props.placeholder}></input>
         </div>
     }
 }
