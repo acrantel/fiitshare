@@ -35,6 +35,7 @@ var userData = {
     },
 };
 
+
 var workoutData = {
     wk1: {
         creator: 'user1',
@@ -42,19 +43,46 @@ var workoutData = {
         intensity: 'beginner',
         length: 20, // minutes
         calories: 200,
+        sets: 3,
         exercises: {
-            exerciseId: [1, 2, 1],
-            time: [50, 40, 40],
+            exerciseId: [1, 2, 3],
+            time: [5, 5, 5],
         }
     },
     wk2: {
-
+        creator: 'user1',
+        name: 'Morning Workout 2',
+        intensity: 'Easy',
+        length: 10, // minutes
+        calories: 50,
+        sets: 3,
+        exercises: {
+            exerciseId: [1, 2, 3],
+            time: [50, 40, 40],
+        }
     },
     wk3: {
-
+        creator: 'user1',
+        name: '20-min Intense HIIT',
+        intensity: 'Hard',
+        length: 20, // minutes
+        calories: 200,
+        sets: 3,
+        exercises: {
+            exerciseId: [1, 2, 3],
+            time: [50, 40, 40],
+        }
     },
     wk4: {
-
+        creator: 'user1',
+        name: 'Quick HIIT',
+        intensity: 'Medium',
+        length: 10, // minutes
+        calories: 100,
+        exercises: {
+            exerciseId: [1, 2, 3],
+            time: [50, 40, 40],
+        }
     }
 
 };
@@ -67,6 +95,10 @@ var exerciseData = {
     2: {
         name: 'pushups',
         video_link: '/exercise/2.gif'
+    },
+    3: {
+        name: 'situps',
+        video_link: '/exercise/3.gif'
     }
 }
 
