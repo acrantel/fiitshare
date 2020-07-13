@@ -22,35 +22,36 @@ class WorkoutVideo extends React.Component {
         this.skipNextExercise = this.skipNextExercise.bind(this);
         this.pauseWorkout = this.pauseWorkout.bind(this);
         this.playWorkout = this.playWorkout.bind(this);
+        this.checkState = this.checkState.bind(this);   
 
         let today = new Date();
         today.setSeconds(today.getSeconds() + timeArr[0]);
         // set the state
-        this.state = { curIndex: 0, curSet: 1, timeToStop: today, paused: false };
-
-        this.checkState = this.checkState.bind(this);
+        this.state = { curIndex: 0, curSet: 1, timeToStop: today, paused: false, nowAndStopDiff: 0 };
         setInterval(this.checkState, 1000); // check state every second
     }
 
     checkState() {
-        if (this.state.curIndex + 1 < exerciseIDArr.length) {
-            // if the exercise has ended
-            if (Date.now() >= this.state.timeToStop) {
-                // update with new exercise and new timetostop
-                let newTimeToStop = this.state.timeToStop;
-                newTimeToStop.setSeconds(this.state.timeToStop.getSeconds() + timeArr[this.state.curIndex + 1]);
-                this.setState({ curIndex: this.state.curIndex + 1, timeToStop: newTimeToStop });
+        //if (!(this.state.paused)) {
+            if (this.state.curIndex + 1 < exerciseIDArr.length) {
+                // if the exercise has ended
+                if (Date.now() >= this.state.timeToStop) {
+                    // update with new exercise and new timetostop
+                    let newTimeToStop = this.state.timeToStop;
+                    newTimeToStop.setSeconds(this.state.timeToStop.getSeconds() + timeArr[this.state.curIndex + 1]);
+                    this.setState({ curIndex: this.state.curIndex + 1, timeToStop: newTimeToStop });
+                }
             }
-        }
-        else // when the one exercise array has finished
-        {
-            // if there are still more sets to do
-            if (this.state.curSet + 1 <= numSets) {
-                let newTimeToStop = this.state.timeToStop;
-                newTimeToStop.setSeconds(this.state.timeToStop.getSeconds() + timeArr[0]);
-                this.setState({ curIndex: 0, curSet: this.state.curSet + 1, timeToStop: newTimeToStop });
+            else // when the one exercise array has finished
+            {
+                // if there are still more sets to do
+                if (this.state.curSet + 1 <= numSets) {
+                    let newTimeToStop = this.state.timeToStop;
+                    newTimeToStop.setSeconds(this.state.timeToStop.getSeconds() + timeArr[0]);
+                    this.setState({ curIndex: 0, curSet: this.state.curSet + 1, timeToStop: newTimeToStop });
+                }
             }
-        }
+        //}
     }
 
     // skips the next exercise by incrementing the curIndex and curSet (if needed) & timetostop
@@ -79,13 +80,19 @@ class WorkoutVideo extends React.Component {
     // when user clicks the pause button
     pauseWorkout()
     {
-
+        // record the difference (in seconds) between 'now' and timetostop
+        this.setState({paused: true, nowAndStopDiff: this.state.timeToStop.getSeconds() - Date.now().getSeconds()});
     }
 
     // when use clicks the play button
     playWorkout()
     {
+        // use the previously recorded difference to update the new timetostop
+        let tempTime = Date.now();
+        tempTime.setSeconds(tempTime.getSeconds() + nowAndStopDiff);
+        this.setState({paused: false, timeToStop: tempTime, nowAndStopDiff: 0});
 
+        // timeToStop needs to be updated to the 
     }
 
 /*
