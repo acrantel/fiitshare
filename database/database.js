@@ -62,11 +62,11 @@ var groupData = {
         schedule: [
             {
                 workoutId: 'wk1',
-                dueBy: '19 Jul 2020 10:50:00 GMT'
+                dueBy: [2020, 6, 19, 10, 30]
             },
             {
                 workoutId: 'wk1',
-                dueBy: '21 Jul 2020 10:50:00 GMT'
+                dueBy: [2020, 6, 21, 10, 30]
             }
         ]
     },
@@ -80,11 +80,11 @@ var groupData = {
         schedule: [
             {
                 workoutId: 'wk1',
-                dueBy: '19 Jul 2020 10:50:00 GMT'
+                dueBy: [2020, 6, 19, 10, 30]
             },
             {
                 workoutId: 'wk1',
-                dueBy: '21 Jul 2020 10:50:00 GMT'
+                dueBy: [2020, 6, 19, 10, 30]
             }
         ]
     }

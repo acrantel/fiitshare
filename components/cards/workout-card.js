@@ -38,12 +38,14 @@ export default class WorkoutCard extends React.Component {
                     <div className={styles.infoValue}>{`${length} min.`}</div>
                 </div>
                 {/* Do by: this is used for schedules */
-                this.props.dueBy === null ?
-                    <div></div> :
-                    <div className={styles.infoEntry}>
-                        <h3 className={styles.infoTitle}>Due By</h3>
-                        <div className={styles.infoValue}>{`${this.props.dueBy}`}</div>
-                    </div>
+                    this.props.dueBy ?
+                        (<div className={styles.infoEntry}>
+                            <h3 className={styles.infoTitle}>Due By</h3>
+                            <div className={styles.infoValue}>
+                                {(new Date(...this.props.dueBy)).toLocaleString('en-US', {day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute:'2-digit'})}
+                            </div>
+                        </div>)
+                        : <></>
                 }
 
             </div>

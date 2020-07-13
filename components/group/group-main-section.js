@@ -7,7 +7,7 @@ import {FaCrown} from 'react-icons/fa';
 
 export default class GroupMainSection extends React.Component {
     render() {
-        let group =groupData[this.props.groupID];
+        let group =groupData[this.props.groupId];
         return <div className={styles.mainSection}>
             <Tabs>
                 <div label="Schedule">
@@ -22,7 +22,7 @@ export default class GroupMainSection extends React.Component {
 }
 
 function GroupSchedule({ groupSchedule }) {
-    return <div>
+    return <div className={styles.groupSchedule}>
         {groupSchedule.map(function (item) {
             return <WorkoutCard workoutId={item['workoutId']}
                 workoutDatum={workoutData[item['workoutId']]}
@@ -49,5 +49,6 @@ function UserCard({ userId, admin }) {
         {
             admin ? <FaCrown className={styles.adminIcon}/> : <div/>
         }
+
     </div>
 }

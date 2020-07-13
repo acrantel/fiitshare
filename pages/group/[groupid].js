@@ -1,18 +1,20 @@
-import { useRouter } from 'next/router';
+import { useRouter, withRouter } from 'next/router';
 import Header from '../../components/header.js';
 import GroupSidebar from '../../components/group/group-sidebar.js';
 import GroupMainSection from '../../components/group/group-main-section.js';
 
-export default function Group() {
-    const router = useRouter()
-    let { groupid } = router.query
-    console.log(groupid);
-    groupid = 'group1'; // TODO FIX THIS (navigation broken?)
+function Group({ groupid }) {
     return <div>
         <Header />
         <div className='group-page'>
-            <GroupSidebar groupID={groupid}/> 
-            <GroupMainSection groupID={groupid}/>
+            <GroupSidebar groupId={groupid} />
+            <GroupMainSection groupId={groupid} />
         </div>
     </div>
 }
+
+Group.getInitialProps = async ({ query }) => {
+    const { groupid } = query;
+    return { groupid };
+};
+export default Group

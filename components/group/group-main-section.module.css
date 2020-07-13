@@ -11,6 +11,12 @@
     padding: 20px;
 }
 
+.groupSchedule {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
 .userCard {
     display: flex;
     flex-direction: row;
