@@ -25,6 +25,14 @@
     font-size: 1.5em;
 }
 
+.groupNameLink {
+    text-decoration: none;
+    color: inherit;
+}
+.groupNameLink:hover {
+    text-decoration: underline;
+}
+
 .infoContainer {
     display: flex;
     flex-direction: column;

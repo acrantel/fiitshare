@@ -46,7 +46,6 @@ export default class CreateGroup extends React.Component {
                             <option>Beginner</option>
                             <option>Intermediate</option>
                             <option>Advanced</option>
-                            <option>🤯💪</option>
                         </select>
                     </LabelledInput>
                 </AddGroup>

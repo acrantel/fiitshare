@@ -72,7 +72,8 @@ h2 {
     z-index: -1;
 }
 
-button {
+button,
+.button {
     width: fit-content;
     border: 1px solid #ff73d7;
     border-radius: 5px;
@@ -82,8 +83,7 @@ button {
     font-size: large;
     font-weight: 400;
     align-self: center;
-}
-button:hover {
+    text-decoration: none;
     cursor: pointer;
 }
 .tab-list-item:not(.tab-list-active):hover > span::after {

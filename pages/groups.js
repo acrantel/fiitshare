@@ -86,7 +86,9 @@ class Groups extends React.Component {
                             </select>
                         </div>
                         <div className='join-group-id-button-container'>
-                            <button className='join-group-id-button'>Join by ID</button>
+                            <Link href="/join-group">
+                                <a className='button join-group-id-button'>Join by ID</a>
+                            </Link>
                         </div>
                     </div>
                     <div className={styles.foundGroups}>
@@ -98,4 +100,4 @@ class Groups extends React.Component {
         </div>
     };
 };
-export default Groups;  
+export default Groups;
