@@ -19,7 +19,7 @@ class GroupCard extends React.Component {
                 <p className={styles.infoParagraph}>{groupData[groupID].description}</p>
                     <p className={styles.infoParagraph}>
                         Members: {groupData[groupID].members.length + groupData[groupID].admins.length}</p>
-                    <p className={styles.infoParagraph}>Level: Beginner</p>
+    <p className={styles.infoParagraph}>Level: {groupData[groupID].level}</p>
                 <JoinButton isYours={this.props.isYours} groupID={groupID} />
                 </div>
         </div>
