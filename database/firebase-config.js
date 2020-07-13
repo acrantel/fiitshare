@@ -6,8 +6,6 @@ var firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/firestore");
 
-
-
 const firebaseConfig = {
     apiKey: "AIzaSyCwNaX7MorYWCvGt4wuULyiIHBZMsrzVqM",
     authDomain: "bay-area-hacks-74e5d.firebaseapp.com",
@@ -19,3 +17,16 @@ const firebaseConfig = {
   };
 
   firebase.initializeApp(firebaseConfig);
+
+      export default firebase;
+
+
+  function getUserData()
+  {
+
+  }
+
+  function getGroupData()
+  {
+
+  }

@@ -87,3 +87,21 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.workoutvidContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.videoStatusBar {
+    display: flex;
+    flex-direction: row;
+}
+
+.videoCurrentExercise {
+    
+}
+
+.videoNextExercise {
+    
+}
