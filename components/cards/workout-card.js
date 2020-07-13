@@ -1,6 +1,7 @@
 import styles from './workout-card.module.css';
 import { MdNotificationsNone } from 'react-icons/md';
 import { formatDateTime } from '../../utils/datetime.js';
+import Link from 'next/link';
 
 export default class WorkoutCard extends React.Component {
     render() {
@@ -20,10 +21,14 @@ export default class WorkoutCard extends React.Component {
             {/* Could put the image here if there needs to be one */}
             <div className={styles.metaWrapper}>
                 <h2 className={styles.name}>
-                    <a href={`#TODO-workout-${workoutId}`}>{name}</a>
+                    <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
+                        <a>{name}</a>
+                    </Link>
                 </h2>
                 <div className={styles.creator}>
-                    <a href={`#TODO-user-${creator}`}>{creator}</a>
+                    <Link href='/user/[userid]' as={`/user/${creator}`}>
+                        <a>{creator}</a>
+                    </Link>
                 </div>
             </div>
             <div className={styles.infoWrapper}>

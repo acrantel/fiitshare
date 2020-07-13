@@ -4,6 +4,7 @@ import Tabs from '../tabs.js';
 import { userData, workoutData, exerciseData, groupData } from '../../database/database.js';
 import WorkoutCard from '../cards/workout-card';
 import {FaCrown} from 'react-icons/fa';
+import Link from 'next/link';
 
 export default class GroupMainSection extends React.Component {
     render() {
@@ -44,7 +45,9 @@ function UserCard({ userId, admin }) {
     return <div className={styles.userCard}>
         <img className={styles.userImage} src={userDatum['picture']} alt={userDatum['name']} />
         <h3 className={styles.userCardName}>
-            <a href={`#TODO-user-${userId}`}>{userDatum['name']}</a>
+            <Link href='/user/[userid]' as={`/user/${userId}`}>
+                <a>{userDatum['name']}</a>
+            </Link>
         </h3>
         {
             admin ? <FaCrown className={styles.adminIcon}/> : <div/>
