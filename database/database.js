@@ -45,8 +45,8 @@ var workoutData = {
         calories: 200,
         sets: 3,
         exercises: {
-            exerciseId: [1, 2, 1],
-            time: [10, 15, 10],
+            exerciseId: [1, 2, 3],
+            time: [5, 5, 5],
         }
     },
     wk2: {
@@ -57,7 +57,7 @@ var workoutData = {
         calories: 50,
         sets: 3,
         exercises: {
-            exerciseId: [1, 2, 1],
+            exerciseId: [1, 2, 3],
             time: [50, 40, 40],
         }
     },
@@ -69,7 +69,7 @@ var workoutData = {
         calories: 200,
         sets: 3,
         exercises: {
-            exerciseId: [1, 2, 1],
+            exerciseId: [1, 2, 3],
             time: [50, 40, 40],
         }
     },
@@ -80,7 +80,7 @@ var workoutData = {
         length: 10, // minutes
         calories: 100,
         exercises: {
-            exerciseId: [1, 2, 1],
+            exerciseId: [1, 2, 3],
             time: [50, 40, 40],
         }
     }
@@ -95,6 +95,10 @@ var exerciseData = {
     2: {
         name: 'pushups',
         video_link: '/exercise/2.gif'
+    },
+    3: {
+        name: 'situps',
+        video_link: '/exercise/3.gif'
     }
 }
 
