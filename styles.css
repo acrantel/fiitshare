@@ -6,7 +6,7 @@ body {
     height: 100%;
     margin:0px;
     background-color: cornsilk;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family:'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     background-color: #f7f7fa;
@@ -29,91 +29,6 @@ h2 {
     flex-direction: row;
     justify-content: center;
 }
-
-input {
-    
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border-style: none;
-    background-color: inherit;
-}
-
-select option {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-}
-select {
-    
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.searchIcon {
-    font-size: larger;
-    color: rgb(32, 32, 32);
-    padding:5px;
-}
-
-
-.groups {
-    display: flex;
-    flex-direction: column;
-    margin-left:50px;
-    margin-right: 50px;
-}
-.groups-title {
-}
-.my-groups-container {
-    display: flex;
-    flex-direction: column;
-    align-content: space-around;
-}
-.my-groups-list {
-    display: flex;
-    flex-direction: row;
-}
-.find-groups-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    
-}
-.find-groups-line-2 {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.join-group-id-button-container {
-    flex: 1;
-    justify-self: right;
-}
-.join-group-id-button {
-    width: 100px;
-}
-.find-groups-filter {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-}
-.find-groups-container input {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border-style: solid;
-    border-width: 1px;
-    width: 200px;
-}
-.groups select {
-    width: 150px;
-}
-.groups button.searchIcon {
-
-    width: 50px;
-}
-.find-groups-line-3 {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-}
-
 
 .tab-list {
     border-bottom: 1px solid #ccc;
@@ -155,6 +70,21 @@ select {
     background-color: #ff73d7;
     height: 10px;
     z-index: -1;
+}
+
+button {
+    width: fit-content;
+    border: 1px solid #ff73d7;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: white;
+    color: #ff73d7;
+    font-size: large;
+    font-weight: 400;
+    align-self: center;
+}
+button:hover {
+    cursor: pointer;
 }
 .tab-list-item:not(.tab-list-active):hover > span::after {
     background-color: #ddd;

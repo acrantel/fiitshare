@@ -7,10 +7,21 @@
 .pageContent {
     flex: auto;
     display: flex;
-    align-items: flex-start;
     justify-content: center;
     max-width: 1400px;
     width: 100%;
+}
+
+.myGroupsContainer, .findGroupsContainer{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    width: 80%;
+    flex: auto;
+    margin: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
 }
 
 .headingWrapper {
@@ -22,11 +33,49 @@
     flex: auto;
 }
 
-.myGroupsContainer {
+.myGroupsList, .foundGroups {
+    margin-top: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
+.groups {
+    display: flex;
+    flex-direction: column;
+    margin-left:50px;
+    margin-right: 50px;
+}
+
+.groupSearchSection {
+    margin: 5px;
+    margin-top: 10px;
+    padding: 5px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.groupSearchBar {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.groupSelectLevel {
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    border: none;
+    border-color: #eeeeee;
+}
+.groupSelectLevel:hover {
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    border-style: none;
+    cursor: pointer;
+}
 .workoutContainer {
     flex-direction: column;
     justify-content: flex-start;
