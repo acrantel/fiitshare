@@ -90,15 +90,19 @@ var workoutData = {
 var exerciseData = {
     1: {
         name: 'squats',
-        video_link: '/exercise/1.gif'
+        // video_link: '/exercise/1.gif'
+        // TEMP:
+        video_link: 'https://cdn.discordapp.com/attachments/731767489318617168/732451596805341214/squats.gif'
     },
     2: {
         name: 'pushups',
-        video_link: '/exercise/2.gif'
+        // video_link: '/exercise/2.gif'
+        video_link: 'https://media1.tenor.com/images/076c865ae75b347a443ae0e7596ca3e3/tenor.gif?itemid=5103666'
     },
     3: {
         name: 'situps',
-        video_link: '/exercise/3.gif'
+        // video_link: '/exercise/3.gif'
+        video_link: 'https://cdn.discordapp.com/emojis/718186115294691482.gif?v=1'
     }
 }
 
