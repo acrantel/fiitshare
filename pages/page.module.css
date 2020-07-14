@@ -28,6 +28,10 @@
     display: flex;
     align-items: center;
 }
+.heading {
+    margin-right: 50px;
+}
+
 .content {
     background-color: white;
     flex: auto;
@@ -87,6 +91,22 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+/*Create a new workout button*/
+.createButtonContent {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+.createButtonText {
+    align-self:center;
+}
+.createButtonIcon {
+    margin-right: 5px;
+    height: min-content;
+    margin-top: 5px;
+}
+/*Create a new workout button*/
 
 .workoutvidContainer {
     display: flex;

@@ -18,7 +18,13 @@ function DashboardCenter({ userId }) {
     return <div className={styles.dashboardCenter}>
         <Link href='/create-workout'>
                 <a className='button'>
-                <MdAddCircleOutline />Create a new workout</a>
+                <div className={styles.dashboardCenterButtonContent}>
+                    <div className={styles.dashboardCenterButtonIcon}>
+                <MdAddCircleOutline /></div>
+                <div className={styles.dashboardCenterButtonText}>Create a new workout</div>
+                
+                </div>
+                </a>
         </Link>
         <Recent userId={userId} />
         <Feed />

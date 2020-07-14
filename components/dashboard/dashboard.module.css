@@ -10,6 +10,19 @@
     padding: 20px;
 
 }
+.dashboardCenterButtonContent {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+.dashboardCenterButtonText {
+    align-self:center;
+}
+.dashboardCenterButtonIcon {
+    margin-right: 5px;
+    height: min-content;
+    margin-top: 5px;
+}
 
 .dashboard {
     display: flex;
