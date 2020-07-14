@@ -57,6 +57,10 @@ function DashboardRight({ userId }) {
                 ? <a href="#">Join a Group</a>
                 : userData[userId]['groups'].map(function (item) {
                     return <Link key={item} href="/group/[groupid]" as={`/group/${item}`}>
+                        <a className={styles.groupLink}><img className={styles.groupImg} src={groupData[item].image} /></a>
+                    </Link>;
+                    
+                    <Link key={item} href="/group/[groupid]" as={`/group/${item}`}>
                         <a className={styles.groupLink}>{groupData[item].name}</a>
                     </Link>;
                 })

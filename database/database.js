@@ -106,7 +106,7 @@ var exerciseData = {
 var groupData = {
     group1: {
         name: 'G Period',
-        image: "/groups/group1.jpg",
+        image: "/images/groups/group1.jpg",
         level: 'Beginner',
         description: "Anderson's G Period PE Class",
         members: ['user1', 'user2'], // user id's
@@ -124,7 +124,7 @@ var groupData = {
     },
     group2: {
         name: 'A Period',
-        image: "/groups/group1.jpg",
+        image: "/images/groups/group2.jpg",
         level: 'Intermediate',
         description: "Anderson's A Period PE Class",
         members: ['user1', 'user2', 'user3'], // user id's
@@ -142,7 +142,7 @@ var groupData = {
     },
     group3: {
         name: 'C Period',
-        image: "/groups/group1.jpg",
+        image: "/images/groups/group3.jpg",
         level: 'Intermediate',
         description: "Anderson's C Period PE Class",
         members: [], // user id's
@@ -160,7 +160,7 @@ var groupData = {
     },
     group4: {
         name: 'D Period',
-        image: "/groups/group1.jpg",
+        image: "/images/groups/group4.jpg",
         level: 'Advanced',
         description: "Anderson's D Period PE Class",
         members: ['user2'], // user id's
