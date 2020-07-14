@@ -90,7 +90,9 @@ var workoutData = {
 var exerciseData = {
     1: {
         name: 'squats',
-        video_link: '/exercise/1.gif'
+        // video_link: '/exercise/1.gif'
+        // TEMP:
+        video_link: 'https://cdn.discordapp.com/attachments/731767489318617168/732451596805341214/squats.gif'
     },
     2: {
         name: 'pushups',

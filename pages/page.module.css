@@ -37,6 +37,8 @@
     flex: auto;
     margin: 20px;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .myGroupsList, .foundGroups {
@@ -100,4 +102,5 @@
 .workoutWrapper {
     display: flex;
     margin-top: 20px;
+    flex: auto;
 }

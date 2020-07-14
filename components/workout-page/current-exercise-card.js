@@ -9,9 +9,18 @@ export default class CurrentExerciseCard extends React.Component {
     render() {
         return (
                 <div className={styles.videoCurrentExercise}>
-                    <h2>Work</h2>
-                    <h2>{this.props.time} seconds</h2>
-                    <h2>{exerciseData[this.props.exerciseID].name}</h2>
+                    <img
+                        src={exerciseData[this.props.exerciseID].video_link}
+                        className={styles.video}
+                    />
+                    <p className={styles.exercise}>
+                        <span className={styles.name}>
+                            {exerciseData[this.props.exerciseID].name}
+                        </span>
+                        <span className={styles.timeWrapper}>
+                            <span className={styles.time}>{this.props.time}s</span>
+                        </span>
+                    </p>
                 </div>
         );
     }
