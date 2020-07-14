@@ -1,4 +1,5 @@
 .videoCurrentExercise {
+    flex: auto;
     display: flex;
     flex-direction: column;
 }
@@ -9,6 +10,10 @@
 
 .video {
     width: 100%;
+    height: 0;
+    flex: auto;
+    object-fit: contain;
+    object-position: center;
 }
 
 .exercise {
