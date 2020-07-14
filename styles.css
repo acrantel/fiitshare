@@ -75,7 +75,7 @@ h2 {
 button,
 .button {
     width: fit-content;
-    border: 1px solid #ff73d7;
+    border: 1px solid currentColor;
     border-radius: 5px;
     padding: 8px;
     background-color: white;
@@ -85,6 +85,10 @@ button,
     align-self: center;
     text-decoration: none;
     cursor: pointer;
+}
+.icon-btn {
+    line-height: 0;
+    border-radius: 50%;
 }
 .tab-list-item:not(.tab-list-active):hover > span::after {
     background-color: #ddd;

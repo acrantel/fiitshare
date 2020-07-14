@@ -18,6 +18,7 @@ export default class CreateWorkout extends React.Component {
         this.addExercise = this.addExercise.bind(this);
         this.setExercise = this.setExercise.bind(this);
         this.setTime = this.setTime.bind(this);
+        this.removeExercise = this.removeExercise.bind(this);
         this.state = {
             exercises: [newExercise(0)],
             nextKey: 1
@@ -42,9 +43,9 @@ export default class CreateWorkout extends React.Component {
                 return {
                     ...exercise,
                     exercise: exerciseId
-                }
+                };
             })
-        })
+        });
     }
     
     setTime(exerciseKey, hour, minute) {
@@ -54,9 +55,16 @@ export default class CreateWorkout extends React.Component {
                 return {
                     ...exercise,
                     time: [hour, minute]
-                }
+                };
             })
-        })
+        });
+    }
+    
+    removeExercise(exerciseKey) {
+        this.setState({
+            exercises: this.state.exercises
+                .filter(exercise => exercise.key !== exerciseKey)
+        });
     }
     
     render() {
@@ -67,14 +75,15 @@ export default class CreateWorkout extends React.Component {
                     key={key.toString()}
                     exerciseKey={key}
                     exercise={exercise}
-                    onSetExercise={this.setExercise}
-                    onSetTime={this.setTime}
                     hour={hour}
                     minute={minute}
+                    onSetExercise={this.setExercise}
+                    onSetTime={this.setTime}
+                    onRemove={this.removeExercise}
                 />
             ))}
             <div className={styles.buttonWrapper}>
-                <button onClick={this.addExercise}><MdAdd /></button>
+                <button onClick={this.addExercise} className='button icon-btn'><MdAdd /></button>
             </div>
         </div>;
     }

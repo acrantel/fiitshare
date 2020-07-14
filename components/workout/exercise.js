@@ -1,11 +1,13 @@
 import styles from './exercise.module.css';
 import { exerciseData } from '../../database/database.js';
+import { MdDelete } from 'react-icons/md';
 
 export default class Exercise extends React.Component {
     constructor(props) {
         super(props);
         this.setExercise = this.setExercise.bind(this);
         this.setTime = this.setTime.bind(this);
+        this.remove = this.remove.bind(this);
     }
     
     setExercise(e) {
@@ -17,6 +19,10 @@ export default class Exercise extends React.Component {
         this.props.onSetTime(this.props.exerciseKey, hour, minute);
     }
     
+    remove() {
+        this.props.onRemove(this.props.exerciseKey);
+    }
+    
     render() {
         const {
             exercise,
@@ -25,7 +31,7 @@ export default class Exercise extends React.Component {
         } = this.props;
         return <div className={styles.exercise}>
             <label className={styles.labelled}>
-                <span className={styles.label}>Exercise name</span>
+                <span className={styles.label}>Exercise name:</span>
                 <select onChange={this.setExercise} value={exercise} className={styles.input}>
                     {Object.entries(exerciseData).map(([id, { name }]) => (
                         <option key={id} value={id}>{name}</option>
@@ -33,7 +39,7 @@ export default class Exercise extends React.Component {
                 </select>
             </label>
             <label className={styles.labelled}>
-                <span className={styles.label}>Time to do this</span>
+                <span className={styles.label}>Time to do this:</span>
                 <input
                     type="time"
                     onChange={this.setTime}
@@ -41,6 +47,9 @@ export default class Exercise extends React.Component {
                     className={styles.input}
                 />
             </label>
+            <button onClick={this.remove} className={`button icon-btn ${styles.remove}`}>
+                <MdDelete />
+            </button>
         </div>;
     }
 }

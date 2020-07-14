@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './dashboard.module.css';
 import { userData, workoutData, exerciseData, groupData } from '../../database/database.js';
 import WorkoutCard from '../cards/workout-card.js'
-import Link from 'next/link'
+import Link from 'next/link';
 
 class Dashboard extends React.Component {
     render() {
@@ -15,7 +15,9 @@ class Dashboard extends React.Component {
 
 function DashboardCenter({ userId }) {
     return <div className={styles.dashboardCenter}>
-        <a className='button' href="#">Create new</a>
+        <Link href='/create-workout'>
+            <a className='button'>Create new</a>
+        </Link>
         <Recent userId={userId} />
         <Feed />
     </div>
