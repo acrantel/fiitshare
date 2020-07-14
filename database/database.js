@@ -5,6 +5,7 @@ var userData = {
         groups: ['group1', 'group2'],
         name: 'John Doe',
         picture: '/images/user1.jpeg',
+        cover_picture: 'images/user1-cover.jpg',
         calories: 2000,
         // minutes
         time_spent: 540,
@@ -89,16 +90,16 @@ var workoutData = {
 
 var exerciseData = {
     1: {
-        name: 'squats',
-        video_link: '/exercise/1.gif'
+        name: 'Squats',
+        video_link: '/images/exercise_gifs/squats.gif'
     },
     2: {
-        name: 'pushups',
-        video_link: '/exercise/2.gif'
+        name: 'Reverse lunge',
+        video_link: '/exercise/exercise_gifs/reverselunge.gif'
     },
     3: {
-        name: 'situps',
-        video_link: '/exercise/3.gif'
+        name: 'Jumping jacks',
+        video_link: '/exercise/exercise_gifs/jumpingjacks.gif'
     }
 }
 
