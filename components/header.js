@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import Link from 'next/link'
 import styles from './header.module.css'
 import SearchBar from './search-bar.js'
+import {userData} from '../database/database.js'
+import {MdExpandMore} from 'react-icons/md'
 
+const USERID = 'user1';
 class Header extends React.Component {
     render() {
         return <div className={styles.header}>
@@ -12,8 +15,32 @@ class Header extends React.Component {
                 <Link href="/groups"><a className={styles.navElement}>Groups</a></Link>
                 <Link href="/workouts"><a className={styles.navElement}>Workouts</a></Link>
             </div>
+            
             <SearchBar/>
+           <RightNavBar/>
         </div>
     }
 }
+
+class RightNavBar extends React.Component {
+    expandOnClick() {
+
+    }
+
+    render() {
+        return <div className={styles.rightNavBar}>
+                <Link href="/user/[userId]" as={`/user/${USERID}`}>
+                    <a><img className={styles.userImage} src={userData[USERID].picture} /></a>
+                </Link>
+            <div className={styles.dropdown}>
+                <MdExpandMore className={styles.arrowIcon} />
+                <div className={styles.dropdownContent}>
+                    <a className={styles.linkBox} href="#">Profile</a>
+                    <a  className={styles.linkBox} href="#">Sign out</a>
+                </div>
+            </div>
+        </div>
+    }
+}
+
 export default Header
