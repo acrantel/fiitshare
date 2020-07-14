@@ -27,9 +27,13 @@
     height: 40px;
     box-sizing: border-box;
     flex: auto;
+    width: 0;
 }
 select.input {
     cursor: pointer;
+}
+.units {
+    margin-left: 10px;
 }
 
 .remove {
