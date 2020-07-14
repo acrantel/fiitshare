@@ -42,16 +42,13 @@ class Workouts extends React.Component {
                 <div className={styles.headingWrapper}>
                     <h1 className={styles.heading}>Workouts</h1>
                     <Link href='/create-workout'>
-                        <a className='button'>
-                            <div className={styles.createButtonContent}>
-                                <div className={styles.createButtonIcon}>
-                                    <MdAddCircleOutline /></div>
-                                <div className={styles.createButtonText}>Create a new workout</div>
-
-                            </div>
+                        <a className={['button', styles.createButtonContent].join(' ')}>
+                            <div className={styles.createButtonIcon}>
+                                <MdAddCircleOutline /></div>
+                            <div className={styles.createButtonText}>Create a new workout</div>
                         </a>
                     </Link>
-                    
+
                 </div>
                 <div className={styles.content}>
                     <Tabs>
