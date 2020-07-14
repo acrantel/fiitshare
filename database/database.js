@@ -5,7 +5,7 @@ var userData = {
         groups: ['group1', 'group2'],
         name: 'John Doe',
         picture: '/images/user1.jpeg',
-        cover_picture: 'images/user1-cover.jpg',
+        cover_picture: '/images/user1-cover.jpg',
         calories: 2000,
         // minutes
         time_spent: 540,

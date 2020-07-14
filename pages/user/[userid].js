@@ -1,11 +1,56 @@
 import Header from '../../components/header.js';
 import styles from '../page.module.css';
+import {userData} from '../../database/database.js';
+import UserChart from '../../components/user/user-chart.js';
 
 function User({ userid }) {
     return <div className={styles.pageWrapper}>
         <Header />
         <div className={styles.pageContent}>
-            {`This is the temporary user page for ${userid}. You should meet them one day; they're really nice!`}
+            <div className={styles.profileContainer}>
+            <div className={styles.profileContainerSmaller}>
+                <div className={styles.profileImageContainer}>
+                    <div className={styles.profileCoverImgContainer}>
+                        <img className={styles.profileCoverImg} src={userData[userid].cover_picture} />
+                        <div className={styles.profilePicImgContainer}>
+                            <img className={styles.profilePicImg} src={userData[userid].picture} />
+                        </div>
+                    </div>
+                    </div>
+
+                    <div className={styles.profileSectionContainer}>
+                        <h2 className={styles.profileContainerLeft}>{userData[userid].name}</h2>
+                        <div className={styles.profileContainerRight}>
+                            <div className={styles.profileSectionTitle}>
+                                <h1 className='section-title'><span>Stats</span></h1>
+                            </div>
+                            <div className={styles.profileHeaderText}>
+                                <p className={styles.profileTextTitle}>Calories</p>
+                                <p className={styles.profileTextDes}>{userData[userid].calories}</p>
+                            </div>
+                            <div className={styles.profileHeaderText}>
+                                <p className={styles.profileTextTitle}>Time</p>
+                                <p className={styles.profileTextDes}>{userData[userid].time_spent}</p>
+                            </div>
+                            <div className={styles.profileHeaderText}>
+                                <p className={styles.profileTextTitle}>Workouts</p>
+                                <p className={styles.profileTextDes}>{userData[userid].completed_workouts}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.profileSectionContainer}>
+                        <div className={styles.profileContainerLeft}>
+                            <h1 className='section-title'><span>Activity</span></h1>
+                            <p className={styles.profileTextTitle}>This week: 5 workouts</p>
+                            <UserChart/>
+                            <h1 className='section-title'><span>Calories</span></h1>
+                            <p className={styles.profileTextTitle}>This week: 300 calories</p>
+                            <UserChart/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>;
 }

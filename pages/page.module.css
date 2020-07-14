@@ -140,3 +140,90 @@
     width: 50px;
     height: 50px;
 }
+
+.profileContainer {
+    /* Width of 0 so it tries to be the smallest it can be, but it FLEXES to the
+    /* minimum size needed to fill the space. */
+    width: 0;
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    margin: 20px 0;
+    padding: 20px;
+    align-items: center;
+
+    border-style:solid;
+
+}
+
+.profileContainerSmaller {
+    width: fit-content;
+    
+
+    border-style: solid;
+}
+
+.profileImageContainer { 
+height: 460px;
+
+}
+
+.profileCoverImgContainer {
+    position: relative;
+}
+.profilePicImgContainer {
+    align-self: flex-start;
+    position: absolute;
+  
+    left: 20px;
+    top: 340px;
+}
+.profileCoverImg {
+    width: 800px;
+    height:400px;
+}
+.profilePicImg {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 125px;
+}
+
+.profileSectionContainer {
+    display: flex;
+    flex-direction:row;
+
+    border-style: solid;
+}
+
+.profileContainerLeft {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profileContainerRight {
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    border-style: solid;
+    padding-right: 30px;
+}
+
+.profileSectionTitle {
+    margin-right: 20px;
+}
+
+.profileHeaderText {
+
+    margin: 10px;
+}
+.profileTextTitle {
+    font-weight: bold;
+    color:  #c93fa5;
+}
+
+.profileTextDes {
+    
+}
