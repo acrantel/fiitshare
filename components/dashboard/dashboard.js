@@ -3,6 +3,7 @@ import styles from './dashboard.module.css';
 import { userData, workoutData, exerciseData, groupData } from '../../database/database.js';
 import WorkoutCard from '../cards/workout-card.js'
 import Link from 'next/link';
+import {MdAddCircleOutline} from 'react-icons/md';
 
 class Dashboard extends React.Component {
     render() {
@@ -16,7 +17,8 @@ class Dashboard extends React.Component {
 function DashboardCenter({ userId }) {
     return <div className={styles.dashboardCenter}>
         <Link href='/create-workout'>
-            <a className='button'>Create new</a>
+                <a className='button'>
+                <MdAddCircleOutline />Create a new workout</a>
         </Link>
         <Recent userId={userId} />
         <Feed />
