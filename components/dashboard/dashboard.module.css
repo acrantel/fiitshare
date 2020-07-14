@@ -67,3 +67,10 @@
 .groupLink:hover {
     text-decoration: underline;
 }
+
+img.groupImg:hover {
+
+    background-color: #f5f5f5;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
