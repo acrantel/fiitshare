@@ -1,0 +1,9 @@
+.videoCurrentExercise {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+}
+
+.videoNextExercise {
+    
+}

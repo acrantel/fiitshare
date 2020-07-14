@@ -1,13 +1,16 @@
 import { useRouter, withRouter } from 'next/router';
 import Header from '../../components/header.js';
-import styles from '../../pages/page.module.css';
+import styles from '../page.module.css';
 import React from 'react';
 import {workoutData, exerciseData} from '../../database/database.js';
+import SetProgress from '../../components/workout-page/set-progress.js';
+import WorkoutVideo from '../../components/workout-page/workout-video.js';
+import ExerciseList from '../../components/workout-page/exercise-list.js';
 
 import ExerciseCard from '../../components/cards/exercise-card.js';
 import { MdSkipPrevious, MdPlayArrow, MdPause, MdSkipNext } from 'react-icons/md'
 
-class WorkoutVideo extends React.Component {
+class WorkoutPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -109,33 +112,25 @@ class WorkoutVideo extends React.Component {
 */
 
     render() {
-        return <div className={styles.workoutvidContainer}>
-            <div className={styles.videoStatusBar}>
-                <h1>Set {this.state.curSet}</h1>
-            </div>
-            <CurrentExerciseCard exerciseID={this.state.exerciseIDArr[this.state.curIndex]} time={this.state.timeArr[this.state.curIndex]}></CurrentExerciseCard>
-            <div className={styles.videoControls}>
-                <MdSkipPrevious className={styles.videoControlsIcon}/>
-                {this.state.paused && <MdPlayArrow onClick={this.playWorkout} className={styles.videoControlsIcon}/>}
-                {!this.state.paused && <MdPause onClick={this.pauseWorkout} className={styles.videoControlsIcon}/>}
-                <MdSkipNext onClick={this.skipNextExercise} className={styles.videoControlsIcon}/>
+        return <div className={styles.contentWrapper}>
+            <h1 className={styles.workoutName}>{workoutData[this.props.workoutId].name}</h1>
+            <SetProgress set={this.state.curSet} sets={this.state.exerciseIDArr.length} />
+            <div className={styles.workoutWrapper}>
+                <ExerciseList
+                    exerciseIds={this.state.exerciseIDArr}
+                    times={this.state.timeArr}
+                    current={this.state.curIndex}
+                />
+                <WorkoutVideo
+                    exerciseID={this.state.exerciseIDArr[this.state.curIndex]}
+                    time={this.state.timeArr[this.state.curIndex]}
+                    paused={this.state.paused}
+                    onPlayWorkout={this.playWorkout}
+                    onPauseWorkout={this.pauseWorkout}
+                    onSkipNextExercise={this.skipNextExercise}
+                />
             </div>
         </div>;
-    }
-}
-
-class CurrentExerciseCard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        return (
-                <div className={styles.videoCurrentExercise}>
-                    <h2>Work</h2>
-                    <h2>{this.props.time} seconds</h2>
-                    <h2>{exerciseData[this.props.exerciseID].name}</h2>
-                </div>
-        );
     }
 }
 
@@ -143,7 +138,7 @@ function Workout({ workoutid }) {
     return <div className={styles.pageWrapper}>
         <Header />
         <div className={styles.pageContent}>
-            <WorkoutVideo workoutId={workoutid} />
+            <WorkoutPage workoutId={workoutid} />
         </div>
     </div>;
 }
@@ -152,4 +147,4 @@ Workout.getInitialProps = async ({ query }) => {
     const { workoutid } = query;
     return { workoutid };
 };
-export default Workout
+export default Workout;
