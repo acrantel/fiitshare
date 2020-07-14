@@ -40,9 +40,13 @@ export default class JoinGroup extends React.Component {
             <Header />
             <div className={styles.pageContent} style={{alignItems: 'center'}}>
                 <AddGroup title="Join a group" submitLabel="Join" onSubmit={this.onJoin}>
-                    <LabelledInput label="Group ID" onChange={this.onGroupIdChange} />
+                    <LabelledInput label="Group ID">
+                        <input type="text" onChange={this.onGroupIdChange} />
+                    </LabelledInput>
                     {this.state.showCode ? (
-                        <LabelledInput label="Code" onChange={this.onCodeChange} slideIn />
+                        <LabelledInput label="Code" slideIn>
+                            <input type="text" onChange={this.onCodeChange} />
+                        </LabelledInput>
                     ) : null}
                 </AddGroup>
             </div>

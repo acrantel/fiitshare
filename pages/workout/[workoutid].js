@@ -22,7 +22,7 @@ class WorkoutVideo extends React.Component {
         this.skipNextExercise = this.skipNextExercise.bind(this);
         this.pauseWorkout = this.pauseWorkout.bind(this);
         this.playWorkout = this.playWorkout.bind(this);
-        this.checkState = this.checkState.bind(this);   
+        this.checkState = this.checkState.bind(this);
 
         let today = new Date();
         today.setSeconds(today.getSeconds() + timeArr[0]);
@@ -92,7 +92,7 @@ class WorkoutVideo extends React.Component {
         tempTime.setSeconds(tempTime.getSeconds() + nowAndStopDiff);
         this.setState({paused: false, timeToStop: tempTime, nowAndStopDiff: 0});
 
-        // timeToStop needs to be updated to the 
+        // timeToStop needs to be updated to the
     }
 
 /*

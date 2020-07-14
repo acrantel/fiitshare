@@ -38,8 +38,16 @@ export default class CreateGroup extends React.Component {
             <Header />
             <div className={styles.pageContent} style={{alignItems: 'center'}}>
                 <AddGroup title="Create a group" submitLabel="Create" onSubmit={this.onCreate}>
-                    <LabelledInput label="Group Name" onChange={this.onGroupNameChange} />
-                    <LabelledInput label="Level" onChange={this.onLevelChange} />
+                    <LabelledInput label="Group Name">
+                        <input type="text" onChange={this.onGroupNameChange} />
+                    </LabelledInput>
+                    <LabelledInput label="Level">
+                        <select onChange={this.onLevelChange}>
+                            <option>Beginner</option>
+                            <option>Intermediate</option>
+                            <option>Advanced</option>
+                        </select>
+                    </LabelledInput>
                 </AddGroup>
             </div>
         </div>

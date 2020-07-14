@@ -6,6 +6,7 @@ import SearchBar from '../components/search-bar.js';
 import { userData, workoutData, USERID } from '../database/database.js';
 import Workout from '../components/workout/workout.js';
 import WorkoutCard from '../components/cards/workout-card.js'
+import Link from 'next/link';
 
 function ScheduledWorkouts ({ userId }) {
     return userData[userId].workouts.map(workoutId => (
@@ -39,7 +40,9 @@ class Workouts extends React.Component {
             <div className={`${styles.pageContent} ${styles.workoutContainer}`}>
                 <div className={styles.headingWrapper}>
                     <h1 className={styles.heading}>Workouts</h1>
-                    <button>Create a workout</button>
+                    <Link href="/create-workout">
+                        <a className="button">Create a workout</a>
+                    </Link>
                 </div>
                 <div className={styles.content}>
                     <Tabs>

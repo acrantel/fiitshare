@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './dashboard.module.css';
 import { userData, workoutData, exerciseData, groupData } from '../../database/database.js';
 import WorkoutCard from '../cards/workout-card.js'
+import Link from 'next/link';
 
 class Dashboard extends React.Component {
     render() {
@@ -14,7 +15,9 @@ class Dashboard extends React.Component {
 
 function DashboardCenter({ userId }) {
     return <div className={styles.dashboardCenter}>
-        <a href="#">Create new</a>
+        <Link href='/create-workout'>
+            <a className='button'>Create new</a>
+        </Link>
         <Recent userId={userId} />
         <Feed />
     </div>
@@ -53,7 +56,9 @@ function DashboardRight({ userId }) {
             userData[userId]['groups'].length == 0
                 ? <a href="#">Join a Group</a>
                 : userData[userId]['groups'].map(function (item) {
-                    return <a href="#" className={styles.groupLink} key={item}>{item}</a>
+                    return <Link key={item} href="/group/[groupid]" as={`/group/${item}`}>
+                        <a className={styles.groupLink}>{groupData[item].name}</a>
+                    </Link>;
                 })
         }
     </div>;

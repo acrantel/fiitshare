@@ -1,0 +1,38 @@
+.exercise {
+    background-color: white;
+    padding: 20px 0;
+    margin: 20px;
+    display: flex;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.labelled {
+    flex: auto;
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+.label {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.input {
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 5px;
+    border-radius: 5px;
+    height: 40px;
+    box-sizing: border-box;
+    flex: auto;
+}
+select.input {
+    cursor: pointer;
+}
+
+.remove {
+    margin: 0 20px;
+    color: #ff5656;
+}

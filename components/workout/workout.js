@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styles from './workout.module.css';
 import { formatDate, formatTime } from '../../utils/datetime.js';
 import { MdCheckCircle } from 'react-icons/md';
+import Link from 'next/link';
 
-import Link from 'next/link'
 export default class Workout extends React.Component {
     render() {
         const {
@@ -26,7 +26,9 @@ export default class Workout extends React.Component {
             </div>
             <div className={styles.label}>
                 {'Complete "'}
-                <Link href="/workout/[workoutID]" as={'/workout/${workoutID}'}>{name}</Link>
+                <Link href='/workout/[workoutid]' as={`/workout/${workoutID}`}>
+                    <a>{name}</a>
+                </Link>
                 {'"'}
             </div>
             <div className={styles.icon}>
