@@ -1,32 +1,27 @@
-// Firebase App (the core Firebase SDK) is always required and
-// must be listed before other Firebase SDKs
-var firebase = require("firebase/app");
+import admin from 'firebase-admin';
 
-// Add the Firebase products that you want to use
-require("firebase/auth");
-require("firebase/firestore");
+const serviceAccount = require('../serviceAccountKey.json');
 
-const firebaseConfig = {
-    apiKey: "AIzaSyCwNaX7MorYWCvGt4wuULyiIHBZMsrzVqM",
-    authDomain: "bay-area-hacks-74e5d.firebaseapp.com",
-    databaseURL: "https://bay-area-hacks-74e5d.firebaseio.com",
-    projectId: "bay-area-hacks-74e5d",
-    storageBucket: "bay-area-hacks-74e5d.appspot.com",
-    messagingSenderId: "924296123476",
-    appId: "1:924296123476:web:6e564230e01e5f59d2c9c1"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-
-      export default firebase;
-
-
-  function getUserData()
-  {
-
+try {
+  admin.initializeApp({
+    credential: admin.credential.cert({
+        project_id: process.env.FIREBASE_PROJECT_ID,
+        private_key: process.env.FIREBASE_PRIVATE_KEY,
+        client_email: process.env.FIREBASE_CLIENT_EMAIL
+      }),
+    databaseURL: "https://bay-area-hacks.firebaseio.com"
+  });
+} catch (error) {
+  /*
+   * We skip the "already exists" message which is
+   * not an actual error when we're hot-reloading.
+   */
+  if (!/already exists/u.test(error.message)) {
+    // eslint-disable-next-line no-console
+    console.error('Firebase admin initialization error', error.stack);
   }
+}
 
-  function getGroupData()
-  {
+const db = admin.firestore();
 
-  }
+export default db;
