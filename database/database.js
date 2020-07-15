@@ -42,10 +42,11 @@ var userData = {
 
 
 var workoutData = {
+    // workout intensity: light, moderate, hard
     wk1: {
         creator: 'user1',
         name: 'Morning',
-        intensity: 'beginner',
+        intensity: 'Light',
         length: 20, // minutes
         calories: 200,
         sets: 3,
@@ -57,7 +58,7 @@ var workoutData = {
     wk2: {
         creator: 'user1',
         name: 'Morning Workout 2',
-        intensity: 'Easy',
+        intensity: 'Moderate',
         length: 10, // minutes
         calories: 50,
         sets: 3,
@@ -81,7 +82,7 @@ var workoutData = {
     wk4: {
         creator: 'user1',
         name: 'Quick HIIT',
-        intensity: 'Medium',
+        intensity: 'Moderate',
         length: 10, // minutes
         calories: 100,
         exercises: {
@@ -93,21 +94,30 @@ var workoutData = {
 };
 
 var exerciseData = {
+    // gifs cropped to 4:3 aspect ratio, keeping the bottom left corner the same
     1: {
-        name: 'squats',
+        name: 'Deadlift',
         // video_link: '/exercise/1.gif'
         // TEMP:
-        video_link: 'https://cdn.discordapp.com/attachments/731767489318617168/732451596805341214/squats.gif'
+        video_link: 'https://cdn.discordapp.com/attachments/732852292776362019/732859338896572416/deadlift.gif'
     },
     2: {
-        name: 'pushups',
+        name: 'Squat jumps',
         // video_link: '/exercise/2.gif'
-        video_link: 'https://media1.tenor.com/images/076c865ae75b347a443ae0e7596ca3e3/tenor.gif?itemid=5103666'
+        video_link: 'https://cdn.discordapp.com/attachments/732852292776362019/732859349915140096/squatjump.gif'
     },
     3: {
-        name: 'situps',
+        name: 'Reverse lunge',
         // video_link: '/exercise/3.gif'
-        video_link: 'https://cdn.discordapp.com/emojis/718186115294691482.gif?v=1'
+        video_link: 'https://cdn.discordapp.com/attachments/732852292776362019/732859351991189585/reverselunge.gif'
+    },
+    4: {
+        name: 'Jumping jacks',
+        video_link: 'https://cdn.discordapp.com/attachments/732852292776362019/732859352746295318/jumpingjacks.gif'
+    },
+    5: {
+        name: 'Lunge pulses',
+        video_link: 'https://cdn.discordapp.com/attachments/732852292776362019/732859354298056734/lungepulses.gif'
     }
 }
 

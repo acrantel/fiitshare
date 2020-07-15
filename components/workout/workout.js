@@ -25,11 +25,12 @@ export default class Workout extends React.Component {
                 </div>
             </div>
             <div className={styles.label}>
-                {'Complete "'}
                 <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
-                    <a>{name}</a>
+                    <a>
+                {'Complete '}
+                <div style={{fontWeight: 'bold'}}>{name}</div></a>
                 </Link>
-                {'"'}
+                
             </div>
             <div className={styles.icon}>
                 {completed ? <MdCheckCircle /> : <div className={styles.circle} />}
