@@ -36,6 +36,14 @@
     background-color: white;
     flex: auto;
 }
+.contentWrapper {
+    background-color: white;
+    flex: auto;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
 
 .myGroupsList, .foundGroups {
     margin-top: 10px;
@@ -114,31 +122,13 @@
     width: 100%;
 }
 
-.videoStatusBar {
+.workoutName {
+    text-align: center; /*addedbysean*/
+}
+.workoutWrapper {
     display: flex;
-    flex-direction: row;
-    border-style: solid;
-}
-
-.videoCurrentExercise {
-    display: flex;
-    flex-direction: column;
-    border-style: solid;
-}
-
-.videoNextExercise {
-    
-}
-
-.videoControls {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.videoControlsIcon {
-    width: 50px;
-    height: 50px;
+    margin-top: 20px;
+    flex: auto;
 }
 
 .profileContainer {

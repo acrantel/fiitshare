@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default class Workout extends React.Component {
     render() {
         const {
-            workoutID,
+            workoutId,
             workoutDatum: {
                 name = 'Unknown Workout',
                 exercises: {
@@ -26,7 +26,7 @@ export default class Workout extends React.Component {
             </div>
             <div className={styles.label}>
                 {'Complete "'}
-                <Link href='/workout/[workoutid]' as={`/workout/${workoutID}`}>
+                <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
                     <a>{name}</a>
                 </Link>
                 {'"'}

@@ -1,0 +1,29 @@
+.list {
+    list-style: none;
+    margin: 0;
+    margin-right: 20px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+.exercise {
+    display: flex;
+    padding: 10px;
+}
+.name {
+    margin-right: 20px;
+    position: relative;
+}
+.current .name::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: red;
+}
+.time {
+    flex: auto;
+    text-align: right;
+}

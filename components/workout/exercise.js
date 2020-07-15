@@ -15,8 +15,7 @@ export default class Exercise extends React.Component {
     }
     
     setTime(e) {
-        const [hour, minute] = e.target.value.split(':').map(Number);
-        this.props.onSetTime(this.props.exerciseKey, hour, minute);
+        this.props.onSetTime(this.props.exerciseKey, +e.target.value);
     }
     
     remove() {
@@ -26,8 +25,7 @@ export default class Exercise extends React.Component {
     render() {
         const {
             exercise,
-            hour,
-            minute
+            time
         } = this.props;
         return <div className={styles.exercise}>
             <label className={styles.labelled}>
@@ -41,11 +39,12 @@ export default class Exercise extends React.Component {
             <label className={styles.labelled}>
                 <span className={styles.label}>Time to do this:</span>
                 <input
-                    type="time"
+                    type="number"
+                    value={time}
                     onChange={this.setTime}
-                    value={`${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`}
                     className={styles.input}
                 />
+                <span className={styles.units}>second(s)</span>
             </label>
             <button onClick={this.remove} className={`button icon-btn ${styles.remove}`}>
                 <MdDelete />

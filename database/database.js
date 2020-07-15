@@ -94,16 +94,20 @@ var workoutData = {
 
 var exerciseData = {
     1: {
-        name: 'Squats',
-        video_link: '/images/exercise_gifs/squats.gif'
+        name: 'squats',
+        // video_link: '/exercise/1.gif'
+        // TEMP:
+        video_link: 'https://cdn.discordapp.com/attachments/731767489318617168/732451596805341214/squats.gif'
     },
     2: {
-        name: 'Reverse lunge',
-        video_link: '/exercise/exercise_gifs/reverselunge.gif'
+        name: 'pushups',
+        // video_link: '/exercise/2.gif'
+        video_link: 'https://media1.tenor.com/images/076c865ae75b347a443ae0e7596ca3e3/tenor.gif?itemid=5103666'
     },
     3: {
-        name: 'Jumping jacks',
-        video_link: '/exercise/exercise_gifs/jumpingjacks.gif'
+        name: 'situps',
+        // video_link: '/exercise/3.gif'
+        video_link: 'https://cdn.discordapp.com/emojis/718186115294691482.gif?v=1'
     }
 }
 
