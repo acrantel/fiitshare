@@ -28,9 +28,21 @@
     display: flex;
     align-items: center;
 }
+.heading {
+    margin-right: 50px;
+}
+
 .content {
     background-color: white;
     flex: auto;
+}
+.contentWrapper {
+    background-color: white;
+    flex: auto;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .myGroupsList, .foundGroups {
@@ -88,35 +100,118 @@
     flex-wrap: wrap;
 }
 
+/*Create a new workout button*/
+.createButtonContent {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+.createButtonText {
+    align-self:center;
+}
+.createButtonIcon {
+    margin-right: 5px;
+    height: min-content;
+    margin-top: 5px;
+}
+/*Create a new workout button*/
+
 .workoutvidContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.videoStatusBar {
+.workoutName {
+    text-align: center; /*addedbysean*/
+}
+.workoutWrapper {
     display: flex;
-    flex-direction: row;
-    border-style: solid;
+    margin-top: 20px;
+    flex: auto;
 }
 
-.videoCurrentExercise {
+.profileContainer {
+    /* Width of 0 so it tries to be the smallest it can be, but it FLEXES to the
+    /* minimum size needed to fill the space. */
+    width: 0;
+    flex: auto;
     display: flex;
     flex-direction: column;
-    border-style: solid;
+    background-color: #fff;
+    margin: 20px 0;
+    padding: 20px;
+    align-items: center;
+
 }
 
-.videoNextExercise {
-    
+.profileContainerSmaller {
+    width: fit-content;
+    background-color: #fff;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
 }
 
-.videoControls {
+.profileImageContainer { 
+height: 460px;
+
+}
+
+.profileCoverImgContainer {
+    position: relative;
+}
+.profilePicImgContainer {
+    align-self: flex-start;
+    position: absolute;
+  
+    left: 20px;
+    top: 340px;
+}
+.profileCoverImg {
+    width: 800px;
+    height:400px;
+}
+.profilePicImg {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 125px;
+}
+
+.profileSectionContainer {
+    display: flex;
+    flex-direction:row;
+}
+
+.profileContainerLeft {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profileContainerRight {
+    margin-left: auto;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    padding-right: 30px;
 }
 
-.videoControlsIcon {
-    width: 50px;
-    height: 50px;
+.profileSectionTitle {
+    margin-right: 20px;
+}
+
+.profileHeaderText {
+
+    margin: 10px;
+}
+.profileTextTitle {
+    font-weight: bold;
+    color:  #c93fa5;
+}
+
+.profileTextDes {
+    
 }

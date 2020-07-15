@@ -1,0 +1,24 @@
+.workoutvidContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.videoStatusBar {
+    display: flex;
+    flex-direction: row;
+    border-style: solid;
+}
+
+.videoControls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.videoControlsIcon {
+    width: 50px;
+    height: 50px;
+    color: #ff4667;
+    cursor: pointer;
+}

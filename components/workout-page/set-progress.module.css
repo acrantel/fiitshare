@@ -1,0 +1,28 @@
+.meter {
+    display: flex;
+    position: relative;
+    border-top: 20px solid rgba(0, 0, 0, 0.2);
+}
+.meterComplete {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    height: 20px;
+    width: 0;
+    transition: width .2s;
+    background-image: linear-gradient(45deg, #ff008d, #ff7a00);
+}
+
+.label {
+    flex: 1 0 0;
+    text-align: center;
+    text-transform: uppercase;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
+}
+.label:last-child {
+    border-right: none;
+}
+.current {
+    font-weight: bold;
+}
