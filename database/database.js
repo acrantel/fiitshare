@@ -93,7 +93,7 @@ var workoutData = {
     ,
     wk5: {
         creator: 'user2',
-        name: '30 Minute Vinsaya Flow',
+        name: '30 Minute Vinyasa Flow',
         intensity: '5',
         length: 30, // minutes
         calories: 100,

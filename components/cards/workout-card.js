@@ -65,6 +65,8 @@ export default class WorkoutCard extends React.Component {
             </div>
             <div className={styles.infoWrapper}>
                 <div className={styles.info}>
+                    
+                <p className={styles.label}>{`Intensity`}</p>
                     {intensityScale}
                 </div>
             </div>

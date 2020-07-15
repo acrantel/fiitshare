@@ -81,4 +81,5 @@ div.card:hover {
     font-size: medium;
     font-weight: 100;
     color: rgb(71, 71, 71);
+    margin: 5px;
 }
