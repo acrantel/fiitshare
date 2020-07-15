@@ -42,15 +42,43 @@ div.card:hover {
 .infoWrapper {
     display: flex;
     flex-wrap: wrap;
-    margin: 10px;
+    margin: 5px;
+    flex-direction: row;
+    justify-content: center;
 }
-.infoEntry {
+
+/* used only for the due date now*/
+.infoLineEntry {
     margin: 8px;
     flex: 1 0 0;
 }
-.infoTitle {
+.infoLineTitle {
     margin: 0;
     margin-bottom: 5px;
     font-size: 1em;
     text-transform: uppercase;
+}
+/* used only for the due date now*/ 
+
+
+.info {
+    margin-right:10px;
+    display:flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    
+}
+
+.icon {
+    padding:2px;
+    font-size:large;
+    color: rgb(71, 71, 71);
+}
+
+.label {
+    padding:2px;
+    font-size: medium;
+    font-weight: 100;
+    color: rgb(71, 71, 71);
 }

@@ -40,13 +40,13 @@ var userData = {
     },
 };
 
-
+const INTENSITY = 5;
 var workoutData = {
-    // workout intensity: light, moderate, hard
+    // workout intensity: 1-5
     wk1: {
         creator: 'user1',
         name: 'Morning',
-        intensity: 'Light',
+        intensity: 1,
         length: 20, // minutes
         calories: 200,
         sets: 3,
@@ -58,7 +58,7 @@ var workoutData = {
     wk2: {
         creator: 'user1',
         name: 'Morning Workout 2',
-        intensity: 'Moderate',
+        intensity: '3',
         length: 10, // minutes
         calories: 50,
         sets: 3,
@@ -70,7 +70,7 @@ var workoutData = {
     wk3: {
         creator: 'user1',
         name: '20-min Intense HIIT',
-        intensity: 'Hard',
+        intensity: '4',
         length: 20, // minutes
         calories: 200,
         sets: 3,
@@ -82,7 +82,7 @@ var workoutData = {
     wk4: {
         creator: 'user1',
         name: 'Quick HIIT',
-        intensity: 'Moderate',
+        intensity: '2',
         length: 10, // minutes
         calories: 100,
         exercises: {
@@ -94,7 +94,7 @@ var workoutData = {
     wk5: {
         creator: 'user2',
         name: '30 Minute Vinsaya Flow',
-        intensity: 'Moderate',
+        intensity: '5',
         length: 30, // minutes
         calories: 100,
         exercises: {
@@ -105,7 +105,7 @@ var workoutData = {
     wk4: {
         creator: 'user3',
         name: 'No Equipment Bodyweight-only Workout',
-        intensity: 'Moderate',
+        intensity: '5',
         length: 35, // minutes
         calories: 150,
         exercises: {
