@@ -10,6 +10,10 @@ var userData = {
         // minutes
         time_spent: 540,
         completed_workouts: 12,
+        this_week: {
+            activity: [30, 70, 0, 40, 30, 0, 20],
+            calories: [100, 200, 0, 80, 50, 0, 100],
+        }
     },
     user2: {
         workouts: ['wk1', 'wk2', 'wk3', 'wk4', 'wk5'],

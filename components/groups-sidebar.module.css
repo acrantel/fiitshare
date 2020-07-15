@@ -1,0 +1,19 @@
+.container > h1 {
+    margin-left: 20px;
+}
+.groupLink {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+.groupLink:hover {
+    text-decoration: underline;
+}
+
+img.groupImg:hover {
+
+    background-color: #f5f5f5;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}

@@ -153,15 +153,15 @@
     padding: 20px;
     align-items: center;
 
-    border-style:solid;
-
 }
 
 .profileContainerSmaller {
     width: fit-content;
-    
-
-    border-style: solid;
+    background-color: #fff;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 20px;
+    padding-top: 20px;
 }
 
 .profileImageContainer { 
@@ -193,8 +193,6 @@ height: 460px;
 .profileSectionContainer {
     display: flex;
     flex-direction:row;
-
-    border-style: solid;
 }
 
 .profileContainerLeft {
@@ -207,7 +205,6 @@ height: 460px;
     margin-left: auto;
     display: flex;
     flex-direction: row;
-    border-style: solid;
     padding-right: 30px;
 }
 

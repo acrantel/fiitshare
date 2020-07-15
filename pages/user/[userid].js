@@ -2,12 +2,12 @@ import Header from '../../components/header.js';
 import styles from '../page.module.css';
 import {userData} from '../../database/database.js';
 import UserChart from '../../components/user/user-chart.js';
+import  DashboardRight from '../../components/dashboard/dashboard-right.js';
 
 function User({ userid }) {
     return <div className={styles.pageWrapper}>
         <Header />
         <div className={styles.pageContent}>
-            <div className={styles.profileContainer}>
             <div className={styles.profileContainerSmaller}>
                 <div className={styles.profileImageContainer}>
                     <div className={styles.profileCoverImgContainer}>
@@ -43,20 +43,25 @@ function User({ userid }) {
                         <div className={styles.profileContainerLeft}>
                             <h1 className='section-title'><span>Activity</span></h1>
                             <p className={styles.profileTextTitle}>This week: 5 workouts</p>
-                            <UserChart/>
+                            <UserChart valArr={userData[userid].this_week.activity} type='time'/>
                             <h1 className='section-title'><span>Calories</span></h1>
                             <p className={styles.profileTextTitle}>This week: 300 calories</p>
-                            <UserChart/>
+                            <UserChart valArr={userData[userid].this_week.calories} type=''/>
+                        </div>
+                        <div className={styles.profileContainerRight}>
+                            <DashboardRight userId={userid} />
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        
     </div>;
 }
-
 User.getInitialProps = async ({ query }) => {
     const { userid } = query;
     return { userid };
 };
+
+
+
 export default User
