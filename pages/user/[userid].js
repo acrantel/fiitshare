@@ -2,7 +2,7 @@ import Header from '../../components/header.js';
 import styles from '../page.module.css';
 import {userData} from '../../database/database.js';
 import UserChart from '../../components/user/user-chart.js';
-import  DashboardRight from '../../components/dashboard/dashboard-right.js';
+import  DashboardRight from '../../components/groups-sidebar.js';
 
 function User({ userid }) {
     return <div className={styles.pageWrapper}>

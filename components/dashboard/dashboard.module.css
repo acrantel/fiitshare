@@ -34,26 +34,29 @@
     flex: auto;
  }
 
+ 
 .dashboardRight {
     display:flex;
     flex-direction:column;
     background-color:#fff;
     /* width:20%; */
+    padding-top: 10px;
     margin: 20px;
     padding-bottom: 20px;
 }
 
 
 
+/*
 .dashboardRight > h1 {
     margin: 20px;
-}
-
+}*/
+/*
 .groupImg {
     object-fit: cover;
     width: 100px; height: 100px;
     border-radius: 10px;
-}
+}*/
 
 .recentSection {
     display: inline;
@@ -85,6 +88,7 @@
     display: inline-block;
 }
 
+/*
 .groupLink {
     display: block;
     color: inherit;
@@ -101,3 +105,4 @@ img.groupImg:hover {
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+*/

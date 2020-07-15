@@ -1,4 +1,11 @@
-.container > h1 {
+.groupsContainer {
+    display:flex;
+    flex-direction:column;
+    background-color:#fff;
+   
+    padding-bottom: 20px;
+}
+.groupsContainer > h1 {
     margin-left: 20px;
 }
 .groupLink {
@@ -10,7 +17,11 @@
 .groupLink:hover {
     text-decoration: underline;
 }
-
+.groupImg {
+    object-fit: cover;
+    width: 100px; height: 100px;
+    border-radius: 10px;
+}
 img.groupImg:hover {
 
     background-color: #f5f5f5;

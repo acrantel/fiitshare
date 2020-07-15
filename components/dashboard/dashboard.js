@@ -4,7 +4,7 @@ import { userData, workoutData, exerciseData, groupData } from '../../database/d
 import WorkoutCard from '../cards/workout-card.js'
 import Link from 'next/link';
 import { MdAddCircleOutline } from 'react-icons/md';
-import DashboardRight from '../dashboard/dashboard-right.js';
+import DashboardRight from '../groups-sidebar.js';
 
 class Dashboard extends React.Component {
     render() {
