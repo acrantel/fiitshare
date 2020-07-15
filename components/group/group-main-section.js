@@ -26,6 +26,7 @@ function GroupSchedule({ groupSchedule }) {
     return <div className={styles.groupSchedule}>
         {groupSchedule.map(function (item) {
             return <WorkoutCard workoutId={item['workoutId']}
+            displayName={userData[workoutData[item['workoutId']].creator].name}
                 workoutDatum={workoutData[item['workoutId']]}
                 dueBy={item['dueBy']} />
         })}

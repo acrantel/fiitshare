@@ -60,6 +60,7 @@ function MyLibrary ({ userId }) {
             <WorkoutCard
                 key={workoutId}
                 workoutId={workoutId}
+                displayName={userData[userId].name}
                 workoutDatum={workoutData[workoutId]}
             />
         ))}

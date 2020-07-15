@@ -7,6 +7,7 @@ export default class WorkoutCard extends React.Component {
     render() {
         const {
             workoutId,
+            displayName,
             workoutDatum = {},
         } = this.props
         const {
@@ -27,7 +28,7 @@ export default class WorkoutCard extends React.Component {
                 </h2>
                 <div className={styles.creator}>
                     <Link href='/user/[userid]' as={`/user/${creator}`}>
-                        <a>{creator}</a>
+                        <a>{displayName}</a>
                     </Link>
                 </div>
             </div>
