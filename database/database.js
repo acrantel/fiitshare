@@ -21,10 +21,15 @@ var userData = {
         groups: ['group1', 'group2', 'group3', 'group4'],
         name: 'Jane Doe',
         picture: '/images/user2.jpg',
+        cover_picture: '/images/user1-cover.jpg',
         calories: 2000,
         // minutes
         time_spent: 540,
         completed_workouts: 12,
+        this_week: {
+            activity: [30, 70, 0, 40, 30, 0, 20],
+            calories: [100, 200, 0, 80, 50, 0, 100],
+        }
     },
     
     user3: {
@@ -33,10 +38,15 @@ var userData = {
         groups: ['group4'],
         name: 'Susan Smith',
         picture: '/images/user3.jpg',
+        cover_picture: '/images/user1-cover.jpg',
         calories: 1000,
         // minutes
         time_spent: 540,
         completed_workouts: 12,
+        this_week: {
+            activity: [30, 70, 0, 40, 30, 0, 20],
+            calories: [100, 200, 0, 80, 50, 0, 100],
+        }
     },
 };
 

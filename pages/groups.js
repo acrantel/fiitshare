@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import Link from 'next/link'
 import Header from '../components/header.js';
 import GroupCard from '../components/cards/group-card.js';
-import { userData, groupData } from '../database/database.js';
+import { userData, groupData, USERID } from '../database/database.js';
 import { MdSearch } from 'react-icons/md'
 
 import styles from './page.module.css';
 import SearchBar from '../components/search-bar.js';
 
-
-const USERID = 'user1';
 class Groups extends React.Component {
 
     constructor(props) {
@@ -69,13 +67,20 @@ class Groups extends React.Component {
             <Header />
             <div className={styles.pageContent} style={{ flexDirection: 'column' }}>
                 <div className={styles.myGroupsContainer}>
-                    <h1 className='section-title'><span>My Groups</span></h1>
+                    <div className={styles.groupSection}>
+                        <h1 className='section-title'><span>My Groups</span></h1>
+                        <div >
+                            <Link href="/create-group">
+                                <a className='button'>Create a Group</a>
+                            </Link>
+                        </div>
+                    </div>
                     <div className={styles.myGroupsList}>{myGroupsRender}</div>
                 </div>
 
                 <div className={styles.findGroupsContainer}>
-                    <h1 className='section-title'><span>Find Groups</span></h1>
-                    <div className={styles.groupSearchSection}>
+                    <div className={styles.groupSection}><h1 className='section-title'><span>Find Groups</span></h1></div>
+                    <div className={styles.groupSection}>
                         <div className={styles.groupSearchBar}>
                             <SearchBar onSearch={this.searchGroups} onChange={this.nameChangeHandler} placeholder="Group Name"/>
                             <select defaultValue={0} className={styles.groupSelectLevel} onChange={this.levelChangeHandler}>
@@ -85,9 +90,9 @@ class Groups extends React.Component {
                                 <option value="advanced">Advanced</option>
                             </select>
                         </div>
-                        <div className='join-group-id-button-container'>
+                        <div>
                             <Link href="/join-group">
-                                <a className='button join-group-id-button'>Join by ID</a>
+                                <a className='button'>Join by ID</a>
                             </Link>
                         </div>
                     </div>
