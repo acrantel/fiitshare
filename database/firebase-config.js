@@ -1,6 +1,5 @@
 import admin from 'firebase-admin';
 
-const serviceAccount = require('../serviceAccountKey.json');
 
 try {
   admin.initializeApp({
@@ -21,6 +20,8 @@ try {
     console.error('Firebase admin initialization error', error.stack);
   }
 }
+
+
 
 const db = admin.firestore();
 
