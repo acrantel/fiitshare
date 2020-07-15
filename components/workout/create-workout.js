@@ -1,7 +1,7 @@
 import styles from './create-workout.module.css';
 import { MdAdd } from 'react-icons/md';
 import Exercise from './exercise.js';
-import { exerciseData } from '../../database/database.js';
+import { exerciseData, workoutData, userData } from '../../database/database.js';
 
 function newExercise(key) {
     const exerciseIds = Object.keys(exerciseData)
@@ -74,19 +74,34 @@ export default class CreateWorkout extends React.Component {
             sets: +e.target.value
         })
     }
+
+    createWorkout()
+    {
+        // add to workout data
+        // add the workout id to userdata
+        console.log("TODO: implement create workout functionality. Using firestore, we need to insert a workout with the 'next' workout id.");
+    }
     
     render() {
         const { exercises, sets } = this.state;
         return <div className={styles.wrapper}>
-            <label className={styles.setWrapper}>
-                {'Number of sets: '}
-                <input
-                    type="number"
-                    className={styles.sets}
-                    value={sets}
-                    onChange={this.changeSets}
-                />
-            </label>
+            <h1 className='section-title'><span>Create a new workout</span></h1>
+            <div className={styles.headerWrapper}>
+                <div className={styles.leftWrapper}>
+                    <label className={styles.setsWrapper}>
+                        {'Number of sets: '}
+                        <input
+                            type="number"
+                            className={styles.sets}
+                            value={sets}
+                            onChange={this.changeSets}
+                        />
+                    </label>
+                </div>
+                <div className={styles.rightWrapper}>
+                    <button onClick={this.createWorkout} className='button'>Create</button>
+                </div>
+            </div>
             {exercises.map(({ key, exercise, time }) => (
                 <Exercise
                     key={key.toString()}
