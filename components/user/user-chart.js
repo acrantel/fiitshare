@@ -61,13 +61,7 @@ class UserChart extends React.Component {
 
 export function timeFormatter(hours, minutes)
 {
-    let result = hours.toString() + ":";
-    if (minutes.toString().length == 2) {
-        result += minutes.toString();
-    }
-    else {
-        result += "0" + minutes.toString();
-    }
+    let result = hours.toString() + ":" + minutes.toString().padStart(2, '0');
     return result;
 }
     
