@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Header from '../components/header.js';
 import GroupCard from '../components/cards/group-card.js';
 import { userData, groupData, USERID } from '../database/database.js';
-import { MdSearch } from 'react-icons/md'
+import CreateGroup from '../components/add-group/create-group.js';
 
 import styles from './page.module.css';
 import SearchBar from '../components/search-bar.js';
@@ -15,6 +15,7 @@ class Groups extends React.Component {
         this.nameChangeHandler = this.nameChangeHandler.bind(this);
         this.levelChangeHandler = this.levelChangeHandler.bind(this);
         this.searchGroups = this.searchGroups.bind(this);
+        this.togglePopup = this.togglePopup.bind(this);
 
         // get only the search results that the user is not in
         let searchResults = [];
@@ -24,7 +25,7 @@ class Groups extends React.Component {
             }
         }
         // initial 'search results' (display any group that does not contain user)
-        this.state = { searchResults: searchResults, nameSearch: '', levelSearch: 0 };
+        this.state = { togglePopup: false, searchResults: searchResults, nameSearch: '', levelSearch: 0 };
     }
 
     searchGroups() {
@@ -44,6 +45,10 @@ class Groups extends React.Component {
         }
         this.setState({ searchResults: results });
     };
+
+    togglePopup() {
+        this.setState({togglePopup: !this.state.togglePopup});
+    }
 
     // onchange handler for the group name search text field
     nameChangeHandler = (event) => { this.setState({ nameSearch: event.target.value }) };
@@ -69,10 +74,9 @@ class Groups extends React.Component {
                 <div className={styles.myGroupsContainer}>
                     <div className={styles.groupSection}>
                         <h1 className='section-title'><span>My Groups</span></h1>
-                        <div >
-                            <Link href="/create-group">
-                                <a className='button'>Create a Group</a>
-                            </Link>
+                        <div>
+                                <a className='button' onClick={this.togglePopup}>Create a Group</a>
+                            {this.state.togglePopup && <CreateGroup />}
                         </div>
                     </div>
                     <div className={styles.myGroupsList}>{myGroupsRender}</div>
