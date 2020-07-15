@@ -86,10 +86,15 @@ button,
     text-decoration: none;
     cursor: pointer;
 }
+button:hover, .button:hover {
+    color: white;
+    background-color: #c93fa5;
+}
+
 .icon-btn {
     line-height: 0;
     border-radius: 50%;
 }
 .tab-list-item:not(.tab-list-active):hover > span::after {
-    background-color: #ddd;
+    background-color: #ffc1e3;
 }

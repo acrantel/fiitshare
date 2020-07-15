@@ -7,6 +7,7 @@ import { userData, workoutData, USERID } from '../database/database.js';
 import Workout from '../components/workout/workout.js';
 import WorkoutCard from '../components/cards/workout-card.js'
 import Link from 'next/link';
+import {MdAddCircleOutline} from 'react-icons/md';
 
 function ScheduledWorkouts ({ userId }) {
     return userData[userId].workouts.map(workoutId => (
@@ -40,9 +41,14 @@ class Workouts extends React.Component {
             <div className={`${styles.pageContent} ${styles.workoutContainer}`}>
                 <div className={styles.headingWrapper}>
                     <h1 className={styles.heading}>Workouts</h1>
-                    <Link href="/create-workout">
-                        <a className="button">Create a workout</a>
+                    <Link href='/create-workout'>
+                        <a className={['button', styles.createButtonContent].join(' ')}>
+                            <div className={styles.createButtonIcon}>
+                                <MdAddCircleOutline /></div>
+                            <div className={styles.createButtonText}>Create a new workout</div>
+                        </a>
                     </Link>
+
                 </div>
                 <div className={styles.content}>
                     <Tabs>

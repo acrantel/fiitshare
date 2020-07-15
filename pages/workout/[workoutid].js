@@ -7,7 +7,7 @@ import SetProgress from '../../components/workout-page/set-progress.js';
 import WorkoutVideo from '../../components/workout-page/workout-video.js';
 import ExerciseList from '../../components/workout-page/exercise-list.js';
 
-import ExerciseCard from '../../components/cards/exercise-card.js';
+//import ExerciseCard from '../../components/cards/exercise-card.js';
 import { MdSkipPrevious, MdPlayArrow, MdPause, MdSkipNext } from 'react-icons/md'
 
 class WorkoutPage extends React.Component {
