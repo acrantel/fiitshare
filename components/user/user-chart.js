@@ -19,16 +19,10 @@ class UserChart extends React.Component {
 
     tickFormatter(val) {
         if (this.props.type == 'time') {
+
             let hours = Math.floor(val / 60);
             let minutes = val % 60;
-            let result = hours.toString() + ":";
-            if (minutes.toString().length == 2) {
-                result += minutes.toString();
-            }
-            else {
-                result += "0" + minutes.toString();
-            }
-            return result;
+            return timeFormatter(hours, minutes);
         }
         else {
             return val;
@@ -65,5 +59,16 @@ class UserChart extends React.Component {
     }
 }
 
+export function timeFormatter(hours, minutes)
+{
+    let result = hours.toString() + ":";
+    if (minutes.toString().length == 2) {
+        result += minutes.toString();
+    }
+    else {
+        result += "0" + minutes.toString();
+    }
+    return result;
+}
     
 export default UserChart

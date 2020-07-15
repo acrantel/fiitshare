@@ -90,7 +90,29 @@ var workoutData = {
             time: [50, 40, 40],
         }
     }
-
+    ,
+    wk5: {
+        creator: 'user2',
+        name: '30 Minute Vinsaya Flow',
+        intensity: 'Moderate',
+        length: 30, // minutes
+        calories: 100,
+        exercises: {
+            exerciseId: [1, 2, 3],
+            time: [50, 40, 40],
+        }
+    },
+    wk4: {
+        creator: 'user3',
+        name: 'No Equipment Bodyweight-only Workout',
+        intensity: 'Moderate',
+        length: 35, // minutes
+        calories: 150,
+        exercises: {
+            exerciseId: [1, 2, 3],
+            time: [50, 40, 40],
+        }
+    }
 };
 
 var exerciseData = {
@@ -122,6 +144,8 @@ var exerciseData = {
 }
 
 var groupData = {
+    // for due date: use 0-11 for months
+    // use 1-24 for hours (24 & 1-11 is am, 12-23 is pm)
     group1: {
         name: 'G Period',
         image: "/images/groups/group1.jpg",
@@ -135,7 +159,7 @@ var groupData = {
                 dueBy: [2020, 6, 19, 10, 30]
             },
             {
-                workoutId: 'wk1',
+                workoutId: 'wk2',
                 dueBy: [2020, 6, 21, 10, 30]
             }
         ]
@@ -149,12 +173,12 @@ var groupData = {
         admins: ['user2'], // user id's
         schedule: [
             {
-                workoutId: 'wk1',
-                dueBy: [2020, 6, 19, 10, 30]
+                workoutId: 'wk4',
+                dueBy: [2020, 6, 22, 23, 59],
             },
             {
-                workoutId: 'wk1',
-                dueBy: [2020, 6, 19, 10, 30]
+                workoutId: 'wk3',
+                dueBy: [2020, 7, 1, 17, 30]
             }
         ]
     },
