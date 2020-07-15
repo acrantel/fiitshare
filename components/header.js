@@ -23,10 +23,6 @@ class Header extends React.Component {
 }
 
 class RightNavBar extends React.Component {
-    expandOnClick() {
-
-    }
-
     render() {
         return <div className={styles.rightNavBar}>
                 <Link href="/user/[userId]" as={`/user/${USERID}`}>

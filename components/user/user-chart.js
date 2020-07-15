@@ -7,7 +7,7 @@ import {
   } from 'recharts';
 
 
-const daysX = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+const daysX = ['Su', 'M', 'Tu', 'W', 'Th', 'F', 'Sa'];
 
 // component displaying chart of User's activity or calories
 class UserChart extends React.Component {
@@ -58,7 +58,7 @@ class UserChart extends React.Component {
           top: 5, right: 30, left: 20, bottom: 5,
         }}
       >
-        <XAxis dataKey="day" type='category'/>
+        <XAxis dataKey="day" type='category' tickLine={false}/>
     <YAxis tickFormatter={this.tickFormatter}/>
         <Bar dataKey="value" fill="#ff73d7" />
       </BarChart>
