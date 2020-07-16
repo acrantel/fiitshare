@@ -89,6 +89,8 @@ button,
 button:hover, .button:hover {
     color: white;
     background-color: #c93fa5;
+    /* Use background colour for border */
+    border-color: transparent;
 }
 
 .icon-btn {

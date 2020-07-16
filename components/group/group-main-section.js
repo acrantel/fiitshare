@@ -24,11 +24,14 @@ export default class GroupMainSection extends React.Component {
 
 function GroupSchedule({ groupSchedule }) {
     return <div className={styles.groupSchedule}>
-        {groupSchedule.map(function (item) {
-            return <WorkoutCard workoutId={item['workoutId']}
-            displayName={userData[workoutData[item['workoutId']].creator].name}
+        {groupSchedule.map(function (item, index) {
+            return <WorkoutCard
+                key={index}
+                workoutId={item['workoutId']}
+                displayName={userData[workoutData[item['workoutId']].creator].name}
                 workoutDatum={workoutData[item['workoutId']]}
-                dueBy={item['dueBy']} />
+                dueBy={item['dueBy']}
+            />
         })}
     </div>
 }
@@ -43,16 +46,18 @@ function GroupMembers({ members, admins }) {
 
 function UserCard({ userId, admin }) {
     const userDatum = userData[userId]
-    return <div className={styles.userCard}>
-        <img className={styles.userImage} src={userDatum['picture']} alt={userDatum['name']} />
-        <h3 className={styles.userCardName}>
-            <Link href='/user/[userid]' as={`/user/${userId}`}>
-                <a>{userDatum['name']}</a>
-            </Link>
-        </h3>
-        {
-            admin ? <FaCrown className={styles.adminIcon}/> : <div/>
-        }
-
-    </div>
+    return <Link href='/user/[userid]' as={`/user/${userId}`}>
+        <div className={styles.userCard}>
+            <img className={styles.userImage} src={userDatum['picture']} alt={userDatum['name']} />
+            <h3 className={styles.userCardName}>
+                <Link href='/user/[userid]' as={`/user/${userId}`}>
+                    <a>{userDatum['name']}</a>
+                </Link>
+            </h3>
+            {
+                admin ? <FaCrown className={styles.adminIcon}/> : <div/>
+            }
+    
+        </div>
+    </Link>
 }

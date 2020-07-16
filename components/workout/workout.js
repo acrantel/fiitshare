@@ -19,23 +19,25 @@ export default class Workout extends React.Component {
             dueDate,
             completed,
         } = this.props;
-        return <div className={`${styles.workout} ${completed ? styles.completed : ''}`}>
-            <div className={styles.groupImgContainer}>
-                <img className={styles.groupImg} src={groupImg}></img>
+        return <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
+            <div className={`${styles.workout} ${completed ? styles.completed : ''}`}>
+                <div className={styles.groupImgContainer}>
+                    <img className={styles.groupImg} src={groupImg}></img>
+                </div>
+                <DateCard dateArr={dueDate}/>
+                <div className={styles.label}>
+                    <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
+                        <a>
+                    {'Complete '}
+                    <div style={{fontWeight: 'bold'}}>{name}</div></a>
+                    </Link>
+                    
+                </div>
+                <div className={styles.icon}>
+                    {completed ? <MdCheckCircle /> : <div className={styles.circle} />}
+                </div>
             </div>
-            <DateCard dateArr={dueDate}/>
-            <div className={styles.label}>
-                <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
-                    <a>
-                {'Complete '}
-                <div style={{fontWeight: 'bold'}}>{name}</div></a>
-                </Link>
-                
-            </div>
-            <div className={styles.icon}>
-                {completed ? <MdCheckCircle /> : <div className={styles.circle} />}
-            </div>
-        </div>;
+        </Link>;
     }
 }
 
@@ -107,7 +109,7 @@ class DateCard extends React.Component
             {this.getTimeStr(hour, min)}
         </div>
         <div className={styles.dayOfWeek}>
-            {this.getDayOfWeek(year, month, day)}   
+            {this.getDayOfWeek(year, month, day)}
         </div>
         </div>
     }

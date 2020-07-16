@@ -21,7 +21,8 @@ class WorkoutPage extends React.Component {
         this.checkState = this.checkState.bind(this);
 
         const workoutID = props.workoutId;
-        const timeArr = workoutData[workoutID].exercises.time;
+        const { sets, exercises = {} } = workoutData[workoutID] || {};
+        const { exerciseId: exerciseIDArr = [], time: timeArr = [] } = exercises;
         let today = new Date();
         today.setSeconds(today.getSeconds() + timeArr[0]);
         // set the state
@@ -31,11 +32,15 @@ class WorkoutPage extends React.Component {
             timeToStop: today,
             paused: false,
             nowAndStopDiff: 0,
-            exerciseIDArr: workoutData[workoutID].exercises.exerciseId,
+            exerciseIDArr,
             timeArr,
-            numSets: workoutData[workoutID].sets
+            numSets: sets
         };
-        setInterval(this.checkState, 1000); // check state every second
+        this.stateCheckerId = setInterval(this.checkState, 1000); // check state every second
+    }
+    
+    componentWillUnmount() {
+        clearInterval(this.stateCheckerId);
     }
 
     checkState() {
@@ -112,8 +117,11 @@ class WorkoutPage extends React.Component {
 */
 
     render() {
+        const {
+            name = 'Unknown workout'
+        } = workoutData[this.props.workoutId] || {}
         return <div className={styles.contentWrapper}>
-            <h1 className={styles.workoutName}>{workoutData[this.props.workoutId].name}</h1>
+            <h1 className={styles.workoutName}>{name}</h1>
             <SetProgress set={this.state.curSet} sets={this.state.exerciseIDArr.length} />
             <div className={styles.workoutWrapper}>
                 <ExerciseList
@@ -136,7 +144,7 @@ class WorkoutPage extends React.Component {
 
 function Workout({ workoutid }) {
     return <div className={styles.pageWrapper}>
-        <Header />
+        <Header current={'workouts'} />
         <div className={styles.pageContent}>
             <WorkoutPage workoutId={workoutid} />
         </div>
