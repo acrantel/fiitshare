@@ -15,22 +15,14 @@ export default async (req, res) => {
         res.end();
     }
     else if (req.method === 'POST') {
-        let data = []
-        req.on('data', chunk => {
-            data.push(chunk);
-        });
-        req.on('end', () => {
-            data = Buffer.concat(data).toString();
-            data = JSON.parse(data);
+        let data = req.body;
 
-            const workoutRef = db.collection('workouts').doc(workoutId);
-            
-            // https://stackoverflow.com/a/39333479
-            await workoutRef.set((({ creator, name, intensity, length, calories, sets, exercises })
-                => ({ creator, name, intensity, length, calories, sets, exercises }))(data))
-            
-            res.status(201);
-            res.end();
-        });
+        const workoutRef = db.collection('workouts').doc(workoutId);
+
+        // https://stackoverflow.com/a/39333479
+        await workoutRef.set((({ creator, name, intensity, length, calories, sets, exercises }) => ({ creator, name, intensity, length, calories, sets, exercises }))(data))
+
+        res.status(201);
+        res.end();
     }
 }

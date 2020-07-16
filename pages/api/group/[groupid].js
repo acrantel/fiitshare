@@ -14,23 +14,14 @@ export default async (req, res) => {
         }
     }
     else if (req.method === 'POST') {
-        let data = []
-        req.on('data', chunk => {
-            data.push(chunk);
-        });
-        req.on('end', () => {
-            data = Buffer.concat(data).toString();
-            data = JSON.parse(data);
+        let data = req.body;
 
-            const groupRef = db.collection('groups').doc(groupId);
+        const groupRef = db.collection('groups').doc(groupId);
 
-            // https://stackoverflow.com/a/39333479
+        // https://stackoverflow.com/a/39333479
+        await groupRef.set((({ name, image, level, description, members, admins, schedule }) => ({ name, image, level, description, members, admins, schedule }))(data))
 
-            await groupRef.set((({ name, image, level, description, members, admins, schedule })
-                => ({ name, image, level, description, members, admins, schedule }))(data))
-
-            res.status(201);
-            res.end();
-        });
+        res.status(201);
+        res.end();
     }
 }

@@ -7,28 +7,6 @@ import DashboardRight from '../../components/groups-sidebar.js';
 
 function User({ userid }) {
     return <div className={styles.pageWrapper}>
-        <button onClick={() => {
-            console.log('button clicked');
-            console.log('user shit: ', userData[userid]);
-            fetch(`http://localhost:3000/api/user/${userid}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: userData[userid]
-            })
-                .then((res) => {
-                    console.log('asdf');
-                    if (res.ok) {
-                        return res.json();
-                    } else {
-                        console.log(res.status);
-                    }
-                })
-                .then((data) => {
-                    console.log('received data back: ', data);
-                })
-        }}>teaiwoer</button>
         <Header />
         <div className={styles.pageContent}>
             <div className={styles.profileContainerSmaller}>
