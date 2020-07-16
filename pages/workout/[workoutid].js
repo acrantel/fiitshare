@@ -2,7 +2,6 @@ import { useRouter, withRouter } from 'next/router';
 import Header from '../../components/header.js';
 import styles from '../page.module.css';
 import React from 'react';
-import { workoutData, exerciseData } from '../../database/database.js';
 import SetProgress from '../../components/workout-page/set-progress.js';
 import WorkoutVideo from '../../components/workout-page/workout-video.js';
 import ExerciseList from '../../components/workout-page/exercise-list.js';
@@ -20,7 +19,8 @@ class WorkoutPage extends React.Component {
         this.playWorkout = this.playWorkout.bind(this);
         this.checkState = this.checkState.bind(this);
 
-        const timeArr = this.props.workoutDatum.exercises.time;
+        const { sets, exercises = {} } = this.props.workoutDatum || {};
+        const { exerciseId: exerciseIDArr = [], time: timeArr = [] } = exercises;
         let today = new Date();
         today.setSeconds(today.getSeconds() + timeArr[0]);
         // set the state
@@ -30,11 +30,15 @@ class WorkoutPage extends React.Component {
             timeToStop: today,
             paused: false,
             nowAndStopDiff: 0,
-            exerciseIDArr: this.props.workoutDatum.exercises.exerciseId,
+            exerciseIDArr,
             timeArr,
-            numSets: this.props.workoutDatum.sets
+            numSets: sets
         };
-        setInterval(this.checkState, 1000); // check state every second
+        this.stateCheckerId = setInterval(this.checkState, 1000); // check state every second
+    }
+    
+    componentWillUnmount() {
+        clearInterval(this.stateCheckerId);
     }
 
     checkState() {
@@ -98,8 +102,11 @@ class WorkoutPage extends React.Component {
     }
 
     render() {
+        const {
+            name = 'Unknown workout'
+        } = this.props.workoutDatum || {}
         return <div className={styles.contentWrapper}>
-            <h1 className={styles.workoutName}>{this.props.workoutDatum.name}</h1>
+            <h1 className={styles.workoutName}>{name}</h1>
             <SetProgress set={this.state.curSet} sets={this.state.exerciseIDArr.length} />
             <div className={styles.workoutWrapper}>
                 <ExerciseList
@@ -122,7 +129,7 @@ class WorkoutPage extends React.Component {
 
 function Workout({ workoutid, workoutDatum }) {
     return <div className={styles.pageWrapper}>
-        <Header />
+        <Header current={'workouts'} />
         <div className={styles.pageContent}>
             <WorkoutPage workoutId={workoutid} workoutDatum={workoutDatum}/>
         </div>

@@ -17,10 +17,30 @@
 .groupLink:hover {
     text-decoration: underline;
 }
+.groupImgWrapper {
+    position: relative;
+}
 .groupImg {
     object-fit: cover;
     width: 100px; height: 100px;
     border-radius: 10px;
+}
+.groupName {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    color: white;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transition: opacity .2s;
+}
+.groupLink:hover .groupName,
+.groupLink:focus .groupName {
+    opacity: 1;
 }
 img.groupImg:hover {
 

@@ -69,7 +69,7 @@ class Groups extends React.Component {
         }
 
         return <div className={styles.pageWrapper}>
-            <Header />
+            <Header current={'groups'} />
             <div className={styles.pageContent} style={{ flexDirection: 'column' }}>
                 <div className={styles.myGroupsContainer}>
                     <div className={styles.groupSection}>

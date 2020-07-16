@@ -15,7 +15,14 @@ function GroupsSidebar({ userId }) {
                 ? <a href="#">Join a Group</a>
                 : userData[userId]['groups'].map(function (item) {
                     return <Link key={item} href="/group/[groupid]" as={`/group/${item}`}>
-                        <a className={styles.groupLink}><img className={styles.groupImg} src={groupData[item].image} /></a>
+                        <a className={styles.groupLink}>
+                            <div className={styles.groupImgWrapper}>
+                                <img className={styles.groupImg} src={groupData[item].image} />
+                                <div className={styles.groupName}>
+                                    {groupData[item].name}
+                                </div>
+                            </div>
+                        </a>
                     </Link>;
 
                 })

@@ -30,59 +30,61 @@ export default class WorkoutCard extends React.Component {
         let count = 0;
         while (count < intensity)
         {
-            intensityScale.push(<FaCircle className={styles.icon}/>);
+            intensityScale.push(<FaCircle className={styles.icon} key={count} />);
             count++;
         }
         while (count < 5)
         {
-            intensityScale.push(<FiCircle className={styles.icon}/>);
+            intensityScale.push(<FiCircle className={styles.icon} key={count} />);
             count++;
         }
 
-        return <div className={styles.card}>
-            {/* Could put the image here if there needs to be one */}
-            <div className={styles.metaWrapper}>
-                <h2 className={styles.name}>
-                    <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
-                        <a>{name}</a>
-                    </Link>
-                </h2>
-                <div className={styles.creator}>
-                    <Link href='/user/[userid]' as={`/user/${creator}`}>
-                        <a>{displayName}</a>
-                    </Link>
+        return <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
+            <div className={styles.card}>
+                {/* Could put the image here if there needs to be one */}
+                <div className={styles.metaWrapper}>
+                    <h2 className={styles.name}>
+                        <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
+                            <a>{name}</a>
+                        </Link>
+                    </h2>
+                    <div className={styles.creator}>
+                        <Link href='/user/[userid]' as={`/user/${creator}`}>
+                            <a>{displayName}</a>
+                        </Link>
+                    </div>
                 </div>
-            </div>
-            <div className={styles.infoWrapper}>
-                <div className={styles.info}>
-                    <MdQueryBuilder className={styles.icon} />
-                    <p className={styles.label}>{`${length} min`}</p>
+                <div className={styles.infoWrapper}>
+                    <div className={styles.info}>
+                        <MdQueryBuilder className={styles.icon} />
+                        <p className={styles.label}>{`${length} min`}</p>
+                    </div>
+                    <div className={styles.info}>
+                        <AiFillFire className={styles.icon} />
+                        <p className={styles.label}>{`${calories} cal`}</p>
+                    </div>
                 </div>
-                <div className={styles.info}>
-                    <AiFillFire className={styles.icon} />
-                    <p className={styles.label}>{`${calories} cal`}</p>
+                <div className={styles.infoWrapper}>
+                    <div className={styles.info}>
+                        
+                    <p className={styles.label}>{`Intensity`}</p>
+                        {intensityScale}
+                    </div>
                 </div>
+                <div className={styles.infoWrapper}>
+                    {/* Do by: this is used for schedules */
+                        this.props.dueBy ?
+                            (<div className={styles.infoLineEntry}>
+                                <h3 className={styles.infoLineTitle}>Due By</h3>
+                                <div className={styles.infoValue}>
+                                    {formatDateTime(new Date(...dueBy))}
+                                </div>
+                            </div>)
+                            : <></>
+                    }
+                    </div>
             </div>
-            <div className={styles.infoWrapper}>
-                <div className={styles.info}>
-                    
-                <p className={styles.label}>{`Intensity`}</p>
-                    {intensityScale}
-                </div>
-            </div>
-            <div className={styles.infoWrapper}>
-                {/* Do by: this is used for schedules */
-                    this.props.dueBy ?
-                        (<div className={styles.infoLineEntry}>
-                            <h3 className={styles.infoLineTitle}>Due By</h3>
-                            <div className={styles.infoValue}>
-                                {formatDateTime(new Date(...dueBy))}
-                            </div>
-                        </div>)
-                        : <></>
-                }
-            </div>
-        </div>
+        </Link>;
     }
 }
 

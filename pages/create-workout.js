@@ -5,7 +5,7 @@ import styles from './page.module.css';
 export default class CreateWorkoutPage extends React.Component {
     render() {
         return <div className={styles.pageWrapper}>
-            <Header />
+            <Header current={'workouts'} />
             <div className={styles.pageContent}>
                <CreateWorkout />
             </div>
