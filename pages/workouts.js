@@ -37,7 +37,7 @@ class Workouts extends React.Component {
         // TODO: Get from prop or something later
         const userId = USERID;
         return <div className={styles.pageWrapper}>
-            <Header />
+            <Header current={'workouts'} />
             <div className={`${styles.pageContent} ${styles.workoutContainer}`}>
                 <div className={styles.headingWrapper}>
                     <h1 className={styles.heading}>Workouts</h1>

@@ -5,7 +5,7 @@ import GroupMainSection from '../../components/group/group-main-section.js';
 
 function Group({ groupid }) {
     return <div>
-        <Header />
+        <Header current={'groups'} />
         <div className='group-page'>
             <GroupSidebar groupId={groupid} />
             <GroupMainSection groupId={groupid} />

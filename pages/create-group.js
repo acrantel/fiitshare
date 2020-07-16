@@ -35,7 +35,7 @@ export default class CreateGroup extends React.Component {
     
     render() {
         return <div className={styles.pageWrapper}>
-            <Header />
+            <Header current={'groups'} />
             <div className={styles.pageContent} style={{alignItems: 'center'}}>
                 <AddGroup title="Create a group" submitLabel="Create" onSubmit={this.onCreate}>
                     <LabelledInput label="Group Name">

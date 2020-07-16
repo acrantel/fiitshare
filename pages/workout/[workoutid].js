@@ -144,7 +144,7 @@ class WorkoutPage extends React.Component {
 
 function Workout({ workoutid }) {
     return <div className={styles.pageWrapper}>
-        <Header />
+        <Header current={'workouts'} />
         <div className={styles.pageContent}>
             <WorkoutPage workoutId={workoutid} />
         </div>

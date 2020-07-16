@@ -5,19 +5,31 @@ import SearchBar from './search-bar.js'
 import {userData, USERID} from '../database/database.js'
 import {MdExpandMore} from 'react-icons/md'
 
+function NavLink ({ link, label, id, current }) {
+    return <Link href={link}>
+        <a className={`${styles.navElement} ${
+            id === current ? styles.currentNavElement : ''}`
+        }>{label}</a>
+    </Link>;
+}
+
 class Header extends React.Component {
     render() {
+        const {
+            userId = USERID,
+            current
+        } = this.props;
         return <div className={styles.header}>
             <div className={styles.headerContent}>
                 <img className={styles.logo} src="/images/logo.png" alt="Logo" />
                 <div className={styles.navBar}>
-                    <Link href="/"><a className={styles.navElement}>Dashboard</a></Link>
-                    <Link href="/groups"><a className={styles.navElement}>Groups</a></Link>
-                    <Link href="/workouts"><a className={styles.navElement}>Workouts</a></Link>
+                    <NavLink link="/" label="Dashboard" id="dashboard" current={current} />
+                    <NavLink link="/groups" label="Groups" id="groups" current={current} />
+                    <NavLink link="/workouts" label="Workouts" id="workouts" current={current} />
                 </div>
                 <SearchBar/>
                 <span className={styles.space} />
-                <RightNavBar userId={this.props.userId || USERID}/>
+                <RightNavBar userId={userId}/>
             </div>
         </div>
     }

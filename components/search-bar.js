@@ -5,16 +5,16 @@ import { MdSearch } from 'react-icons/md'
 
 class SearchBar extends React.Component {
     render() {
-        return <div className={styles.searchBar}>
+        return <label className={styles.searchBar}>
             <MdSearch onClick={this.props.onSearch} className={styles.searchIcon} />
             <input onKeyUp={(event) => {
                 if (event.key === 'Enter') {
                     this.props.onSearch();
                 }
-            }} 
+            }}
             className={styles.searchInput} style={{ justifySelf: 'end' }} type="text"
                 onChange={this.props.onChange} placeholder={this.props.placeholder}></input>
-        </div>
+        </label>
     }
 }
 
