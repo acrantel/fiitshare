@@ -27,6 +27,7 @@ function ScheduledWorkouts({ userId }) {
             let workoutId = scheduledWorkout.workoutId;
 
             result.push(<Workout
+                key={workoutId}
                 groupId={groupId}
                 groupImg={groupData[groupId].image}
                 workoutId={workoutId}

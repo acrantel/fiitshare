@@ -3,6 +3,7 @@ import Header from '../../components/header.js';
 import styles from '../page.module.css';
 import UserChart from '../../components/user/user-chart.js';
 import DashboardRight from '../../components/groups-sidebar.js';
+import { getUser } from '../../utils/api.js';
 
 function randomGradient() {
     const channels = Array.from('rgbrgb', () => Math.floor(Math.random() * 256));
@@ -85,11 +86,7 @@ function User({ userid, userDatum }) {
 
 User.getInitialProps = async ({ query }) => {
     const { userid } = query;
-    console.log(userid);
-    const userDatum = await fetch(`http://localhost:3000/api/user/${userid}`, {
-        method: 'GET'
-    })
-        .then(res => res.ok ? res.json() : Promise.reject(new Error(res.status)))
+    const userDatum = await getUser(userid);
     return { userid, userDatum };
 };
 

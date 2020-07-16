@@ -21,7 +21,7 @@ export default class GroupMainSection extends React.Component {
     }
 }
 
-function GroupSchedule({ groupSchedule }) {
+function GroupSchedule({ groupSchedule = [] }) {
     return <div className={styles.groupSchedule}>
         {groupSchedule.map(function (item, index) {
             return <WorkoutCard

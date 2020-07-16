@@ -5,6 +5,7 @@ import React from 'react';
 import SetProgress from '../../components/workout-page/set-progress.js';
 import WorkoutVideo from '../../components/workout-page/workout-video.js';
 import ExerciseList from '../../components/workout-page/exercise-list.js';
+import { getWorkout } from '../../utils/api.js';
 
 //import ExerciseCard from '../../components/cards/exercise-card.js';
 import { MdSkipPrevious, MdPlayArrow, MdPause, MdSkipNext } from 'react-icons/md'
@@ -138,10 +139,7 @@ function Workout({ workoutid, workoutDatum }) {
 
 Workout.getInitialProps = async ({ query }) => {
     const { workoutid } = query;
-    const workoutDatum = await fetch(`http://localhost:3000/api/workout/${workoutid}`, {
-        method: 'GET'
-    }).then(res => res.ok ? res.json() : Promise.reject(new Error(res.status)))
-
+    const workoutDatum = await getWorkout(workoutid);
     return { workoutid, workoutDatum };
 };
 
