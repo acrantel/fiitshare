@@ -8,14 +8,13 @@ import Link from 'next/link';
 
 export default class GroupMainSection extends React.Component {
     render() {
-        let group =groupData[this.props.groupId];
         return <div className={styles.mainSection}>
             <Tabs>
                 <div label="Schedule">
-                    <GroupSchedule groupSchedule={group['schedule']} />
+                    <GroupSchedule groupSchedule={this.props.groupDatum['schedule']} />
                 </div>
                 <div label="Members">
-                    <GroupMembers members={group['members']} admins={group['admins']}/>
+                    <GroupMembers members={this.props.groupDatum['members']} admins={this.props.groupDatum['admins']}/>
                 </div>
             </Tabs>
         </div>

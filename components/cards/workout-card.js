@@ -86,17 +86,12 @@ export default class WorkoutCard extends React.Component {
     }
 }
 
-/*
- <div className={styles.infoEntry}>
-                    <h3 className={styles.infoTitle}>Intensity</h3>
-                    <div className={styles.infoValue}>{intensity}</div>
-                </div>
-                <div className={styles.infoEntry}>
-                    <h3 className={styles.infoTitle}>Calories</h3>
-                    <div className={styles.infoValue}>{calories}</div>
-                </div>
-                <div className={styles.infoEntry}>
-                    <h3 className={styles.infoTitle}>Time</h3>
-                    <div className={styles.infoValue}>{`${length} min.`}</div>
-                </div>
-*/
+
+WorkoutCard.getInitialProps = async () => {
+    const { groupid } = query;
+    const groupDatum = await fetch(`http://localhost:3000/api/group/${groupid}`, {
+        method: 'GET'
+    }).then(res => res.ok ? res.json() : Promise.reject(new Error(res.status)))
+
+    return { groupid, groupDatum };
+};
