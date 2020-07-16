@@ -17,45 +17,47 @@ export default class WorkoutCard extends React.Component {
             length = 0,
             dueBy = [],
         } = workoutDatum
-        return <div className={styles.card}>
-            {/* Could put the image here if there needs to be one */}
-            <div className={styles.metaWrapper}>
-                <h2 className={styles.name}>
-                    <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
-                        <a>{name}</a>
-                    </Link>
-                </h2>
-                <div className={styles.creator}>
-                    <Link href='/user/[userid]' as={`/user/${creator}`}>
-                        <a>{creator}</a>
-                    </Link>
+        return <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
+            <div className={styles.card}>
+                {/* Could put the image here if there needs to be one */}
+                <div className={styles.metaWrapper}>
+                    <h2 className={styles.name}>
+                        <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
+                            <a>{name}</a>
+                        </Link>
+                    </h2>
+                    <div className={styles.creator}>
+                        <Link href='/user/[userid]' as={`/user/${creator}`}>
+                            <a>{creator}</a>
+                        </Link>
+                    </div>
                 </div>
-            </div>
-            <div className={styles.infoWrapper}>
-                <div className={styles.infoEntry}>
-                    <h3 className={styles.infoTitle}>Intensity</h3>
-                    <div className={styles.infoValue}>{intensity}</div>
-                </div>
-                <div className={styles.infoEntry}>
-                    <h3 className={styles.infoTitle}>Calories</h3>
-                    <div className={styles.infoValue}>{calories}</div>
-                </div>
-                <div className={styles.infoEntry}>
-                    <h3 className={styles.infoTitle}>Time</h3>
-                    <div className={styles.infoValue}>{`${length} min.`}</div>
-                </div>
-                {/* Do by: this is used for schedules */
-                    this.props.dueBy ?
-                        (<div className={styles.infoEntry}>
-                            <h3 className={styles.infoTitle}>Due By</h3>
-                            <div className={styles.infoValue}>
-                                {formatDateTime(new Date(...dueBy))}
-                            </div>
-                        </div>)
-                        : <></>
-                }
+                <div className={styles.infoWrapper}>
+                    <div className={styles.infoEntry}>
+                        <h3 className={styles.infoTitle}>Intensity</h3>
+                        <div className={styles.infoValue}>{intensity}</div>
+                    </div>
+                    <div className={styles.infoEntry}>
+                        <h3 className={styles.infoTitle}>Calories</h3>
+                        <div className={styles.infoValue}>{calories}</div>
+                    </div>
+                    <div className={styles.infoEntry}>
+                        <h3 className={styles.infoTitle}>Time</h3>
+                        <div className={styles.infoValue}>{`${length} min.`}</div>
+                    </div>
+                    {/* Do by: this is used for schedules */
+                        this.props.dueBy ?
+                            (<div className={styles.infoEntry}>
+                                <h3 className={styles.infoTitle}>Due By</h3>
+                                <div className={styles.infoValue}>
+                                    {formatDateTime(new Date(...dueBy))}
+                                </div>
+                            </div>)
+                            : <></>
+                    }
 
+                </div>
             </div>
-        </div>
+        </Link>;
     }
 }

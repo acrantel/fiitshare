@@ -17,23 +17,25 @@ export default class Workout extends React.Component {
             completed
         } = this.props;
         const date = new Date(...time);
-        return <div className={`${styles.workout} ${completed ? styles.completed : ''}`}>
-            <div className={styles.datetime}>
-                {formatDate(date)}
-                <div className={styles.time}>
-                    {formatTime(date)}
+        return <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
+            <div className={`${styles.workout} ${completed ? styles.completed : ''}`}>
+                <div className={styles.datetime}>
+                    {formatDate(date)}
+                    <div className={styles.time}>
+                        {formatTime(date)}
+                    </div>
+                </div>
+                <div className={styles.label}>
+                    {'Complete "'}
+                    <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
+                        <a>{name}</a>
+                    </Link>
+                    {'"'}
+                </div>
+                <div className={styles.icon}>
+                    {completed ? <MdCheckCircle /> : <div className={styles.circle} />}
                 </div>
             </div>
-            <div className={styles.label}>
-                {'Complete "'}
-                <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
-                    <a>{name}</a>
-                </Link>
-                {'"'}
-            </div>
-            <div className={styles.icon}>
-                {completed ? <MdCheckCircle /> : <div className={styles.circle} />}
-            </div>
-        </div>;
+        </Link>;
     }
 }

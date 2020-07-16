@@ -40,3 +40,6 @@ select.input {
     margin: 0 20px;
     color: #ff5656;
 }
+.remove:hover {
+    background-color: #ff5656;
+}

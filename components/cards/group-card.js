@@ -11,29 +11,31 @@ class GroupCard extends React.Component {
 
     render() {
         let groupID = this.props.groupID;
-        return <div className={styles.container}>
-            <img className={styles.groupImg} src={groupData[groupID].image} />
-            <h2 className={styles.groupName}>
-                <Link href="/group/[groupid]" as={`/group/${groupID}`}>
-                    <a className={styles.groupNameLink}>{groupData[groupID].name}</a>
-                </Link>
-            </h2>
+        return <Link href="/group/[groupid]" as={`/group/${groupID}`}>
+            <div className={styles.container}>
+                <img className={styles.groupImg} src={groupData[groupID].image} />
+                <h2 className={styles.groupName}>
+                    <Link href="/group/[groupid]" as={`/group/${groupID}`}>
+                        <a className={styles.groupNameLink}>{groupData[groupID].name}</a>
+                    </Link>
+                </h2>
 
-            <div className={styles.infoContainer}>
-                <p className={styles.infoParagraph}>{groupData[groupID].description}</p>
-                <div className={styles.infoWrapper}>
-                    <div className={styles.infoEntry}>
-                        <h3 className={styles.infoTitle}>Members</h3>
-                        <div className={styles.infoValue}>{groupData[groupID].members.length}</div>
+                <div className={styles.infoContainer}>
+                    <p className={styles.infoParagraph}>{groupData[groupID].description}</p>
+                    <div className={styles.infoWrapper}>
+                        <div className={styles.infoEntry}>
+                            <h3 className={styles.infoTitle}>Members</h3>
+                            <div className={styles.infoValue}>{groupData[groupID].members.length}</div>
+                        </div>
+                        <div className={styles.infoEntry}>
+                            <h3 className={styles.infoTitle}>Level</h3>
+                            <div className={styles.infoValue}>{groupData[groupID].level}</div>
+                        </div>
                     </div>
-                    <div className={styles.infoEntry}>
-                        <h3 className={styles.infoTitle}>Level</h3>
-                        <div className={styles.infoValue}>{groupData[groupID].level}</div>
-                    </div>
+                    <JoinButton isYours={this.props.isYours} groupID={groupID} />
                 </div>
-                <JoinButton isYours={this.props.isYours} groupID={groupID} />
             </div>
-        </div>
+        </Link>;
     }
 }
 
