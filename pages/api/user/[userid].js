@@ -1,53 +1,5 @@
 import db from '../../../database/firebase-config.js';
 
-
-export default async (req, res) => {
-    console.log("hey ssgot here!");
-    console.log(req.query);
-    const userId = req.query.userid;
-
-    if (req.method === 'GET') {
-        const userRef = db.collection('users').doc(userId);
-        // const doc = await userData.get();
-        // if (!doc.exists) {
-        //     console.log(`${userId} does not exist`);
-        //     res.status(404).send(`User ID ${userId} not found.`);
-        // } else {
-        //     res.status(200).json(doc.data());
-        // }
-        // res.end();
-    }
-    else if  (req.method === 'POST') {
-        const userRef = db.collection('users').doc(userId);
-        console.log(userRef);
-        const doc = await userRef.get();
-        if (!doc.exists) {
-            console.log(`${userId} does not exist`);
-             res.status(404).send(`User ID ${userId} not found.`);
-             return;
-         } else {
-             console.log('user id exists');
-             res.status(200).json(doc.data());
-             return;
-         }
-        // res.end();
-    }
-/*
-    res.status(200).json([
-        {
-          "comment": "First"
-        },
-        {
-          "comment": "Nice post"
-        },
-        {
-            "userid": req.query.userid,
-            "method": req.method,
-        },
-        
-      ]);*/
-  }
-/*
 export default (req, res) => {
     console.log(req.body);
     const userId = req.query.userid;
@@ -65,10 +17,10 @@ export default (req, res) => {
         // res.end();
     }
     else if (req.method === 'POST') {
-        console.log('in post');
-        let result = await streamToString(req);
-        console.log('got result: ', result);
-        //let jsoned = JSON.parse(result);
+        // console.log('in post');
+        // let result = await streamToString(req);
+        // console.log('got result: ', result);
+        // let jsoned = JSON.parse(result);
 
         // const userRef = db.collection('users').doc(userId);
         // // https://stackoverflow.com/a/39333479
@@ -96,4 +48,4 @@ function streamToString(stream) {
             return resolve(Buffer.concat(chunks).toString('utf8'))
         })
     })
-}*/
+}

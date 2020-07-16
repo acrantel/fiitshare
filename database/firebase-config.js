@@ -1,11 +1,13 @@
 import admin from 'firebase-admin';
 
-var serviceAccount = require("C:/Users/alinali/Downloads/bay-area-hacks-firebase-adminsdk-xwgpc-ea21d26aec.json");
 
 try {
-  console.log("trying to initialize app in firebase-config");
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.cert({
+        project_id: process.env.FIREBASE_PROJECT_ID,
+        private_key: process.env.FIREBASE_PRIVATE_KEY,
+        client_email: process.env.FIREBASE_CLIENT_EMAIL
+      }),
     databaseURL: "https://bay-area-hacks.firebaseio.com"
   });
 } catch (error) {
