@@ -5,6 +5,7 @@ import React from 'react';
 import SetProgress from '../../components/workout-page/set-progress.js';
 import WorkoutVideo from '../../components/workout-page/workout-video.js';
 import ExerciseList from '../../components/workout-page/exercise-list.js';
+import ErrorPage from '../../components/error.js';
 import { getWorkout } from '../../utils/api.js';
 
 //import ExerciseCard from '../../components/cards/exercise-card.js';
@@ -128,19 +129,25 @@ class WorkoutPage extends React.Component {
     }
 }
 
-function Workout({ workoutid, workoutDatum }) {
+function Workout({ error, workoutid, workoutDatum }) {
     return <div className={styles.pageWrapper}>
         <Header current={'workouts'} />
         <div className={styles.pageContent}>
-            <WorkoutPage workoutId={workoutid} workoutDatum={workoutDatum}/>
+            {error
+                ? <ErrorPage error={error} />
+                : <WorkoutPage workoutId={workoutid} workoutDatum={workoutDatum}/>}
         </div>
     </div>;
 }
 
 Workout.getInitialProps = async ({ query }) => {
     const { workoutid } = query;
-    const workoutDatum = await getWorkout(workoutid);
-    return { workoutid, workoutDatum };
+    try {
+        const workoutDatum = await getWorkout(workoutid);
+        return { workoutid, workoutDatum };
+    } catch ({ message: error }) {
+        return { error };
+    }
 };
 
 
