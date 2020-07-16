@@ -7,7 +7,7 @@ export default class CreateWorkoutPage extends React.Component {
         return <div className={styles.pageWrapper}>
             <Header current={'workouts'} />
             <div className={styles.pageContent}>
-                <CreateWorkout />
+               <CreateWorkout />
             </div>
         </div>;
     }

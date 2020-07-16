@@ -28,6 +28,7 @@ function GroupSchedule({ groupSchedule }) {
             return <WorkoutCard
                 key={index}
                 workoutId={item['workoutId']}
+                displayName={userData[workoutData[item['workoutId']].creator].name}
                 workoutDatum={workoutData[item['workoutId']]}
                 dueBy={item['dueBy']}
             />

@@ -46,6 +46,7 @@ function Recent({ userId }) {
                 return <li className={styles.listItem} key={item}>
                     <WorkoutCard
                         workoutId={item}
+                        displayName={userData[userId].name}
                         workoutDatum={workoutData[item]}
                     />
                 </li>
