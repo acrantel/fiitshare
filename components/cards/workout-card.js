@@ -30,12 +30,12 @@ export default class WorkoutCard extends React.Component {
         let count = 0;
         while (count < intensity)
         {
-            intensityScale.push(<FaCircle className={styles.icon}/>);
+            intensityScale.push(<FaCircle className={styles.icon} key={count} />);
             count++;
         }
         while (count < 5)
         {
-            intensityScale.push(<FiCircle className={styles.icon}/>);
+            intensityScale.push(<FiCircle className={styles.icon} key={count} />);
             count++;
         }
 
