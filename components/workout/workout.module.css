@@ -17,12 +17,15 @@ div.workout:hover {
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    padding: 10px;
+    margin: 10px;
+    padding-right: 10px;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
     width: 60px;
 }
 .time {
-    font-size: 0.7em;
+    font-size: 0.8em;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 .label {
     display: flex;
@@ -38,6 +41,18 @@ div.workout:hover {
 .label a:hover {
     text-decoration: none;
     color: #ff73d7;
+}
+
+.groupImgContainer {
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+}
+.groupImg {
+    object-fit: cover;
+    width: 90px; height: 90px;
+    border-radius: 10px;
 }
 
 .icon {

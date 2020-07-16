@@ -31,8 +31,14 @@ class RightNavBar extends React.Component {
             <div className={styles.dropdown}>
                 <MdExpandMore className={styles.arrowIcon} />
                 <div className={styles.dropdownContent}>
-                    <a className={styles.linkBox} href="#">Profile</a>
-                    <a  className={styles.linkBox} href="#">Sign out</a>
+                    <div className={styles.linkBox}>
+                        <Link href="/user/[userId]" as={`/user/${USERID}`}>
+                            <a href="/user/[userId]">Profile</a>
+                        </Link>
+                    </div>
+                    <div className={styles.linkBox}>
+                        <a href="#TODO-sign-out">Sign out</a>
+                    </div>
                 </div>
             </div>
         </div>

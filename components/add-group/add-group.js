@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import styles from './add-group.module.css';
 
+import Link from 'next/link'
+
 export default class AddGroup extends React.Component {
+    constructor(props)
+    {
+        super(props);
+    }
+
     render() {
         const {
             title,
@@ -13,11 +20,7 @@ export default class AddGroup extends React.Component {
             <h2 className={styles.heading}>{title}</h2>
             {children}
             <div className={styles.submitWrapper}>
-                <input
-                    type="submit"
-                    value={submitLabel}
-                    className={styles.submit}
-                />
+                    <a onClick={onSubmit} className='button'>{submitLabel}</a>
             </div>
         </form>;
     }
