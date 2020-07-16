@@ -21,6 +21,7 @@ var userData = {
         groups: ['group1', 'group2', 'group3', 'group4'],
         name: 'Jane Doe',
         profile_picture: '/images/user2.jpg',
+        cover_picture: '/images/user1-cover.jpg',
         calories: 2000,
         // minutes
         time_spent: 540,
@@ -37,6 +38,7 @@ var userData = {
         groups: ['group4'],
         name: 'Susan Smith',
         profile_picture: '/images/user3.jpg',
+        cover_picture: '/images/user1-cover.jpg',
         calories: 1000,
         // minutes
         time_spent: 540,
@@ -48,12 +50,13 @@ var userData = {
     },
 };
 
-
+const INTENSITY = 5;
 var workoutData = {
+    // workout intensity: 1-5
     wk1: {
         creator: 'user1',
         name: 'Morning',
-        intensity: 'beginner',
+        intensity: 1,
         length: 20, // minutes
         calories: 200,
         sets: 3,
@@ -65,7 +68,7 @@ var workoutData = {
     wk2: {
         creator: 'user1',
         name: 'Morning Workout 2',
-        intensity: 'Easy',
+        intensity: '3',
         length: 10, // minutes
         calories: 50,
         sets: 3,
@@ -77,7 +80,7 @@ var workoutData = {
     wk3: {
         creator: 'user1',
         name: '20-min Intense HIIT',
-        intensity: 'Hard',
+        intensity: '4',
         length: 20, // minutes
         calories: 200,
         sets: 3,
@@ -89,7 +92,7 @@ var workoutData = {
     wk4: {
         creator: 'user1',
         name: 'Quick HIIT',
-        intensity: 'Medium',
+        intensity: '2',
         length: 10, // minutes
         calories: 100,
         exercises: {
@@ -97,29 +100,62 @@ var workoutData = {
             time: [50, 40, 40],
         }
     }
-
+    ,
+    wk5: {
+        creator: 'user2',
+        name: '30 Minute Vinyasa Flow',
+        intensity: '5',
+        length: 30, // minutes
+        calories: 100,
+        exercises: {
+            exerciseId: [1, 2, 3],
+            time: [50, 40, 40],
+        }
+    },
+    wk4: {
+        creator: 'user3',
+        name: 'No Equipment Bodyweight-only Workout',
+        intensity: '5',
+        length: 35, // minutes
+        calories: 150,
+        exercises: {
+            exerciseId: [1, 2, 3],
+            time: [50, 40, 40],
+        }
+    }
 };
 
 var exerciseData = {
+    // gifs cropped to 4:3 aspect ratio, keeping the bottom left corner the same
     1: {
-        name: 'squats',
+        name: 'Deadlift',
         // video_link: '/exercise/1.gif'
         // TEMP:
-        video_link: 'https://cdn.discordapp.com/attachments/731767489318617168/732451596805341214/squats.gif'
+        video_link: 'https://cdn.discordapp.com/attachments/732852292776362019/732859338896572416/deadlift.gif'
     },
     2: {
-        name: 'pushups',
+        name: 'Squat jumps',
         // video_link: '/exercise/2.gif'
-        video_link: 'https://media1.tenor.com/images/076c865ae75b347a443ae0e7596ca3e3/tenor.gif?itemid=5103666'
+        video_link: 'https://cdn.discordapp.com/attachments/732852292776362019/732859349915140096/squatjump.gif'
     },
     3: {
-        name: 'situps',
+        name: 'Reverse lunge',
         // video_link: '/exercise/3.gif'
-        video_link: 'https://cdn.discordapp.com/emojis/718186115294691482.gif?v=1'
+        video_link: 'https://cdn.discordapp.com/attachments/732852292776362019/732859351991189585/reverselunge.gif'
+    },
+    4: {
+        name: 'Jumping jacks',
+        video_link: 'https://cdn.discordapp.com/attachments/732852292776362019/732859352746295318/jumpingjacks.gif'
+    },
+    5: {
+        name: 'Lunge pulses',
+        video_link: 'https://cdn.discordapp.com/attachments/732852292776362019/732859354298056734/lungepulses.gif'
     }
 }
 
 var groupData = {
+    // for due date: use 0-11 for months
+    // use 1-24 for hours (24 & 1-11 is am, 12-23 is pm)
     group1: {
         name: 'G Period',
         image: "/images/groups/group1.jpg",
@@ -133,7 +169,7 @@ var groupData = {
                 dueBy: [2020, 6, 19, 10, 30]
             },
             {
-                workoutId: 'wk1',
+                workoutId: 'wk2',
                 dueBy: [2020, 6, 21, 10, 30]
             }
         ]
@@ -147,12 +183,12 @@ var groupData = {
         admins: ['user2'], // user id's
         schedule: [
             {
-                workoutId: 'wk1',
-                dueBy: [2020, 6, 19, 10, 30]
+                workoutId: 'wk4',
+                dueBy: [2020, 6, 22, 23, 59],
             },
             {
-                workoutId: 'wk1',
-                dueBy: [2020, 6, 19, 10, 30]
+                workoutId: 'wk3',
+                dueBy: [2020, 7, 1, 17, 30]
             }
         ]
     },
