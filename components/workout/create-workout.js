@@ -19,11 +19,15 @@ export default class CreateWorkout extends React.Component {
         this.setExercise = this.setExercise.bind(this);
         this.setTime = this.setTime.bind(this);
         this.removeExercise = this.removeExercise.bind(this);
+        this.changeName = this.changeName.bind(this);
         this.changeSets = this.changeSets.bind(this);
+        this.changeCalories = this.changeCalories.bind(this);
         this.state = {
             exercises: [newExercise(0)],
             nextKey: 1,
-            sets: 1
+            name: '',
+            sets: 1,
+            calories: 0
         };
     }
     
@@ -69,9 +73,21 @@ export default class CreateWorkout extends React.Component {
         });
     }
     
+    changeName(e) {
+        this.setState({
+            name: e.target.value
+        })
+    }
+    
     changeSets(e) {
         this.setState({
             sets: +e.target.value
+        })
+    }
+    
+    changeCalories(e) {
+        this.setState({
+            calories: +e.target.value
         })
     }
 
@@ -83,18 +99,36 @@ export default class CreateWorkout extends React.Component {
     }
     
     render() {
-        const { exercises, sets } = this.state;
+        const { exercises, name, sets, calories } = this.state;
         return <div className={styles.wrapper}>
             <h1 className='section-title'><span>Create a new workout</span></h1>
             <div className={styles.headerWrapper}>
                 <div className={styles.leftWrapper}>
-                    <label className={styles.setsWrapper}>
+                    <label className={styles.inputWrapper}>
+                        {'Name: '}
+                        <input
+                            type="text"
+                            className={styles.input}
+                            value={name}
+                            onChange={this.changeName}
+                        />
+                    </label>
+                    <label className={styles.inputWrapper}>
                         {'Number of sets: '}
                         <input
                             type="number"
-                            className={styles.sets}
+                            className={styles.input}
                             value={sets}
                             onChange={this.changeSets}
+                        />
+                    </label>
+                    <label className={styles.inputWrapper}>
+                        {'Calories: '}
+                        <input
+                            type="number"
+                            className={styles.input}
+                            value={calories}
+                            onChange={this.changeCalories}
                         />
                     </label>
                 </div>

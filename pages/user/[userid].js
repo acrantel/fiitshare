@@ -3,6 +3,8 @@ import Header from '../../components/header.js';
 import styles from '../page.module.css';
 import UserChart from '../../components/user/user-chart.js';
 import DashboardRight from '../../components/groups-sidebar.js';
+import ErrorPage from '../../components/error.js';
+import { getUser } from '../../utils/api.js';
 
 function randomGradient() {
     const channels = Array.from('rgbrgb', () => Math.floor(Math.random() * 256));
@@ -15,7 +17,7 @@ function randomGradient() {
         }))`;
 }
 
-function User({ userid, userDatum }) {
+function User({ error, userid, userDatum = {} }) {
     const {
         cover_picture,
         picture,
@@ -27,7 +29,7 @@ function User({ userid, userDatum }) {
     } = userDatum;
     return <div className={styles.pageWrapper}>
         <Header />
-        <div className={styles.pageContent}>
+        {error ? <ErrorPage error={error} /> : <div className={styles.pageContent}>
             <div className={styles.profileContainerSmaller}>
                 <div className={styles.profileImageContainer}>
                     <div className={styles.profileCoverImgContainer}>
@@ -79,18 +81,18 @@ function User({ userid, userDatum }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>}
     </div>
 }
 
 User.getInitialProps = async ({ query }) => {
     const { userid } = query;
-    console.log(userid);
-    const userDatum = await fetch(`http://localhost:3000/api/user/${userid}`, {
-        method: 'GET'
-    })
-        .then(res => res.ok ? res.json() : Promise.reject(new Error(res.status)))
-    return { userid, userDatum };
+    try {
+        const userDatum = await getUser(userid);
+        return { userid, userDatum };
+    } catch ({ message: error }) {
+        return { error };
+    }
 };
 
 export default User
