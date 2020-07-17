@@ -1,4 +1,4 @@
-async function fetchOk (route, method = 'GET', body = null) {
+async function fetchOk(route, method = 'GET', body = null) {
     const response = await fetch(`http://localhost:3000/api${route}`, {
         method,
         headers: {
@@ -14,7 +14,7 @@ async function fetchOk (route, method = 'GET', body = null) {
 }
 
 // type Exercise = { name: string, video_link: Url }
-export function getExercise (exerciseId) {
+export function getExercise(exerciseId) {
     return fetchOk(`/exercise/${exerciseId}`).then(r => r.json());
 }
 
@@ -27,14 +27,36 @@ export function getExercise (exerciseId) {
 //     name: string,
 //     schedule: ScheduleId[]
 // }
-export function getGroup (groupId) {
+export function getGroup(groupId) {
     return fetchOk(`/group/${groupId}`).then(r => r.json());
 }
-export function setGroup (groupId, data) {
+export function setGroup(groupId, data) {
     return fetchOk(`/group/${groupId}`, 'POST', data);
 }
 export function newGroup (data) {
     return fetchOk(`/group/new`, 'POST', data).then(r => r.json())
+}
+
+// {
+//     groupDatum: {
+//         name: string
+//         members: UserId[]
+//         image: url
+//         level: 'Beginner' | 'Intermediate' | 'Advanced',
+//         description: string,
+//         admins: UserId[]
+//     }
+//     scheduledWorkouts: [ {
+//          workoutId: workoutId,
+//          dueBy: dueBy.toMillis(),
+//          completed: Math.random() < 0.5, // TODO
+//          workoutDatum: workout datum } ... ]
+//     users: [
+//         {name: string, profile_picture: url, uid: string, admin: bool}
+//     ]
+// }
+export function getGroupData(groupId) {
+    return fetchOk(`/group/${groupId}/group-data`).then(r => r.json());
 }
 
 // type Schedule = {
@@ -58,10 +80,10 @@ export function newGroup (data) {
 //     time_spent: number,
 //     workouts: WorkoutId[]
 // }
-export function getUser (userId) {
+export function getUser(userId) {
     return fetchOk(`/user/${userId}`).then(r => r.json())
 }
-export function setUser (userId, data) {
+export function setUser(userId, data) {
     return fetchOk(`/user/${userId}`, 'POST', data);
 }
 // type WorkoutCard = {
@@ -72,7 +94,7 @@ export function setUser (userId, data) {
 //     length: number,
 //     name: string
 // }
-export function getUserWorkouts (userId) {
+export function getUserWorkouts(userId) {
     // { name: string, workouts: WorkoutCard[] }
     return fetchOk(`/user/${userId}/workouts`).then(r => r.json())
 }
@@ -87,7 +109,7 @@ export function getUserWorkouts (userId) {
 //     name: string,
 //     workouts: ScheduledWorkout[]
 // }
-export function getUserScheduledWorkouts (userId) {
+export function getUserScheduledWorkouts(userId) {
     return fetchOk(`/user/${userId}/scheduled-workouts`).then(r => r.json())
 }
 // type GroupCard = {
@@ -118,12 +140,12 @@ export function getUserGroups (userId) {
 //     name: string,
 //     sets: int
 // }
-export function getWorkout (workoutId) {
+export function getWorkout(workoutId) {
     return fetchOk(`/workout/${workoutId}`).then(r => r.json())
 }
-export function setWorkout (workoutId, data) {
+export function setWorkout(workoutId, data) {
     return fetchOk(`/workout/${workoutId}`, 'POST', data)
 }
-export function newWorkout (data) {
+export function newWorkout(data) {
     return fetchOk(`/workout/new`, 'POST', data).then(r => r.json())
 }
