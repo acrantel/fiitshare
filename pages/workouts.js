@@ -19,8 +19,6 @@ class ScheduledWorkouts extends React.Component {
     }
     
     async componentDidMount() {
-        // This is nonideal because it gets EVERYTHING about the user *and*
-        // doesn't even get the workout data
         const scheduledWorkouts = await getUserScheduledWorkouts(this.props.userId);
         this.setState({ scheduledWorkouts });
     }
@@ -57,8 +55,6 @@ class MyLibrary extends React.Component {
     }
     
     async componentDidMount() {
-        // This is nonideal because it gets EVERYTHING about the user *and*
-        // doesn't even get the workout data
         const { workouts, name } = await getUserWorkouts(this.props.userId);
         this.setState({
             workouts,

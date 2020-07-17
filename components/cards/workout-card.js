@@ -87,13 +87,3 @@ export default class WorkoutCard extends React.Component {
         </Link>;
     }
 }
-
-
-WorkoutCard.getInitialProps = async () => {
-    const { groupid } = query;
-    const groupDatum = await fetch(`http://localhost:3000/api/group/${groupid}`, {
-        method: 'GET'
-    }).then(res => res.ok ? res.json() : Promise.reject(new Error(res.status)))
-
-    return { groupid, groupDatum };
-};

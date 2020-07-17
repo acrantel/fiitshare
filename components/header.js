@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link'
 import styles from './header.module.css'
 import SearchBar from './search-bar.js';
-import {auth} from '../database/firestore.js';
+import {auth, USERID} from '../database/firestore.js';
 import {MdExpandMore} from 'react-icons/md';
 
 function NavLink ({ link, label, id, current }) {
@@ -16,7 +16,7 @@ function NavLink ({ link, label, id, current }) {
 class Header extends React.Component {
     render() {
         const {
-            userId = 'XSk95SD4hJcHke4ZK5y3vo9QqHl2',
+            userId = USERID,
             current,
             userDatum = {}
         } = this.props;
