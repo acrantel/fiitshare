@@ -2,12 +2,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-console.log(process.env.FIREBASE_API_KEY);
-console.log(process.env.FIREBASE_AUTH_DOMAIN);
-console.log(process.env.FIREBASE_DATABASE_URL);
-console.log(process.env.FIREBASE_PROJECT_ID);
-console.log(process.env.FIREBASE_STORAGE_BUCKET);
-console.log(process.env.FIREBASE_MESSAGING_SENDER_ID);
+export const { firestore: { FieldValue } } = admin;
+
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -27,3 +23,9 @@ export {
   auth,
   db
 };
+
+// Frankly I can't be bothered to write this whole thing every time
+export async function getDoc (collectionName, docName, parent = db) {
+    const doc = await parent.collection(collectionName).doc(docName).get();
+    return doc.exists ? doc.data() : null;
+}
