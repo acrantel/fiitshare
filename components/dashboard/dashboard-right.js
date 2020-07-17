@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import styles from '../components/groups-sidebar.module.css';
-import { userData, workoutData, exerciseData, groupData } from '../database/database.js';
+import styles from './dashboard-right.module.css';
+import { userData, workoutData, exerciseData, groupData } from '../../database/database.js';
 import Link from 'next/link';
 
-function GroupsSidebar({ userId }) {
+function DashboardRight({ userId }) {
     let result;
     if (userData[userId]['groups'] === undefined) {
         userData[userId]['groups'] = []
@@ -30,4 +30,4 @@ function GroupsSidebar({ userId }) {
     </div>;
 }
 
-export default GroupsSidebar;
+export default DashboardRight;

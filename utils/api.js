@@ -118,9 +118,13 @@ export function getUserScheduledWorkouts(userId) {
 export function getWorkout(workoutId) {
     return fetchOk(`/workout/${workoutId}`).then(r => r.json())
 }
+export function getWorkoutList(workoutList) {
+    return fetchOk(`/workout/list`);
+}
 export function setWorkout(workoutId, data) {
     return fetchOk(`/workout/${workoutId}`, 'POST', data)
 }
 export function newWorkout(data) {
     return fetchOk(`/workout/new`, 'POST', data).then(r => r.json())
 }
+

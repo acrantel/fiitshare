@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Header from '../../components/header.js';
 import styles from '../page.module.css';
 import UserChart from '../../components/user/user-chart.js';
-import DashboardRight from '../../components/groups-sidebar.js';
+import DashboardRight from '../../components/dashboard/dashboard-right.js';
 import ErrorPage from '../../components/error.js';
 import { getUser } from '../../utils/api.js';
 

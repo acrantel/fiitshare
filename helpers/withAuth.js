@@ -9,13 +9,15 @@ const withAuth = (Component) => {
             super(props);
             this.state = {
                 status: 'LOADING',
+                userId: '',
             }
         }
         componentDidMount() {
             auth.onAuthStateChanged(authUser => {
                 if (authUser) {
                     this.setState({
-                        status: 'SIGNED_IN'
+                        status: 'SIGNED_IN',
+                        userId: authUser.uid,
                     });
 
                     if (authUser.metadata.creationTime === authUser.metadata.lastSignInTime) {
@@ -41,6 +43,8 @@ const withAuth = (Component) => {
                             body: JSON.stringify(data)
                         });
                     }
+
+                    
                 } else {
                     this.setState({ status: 'LOADING' });
                 }
