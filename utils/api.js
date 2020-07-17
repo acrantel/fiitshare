@@ -73,7 +73,7 @@ export function getUserWorkouts (userId) {
 //     workoutId: WorkoutId,
 //     workoutName: string,
 //     groupImage: Url,
-//     dueBy: DateString,
+//     dueBy: Int,
 //     completed: boolean
 // }
 export function getUserScheduledWorkouts (userId) {

@@ -1,4 +1,4 @@
-import db, { getDoc } from '../../../../database/firestore.js';
+import { db, getDoc } from '../../../../database/firestore.js';
 
 export default async (req, res) => {
     const userId = req.query.userid;

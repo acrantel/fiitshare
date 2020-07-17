@@ -1,4 +1,4 @@
-import db, { FieldValue } from '../../../database/firestore.js';
+import { db, FieldValue } from '../../../database/firestore.js';
 
 export default async (req, res) => {
     if (req.method === 'POST') {

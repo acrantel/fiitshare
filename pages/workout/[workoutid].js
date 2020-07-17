@@ -109,7 +109,7 @@ class WorkoutPage extends React.Component {
         } = this.props.workoutDatum || {}
         return <div className={styles.contentWrapper}>
             <h1 className={styles.workoutName}>{name}</h1>
-            <SetProgress set={this.state.curSet} sets={this.state.exerciseIDArr.length} />
+            <SetProgress set={this.state.curSet} sets={this.state.numSets} />
             <div className={styles.workoutWrapper}>
                 <ExerciseList
                     exerciseIds={this.state.exerciseIDArr}
