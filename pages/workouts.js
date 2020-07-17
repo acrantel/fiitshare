@@ -8,42 +8,43 @@ import Workout from '../components/workout/workout.js';
 import WorkoutCard from '../components/cards/workout-card.js'
 import Link from 'next/link';
 import { MdAddCircleOutline } from 'react-icons/md';
-import { getUser } from '../utils/api.js';
+import { getUserWorkouts, getUserScheduledWorkouts } from '../utils/api.js';
 
-function ScheduledWorkouts({ userId }) {
-    // get the scheduled workouts for all the groups the user is in
-    let result = [];
-    for (let groupId of userData[userId].groups) {
-        for (let scheduledWorkout of groupData[groupId].schedule) {
-            /*
-            result.push({
-                groupId: groupId,
-                workoutId: scheduledWorkout[workoutId],
-                workoutDatum: workoutData[scheduledWorkout[workoutId]],
-                dueDate: scheduledWorkout[dueBy],
-                completed: (workoutId === 'wk2'),
-            });
-            */
-
-            let workoutId = scheduledWorkout.workoutId;
-
-            result.push(<Workout
-                key={workoutId}
-                groupId={groupId}
-                groupImg={groupData[groupId].image}
-                workoutId={workoutId}
-                workoutDatum={workoutData[workoutId]}
-                dueDate={scheduledWorkout.dueBy}
-                completed={/* TEMP */ workoutId === 'wk2'}
-            />);
-        }
+class ScheduledWorkouts extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            scheduledWorkouts: []
+        };
     }
-    result.sort(function(a, b) {
-        // Turn your strings into dates, and then subtract them
-        // to get a value that is either negative, positive, or zero.
-        return new Date(b.props.dueDate) - new Date(a.props.dueDate);
-    });
-    return result;
+    
+    async componentDidMount() {
+        // This is nonideal because it gets EVERYTHING about the user *and*
+        // doesn't even get the workout data
+        const scheduledWorkouts = await getUserScheduledWorkouts(this.props.userId);
+        this.setState({ scheduledWorkouts });
+    }
+    
+    render() {
+        return this.state.scheduledWorkouts.sort((a, b) => {
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(b.dueBy) - new Date(a.dueBy);
+        }).map(({
+            workoutId,
+            workoutName,
+            groupImage,
+            dueBy,
+            completed
+        }) => <Workout
+            key={workoutId}
+            groupImg={groupImage}
+            workoutId={workoutId}
+            workoutName={workoutName}
+            dueDate={new Date(dueBy)}
+            completed={completed}
+        />);
+    }
 }
 
 class MyLibrary extends React.Component {
@@ -58,7 +59,7 @@ class MyLibrary extends React.Component {
     async componentDidMount() {
         // This is nonideal because it gets EVERYTHING about the user *and*
         // doesn't even get the workout data
-        const { workouts, name } = await getUser(this.props.userId);
+        const { workouts, name } = await getUserWorkouts(this.props.userId);
         this.setState({
             workouts,
             authorName: name
@@ -67,12 +68,12 @@ class MyLibrary extends React.Component {
     
     render() {
         return <div className={styles.myWorkoutsLibrary}>
-            {this.state.workouts.map(workoutId => (
+            {this.state.workouts.map(({ id: workoutId, ...workoutDatum }) => (
                 <WorkoutCard
                     key={workoutId}
                     workoutId={workoutId}
                     displayName={this.state.authorName}
-                    workoutDatum={workoutData[workoutId]}
+                    workoutDatum={workoutDatum}
                 />
             ))}
         </div>;
