@@ -1,21 +1,26 @@
 import styles from './create-workout.module.css';
 import { MdAdd } from 'react-icons/md';
 import Exercise from './exercise.js';
-import { exerciseData, USERID } from '../../database/database.js';
-import { newWorkout } from '../../utils/api.js';
+import { exerciseData } from '../../database/database.js';
+import { USERID } from '../../database/firestore.js';
+import { newWorkout, getExercise } from '../../utils/api.js';
 import Router from 'next/router';
 
 function newExercise(key) {
-    const exerciseIds = Object.keys(exerciseData)
+    //const exerciseIds = Object.keys(exerciseData);
     return {
+        // unique key within an array of exercises
         key: key,
-        exercise: exerciseIds[Math.floor(Math.random() * exerciseIds.length)],
+        // refers to the actual exercise id (by default generates random value within exerciseIds )
+        //exercise: exerciseIds[Math.floor(Math.random() * exerciseIds.length)],
+        exercise: '0',
         time: 10
     };
 }
 
 export default class CreateWorkout extends React.Component {
     constructor(props) {
+        console.log(USERID);
         super(props);
         this.addExercise = this.addExercise.bind(this);
         this.setExercise = this.setExercise.bind(this);
@@ -96,7 +101,7 @@ export default class CreateWorkout extends React.Component {
 
     async createWorkout() {
         const { name, sets, calories, exercises } = this.state;
-        const exerciseId = [];
+        const exerciseId = []; // contains array of exercise ids
         const times = [];
         let totalTime = 0;
         for (const {exercise, time} of exercises) {
@@ -106,7 +111,7 @@ export default class CreateWorkout extends React.Component {
         }
         const workout = {
             calories,
-            creator: USERID, // TEMP
+            creator: USERID,
             exercises: { exerciseId, time: times },
             intensity: 1, // TODO
             length: totalTime * sets,

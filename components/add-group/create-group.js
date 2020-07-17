@@ -3,7 +3,7 @@ import Header from '../header.js';
 import styles from '../add-group/create-group.module.css';
 import AddGroup from './add-group.js';
 import LabelledInput from './labelled-input.js';
-import { USERID } from '../../database/database.js'; // TEMP
+import {USERID} from '../../database/firestore.js';
 import { newGroup } from '../../utils/api.js';
 import Router from 'next/router';
 
@@ -25,7 +25,7 @@ export default class CreateGroup extends React.Component {
     async onCreate(e) {
         e.preventDefault();
         const { name, description, level } = this.state;
-        const { groupId } = await newGroup({ name, description, level, creator: USERID /* TEMP */ });
+        const { groupId } = await newGroup({ name, description, level, creator: USERID });
         Router.push('/group/[groupid]', `/group/${groupId}`);
     }
     

@@ -1,4 +1,7 @@
 async function fetchOk(route, method = 'GET', body = null) {
+    console.log(route);
+    console.log(method);
+    console.log(JSON.stringify(body));
     const response = await fetch(`http://localhost:3000/api${route}`, {
         method,
         headers: {
@@ -16,6 +19,17 @@ async function fetchOk(route, method = 'GET', body = null) {
 // type Exercise = { name: string, video_link: Url }
 export function getExercise(exerciseId) {
     return fetchOk(`/exercise/${exerciseId}`).then(r => r.json());
+}
+
+// ok for now; this code would be bad if the exercise repository grew very large
+// used to retrieve all the exercises in repo
+// id: , (begins at 0)
+//exerciseDatum: doc.data()
+//      name
+//      video_link
+export function getExerciseList()
+{
+    return fetchOk(`/exercise/list`).then(r => r.json());
 }
 
 // type Group = {
