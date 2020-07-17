@@ -2,8 +2,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-//export const { firestore: { FieldValue } } = admin;
-
 const config = {
   apiKey: "AIzaSyA1OEYkGbExSFQWVF3U2bX4xm3K0UvHgQ4",
   authDomain: "bay-area-hacks.firebaseapp.com",
@@ -30,3 +28,5 @@ export async function getDoc (collectionName, docName, parent = db) {
     const doc = await parent.collection(collectionName).doc(docName).get();
     return doc.exists ? doc.data() : null;
 }
+
+export const { firestore: { FieldValue } } = firebase;

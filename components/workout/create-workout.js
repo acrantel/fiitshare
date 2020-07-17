@@ -3,6 +3,7 @@ import { MdAdd } from 'react-icons/md';
 import Exercise from './exercise.js';
 import { exerciseData, workoutData, userData, USERID } from '../../database/database.js';
 import { newWorkout } from '../../utils/api.js';
+import Router from 'next/router';
 
 function newExercise(key) {
     const exerciseIds = Object.keys(exerciseData)
@@ -113,8 +114,7 @@ export default class CreateWorkout extends React.Component {
             sets
         };
         const { workoutId } = await newWorkout(workout);
-        // TODO: add the workout id to userdata
-        console.log(workoutId);
+        Router.push('/workout/[workoutid]', `/workout/${workoutId}`);
     }
     
     render() {

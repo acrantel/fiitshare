@@ -1,4 +1,5 @@
 import {db} from '../../../database/firestore.js';
+import { validateWorkout } from './new.js';
 
 export default async (req, res) => {
     const workoutId = req.query.workoutid;
@@ -16,11 +17,15 @@ export default async (req, res) => {
     }
     else if (req.method === 'POST') {
         let data = req.body;
+        try {
+            validateWorkout(data);
+        } catch (err) {
+            return res.status(400).send(err.message);
+        }
 
         const workoutRef = db.collection('workouts').doc(workoutId);
 
-        // https://stackoverflow.com/a/39333479
-        await workoutRef.set((({ creator, name, intensity, length, calories, sets, exercises }) => ({ creator, name, intensity, length, calories, sets, exercises }))(data))
+        await workoutRef.set(data);
 
         res.status(201);
         res.end();

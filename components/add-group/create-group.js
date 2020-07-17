@@ -3,6 +3,9 @@ import Header from '../header.js';
 import styles from '../add-group/create-group.module.css';
 import AddGroup from './add-group.js';
 import LabelledInput from './labelled-input.js';
+import { USERID } from '../../database/database.js'; // TEMP
+import { newGroup } from '../../utils/api.js';
+import Router from 'next/router';
 
 export default class CreateGroup extends React.Component {
     // pass in userId prop
@@ -13,22 +16,22 @@ export default class CreateGroup extends React.Component {
         this.onLevelChange = this.onLevelChange.bind(this);
         this.onDescriptionChange = this.onDescriptionChange.bind(this);
         this.state = {
-            groupName: '',
+            name: '',
             description: '',
-            level: ''
+            level: 'Beginner'
         };
     }
     
-    onCreate(e) {
-        console.log('create', this.state);
+    async onCreate(e) {
         e.preventDefault();
-
-        // get the state variables and create a group
+        const { name, description, level } = this.state;
+        const { groupId } = await newGroup({ name, description, level, creator: USERID /* TEMP */ });
+        Router.push('/group/[groupid]', `/group/${groupId}`);
     }
     
     onGroupNameChange(e) {
         this.setState({
-            groupName: e.target.value
+            name: e.target.value
         });
     }
 
@@ -49,7 +52,7 @@ export default class CreateGroup extends React.Component {
                     <input type="text" onChange={this.onGroupNameChange} />
                 </LabelledInput>
                 <LabelledInput label="Description">
-                    <input type="text" onChange={this.onDescriptionChange} />
+                    <textarea onChange={this.onDescriptionChange} />
                 </LabelledInput>
                 <LabelledInput label="Level">
                     <select onChange={this.onLevelChange}>

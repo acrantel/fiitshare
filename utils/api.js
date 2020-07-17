@@ -1,12 +1,16 @@
-function fetchOk(route, method = 'GET', body = null) {
-    return fetch(`http://localhost:3000/api${route}`, {
+async function fetchOk(route, method = 'GET', body = null) {
+    const response = await fetch(`http://localhost:3000/api${route}`, {
         method,
         headers: {
             'Content-Type': 'application/json'
         },
         body: method !== 'GET' ? JSON.stringify(body) : undefined
-    })
-        .then(res => res.ok ? res : Promise.reject(new Error(res.status)));
+    });
+    if (response.ok) {
+        return response;
+    } else {
+        throw new Error(`${response.status}: ${await response.text()}`);
+    }
 }
 
 // type Exercise = { name: string, video_link: Url }
@@ -28,6 +32,9 @@ export function getGroup(groupId) {
 }
 export function setGroup(groupId, data) {
     return fetchOk(`/group/${groupId}`, 'POST', data);
+}
+export function newGroup (data) {
+    return fetchOk(`/group/new`, 'POST', data).then(r => r.json())
 }
 
 // {
@@ -95,12 +102,30 @@ export function getUserWorkouts(userId) {
 //     workoutId: WorkoutId,
 //     workoutName: string,
 //     groupImage: Url,
-//     dueBy: DateString,
+//     dueBy: Int,
 //     completed: boolean
 // }
+// type UserScheduledWorkoutsResult = {
+//     name: string,
+//     workouts: ScheduledWorkout[]
+// }
 export function getUserScheduledWorkouts(userId) {
-    // { name: string, workouts: ScheduledWorkout[] }
     return fetchOk(`/user/${userId}/scheduled-workouts`).then(r => r.json())
+}
+// type GroupCard = {
+//     description: string,
+//     id: GroupId,
+//     image: Url,
+//     level: 'Beginner' | 'Intermediate' | 'Advanced',
+//     memberCount: int,
+//     name: string
+// }
+// type UserGroups = {
+//     yours: GroupCard[],
+//     searchable: GroupCard[]
+// }
+export function getUserGroups (userId) {
+    return fetchOk(`/user/${userId}/groups`).then(r => r.json());
 }
 
 // type Workout = {
