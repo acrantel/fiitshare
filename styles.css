@@ -19,17 +19,6 @@ h2 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.my-groups-container {
-    display: flex;
-    flex-direction: row;
-}
-
-.group-page {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
 .tab-list {
     border-bottom: 1px solid #ccc;
     padding-left: 0;
