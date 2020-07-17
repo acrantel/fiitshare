@@ -1,0 +1,48 @@
+.wrapper {
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.or {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: -24px;
+}
+.or::before,
+.or::after {
+    content: '';
+    flex: auto;
+    height: 1px;
+    background-color: #ccc;
+    margin: 0 20px;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section label {
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+}
+.section input[type=text] {
+    -webkit-appearance: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    flex: auto;
+    margin-left: 10px;
+}
+
+.error {
+    color: red;
+    margin-top: 20px;
+}
