@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styles from './dashboard-right.module.css';
-import { userData, workoutData, exerciseData, groupData } from '../../database/database.js';
 import Link from 'next/link';
 
 function DashboardRight({ userId, userGroups }) {

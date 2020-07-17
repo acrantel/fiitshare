@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styles from './group-main-section.module.css';
 import Tabs from '../tabs.js';
-import { userData, workoutData, exerciseData, groupData } from '../../database/database.js';
 import WorkoutCard from '../cards/workout-card';
 import {FaCrown} from 'react-icons/fa';
 import Link from 'next/link';

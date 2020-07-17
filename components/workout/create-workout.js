@@ -1,7 +1,7 @@
 import styles from './create-workout.module.css';
 import { MdAdd } from 'react-icons/md';
 import Exercise from './exercise.js';
-import { exerciseData, workoutData, userData, USERID } from '../../database/database.js';
+import { exerciseData, USERID } from '../../database/database.js';
 import { newWorkout } from '../../utils/api.js';
 import Router from 'next/router';
 
