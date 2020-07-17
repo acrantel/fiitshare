@@ -49,17 +49,13 @@ const withAuth = (Component) => {
         renderContent() {
             const { status } = this.state;
             if (status == 'LOADING') {
-                return <div><SignIn></SignIn></div>;
+                return <SignIn></SignIn>;
             } else if (status == 'SIGNED_IN') {
                 return <Component {...this.props} />
             }
         }
         render() {
-            return (
-                <React.Fragment>
-                    {this.renderContent()}
-                </React.Fragment>
-            );
+            return <div>{this.renderContent()}</div>
         }
     };
 }

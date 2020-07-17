@@ -27,28 +27,3 @@ export {
   auth,
   db
 };
-
-/*
-// This sets up firebaseui
-const ui = new firebaseui.auth.AuthUI(window.firebase.auth())
-
-// Configure FirebaseUI.
-const uiConfig = {
-  // Popup signin flow rather than redirect flow.
-  signInFlow: 'popup',
-  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-  signInSuccessUrl: '/',
-  // We will display Google and Facebook as auth providers.
-  signInOptions: [
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-],
-};
-// This adds firebaseui to the page
-// It does everything else on its own
-const startFirebaseUI = function (elementId) {
-  ui.start(elementId, uiConfig)
-}
-
-export {db, startFirebaseUI};
-*/

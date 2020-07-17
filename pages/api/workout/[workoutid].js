@@ -1,4 +1,4 @@
-import db from '../../../database/firestore.js';
+import {db} from '../../../database/firestore.js';
 
 export default async (req, res) => {
     const workoutId = req.query.workoutid;
