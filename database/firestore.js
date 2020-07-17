@@ -1,28 +1,29 @@
-import admin from 'firebase-admin';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
+console.log(process.env.FIREBASE_API_KEY);
+console.log(process.env.FIREBASE_AUTH_DOMAIN);
+console.log(process.env.FIREBASE_DATABASE_URL);
+console.log(process.env.FIREBASE_PROJECT_ID);
+console.log(process.env.FIREBASE_STORAGE_BUCKET);
+console.log(process.env.FIREBASE_MESSAGING_SENDER_ID);
+const config = {
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
+};
 
-try {
-  admin.initializeApp({
-    credential: admin.credential.cert({
-        project_id: process.env.FIREBASE_PROJECT_ID,
-        private_key: process.env.FIREBASE_PRIVATE_KEY,
-        client_email: process.env.FIREBASE_CLIENT_EMAIL
-      }),
-    databaseURL: "https://bay-area-hacks.firebaseio.com"
-  });
-} catch (error) {
-  /*
-   * We skip the "already exists" message which is
-   * not an actual error when we're hot-reloading.
-   */
-  if (!/already exists/u.test(error.message)) {
-    // eslint-disable-next-line no-console
-    console.error('Firebase admin initialization error', error.stack);
-  }
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
 }
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-
-
-const db = admin.firestore();
-
-export default db;
+export {
+  auth,
+  db
+};

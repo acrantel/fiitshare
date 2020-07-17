@@ -1,4 +1,3 @@
-import db from '../../database/firestore.js';
 
 export default (req, res) => {
     console.log(req.body);
