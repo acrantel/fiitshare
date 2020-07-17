@@ -1,5 +1,4 @@
 import React from 'react';
-import router from 'next/router';
 import { auth } from '../database/firestore.js';
 
 import SignIn from '../pages/signin.js';
@@ -14,44 +13,43 @@ const withAuth = (Component) => {
         }
         componentDidMount() {
             auth.onAuthStateChanged(authUser => {
-                console.log("on auth state change");
-                console.log(authUser);
                 if (authUser) {
                     this.setState({
                         status: 'SIGNED_IN'
                     });
-                    console.log(this.state.status);
-                    console.log(authUser);
-                    console.log(authUser.uid);
 
-                    let userid = authUser.uid;
+                    if (authUser.metadata.creationTime === authUser.metadata.lastSignInTime) {
+                        let userid = authUser.uid;
+                        const data = {
+                            workouts: [],
+                            recent_workouts: [],
+                            completed_workouts: 0,
+                            groups: [],
+                            name: authUser.displayName,
+                            profile_picture: "",
+                            cover_picture: "",
+                            calories: 0,
+                            time_spent: 0,
+                            this_week: {}
+                        };
 
-                    const data = { 
-                        workouts: [], 
-                        recent_workouts: [],
-                        completed_workouts: 0, 
-                        groups: [],
-                        name, profile_picture, cover_picture, calories, time_spent, this_week };
-                  
-                   fetch(`http://localhost:3000/api/user/${userid}`, {
+                        fetch(`http://localhost:3000/api/user/${userid}`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify(data)
-                        })
-                            .then(res => {
-                                console.log(res);
-                                res.ok ? res.json() : Promise.reject(new Error(res.status));};
+                        });
+                    }
                 } else {
-                    this.setState({status: 'LOADING'});
+                    this.setState({ status: 'LOADING' });
                 }
             });
         }
         renderContent() {
             const { status } = this.state;
             if (status == 'LOADING') {
-                return <div><h1>Loading ......</h1><SignIn></SignIn></div>;
+                return <div><SignIn></SignIn></div>;
             } else if (status == 'SIGNED_IN') {
                 return <Component {...this.props} />
             }

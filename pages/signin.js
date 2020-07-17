@@ -13,11 +13,11 @@ class SignIn extends React.Component {
 
     this.handleSignInGoogle = this.handleSignInGoogle.bind(this);
     this.handleSignInEmailPassword = this.handleSignInEmailPassword.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleCreateEmailPassword = this.handleCreateEmailPassword.bind(this);
     this.handleCreateEmailChange = this.handleCreateEmailChange.bind(this);
     this.handleCreatePasswordChange = this.handleCreatePasswordChange.bind(this);
-
-    //this.postNewUser = this.postNewUser.bind(this);
 }
 
     handleSignInGoogle = () => {
@@ -56,15 +56,8 @@ class SignIn extends React.Component {
         this.setState({password: e.target.value});
     }
     handleSignInEmailPassword = () => {
-        console.log("todo, sign in with email pass");
-    }
-
-    handleLogout = () => {
-        auth.signOut().then(function () {
-            alert('Logout successful.');
-        }).catch(function (error) {
-            alert('Oops, something went wrong, check your console.');
-            console.log(err);
+        auth.signInWithEmailAndPassword(this.state.email, this.state.password).catch(function (error) {
+            console.error (error.code + error.message);
         });
     }
 
@@ -74,9 +67,6 @@ class SignIn extends React.Component {
             <div className={styles.contentWrapper}>
                 <div className={styles.signInSection}>
                     <button onClick={this.handleSignInGoogle}>Sign in using Google</button>
-                </div>
-                <div className={styles.signInSection}>
-                    <button onClick={this.handleCreateEmailPassword}>Create an account</button>
                 </div>
                 <div className={styles.signInSection}>
                     <label>Email: </label>
@@ -94,11 +84,6 @@ class SignIn extends React.Component {
                     <input type="text" onChange={this.handlePasswordChange} placeholder="Enter your password"></input>
                     
                     <button onClick={this.handleSignInEmailPassword}>Sign in</button>
-                </div>
-
-
-                <div className={styles.signInSection}>
-                    <button onClick={this.handleLogout}>Logout</button>
                 </div>
             </div></div>
     }

@@ -11,9 +11,6 @@ class Home extends React.Component {
 
     render() {
         return <div className={styles.pageWrapper}>
-
-          
-
             <Header current={'dashboard'} />
             <div className={styles.pageContent}>
                 <Sidebar imageSrc={userData[USERID]['picture']} title={userData[USERID]['name']}
