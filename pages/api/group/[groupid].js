@@ -1,4 +1,15 @@
 import {db} from '../../../database/firestore.js';
+import { validate, isId, arrayOf, isString, isUrl, isLevel } from '../../../utils/validate.js';
+
+const validateGroup = validate({
+    admins: arrayOf(isId),
+    description: isString,
+    image: isUrl,
+    level: isLevel,
+    members: arrayOf(isId),
+    name: isString,
+    schedule: arrayOf(isId)
+});
 
 export default async (req, res) => {
     const groupId = req.query.groupid;
@@ -15,11 +26,15 @@ export default async (req, res) => {
     }
     else if (req.method === 'POST') {
         let data = req.body;
+        try {
+            validateGroup(data);
+        } catch (err) {
+            return res.status(400).send(err.message);
+        }
 
         const groupRef = db.collection('groups').doc(groupId);
 
-        // https://stackoverflow.com/a/39333479
-        await groupRef.set((({ name, image, level, description, members, admins, schedule }) => ({ name, image, level, description, members, admins, schedule }))(data))
+        await groupRef.set(data);
 
         res.status(201);
         res.end();
