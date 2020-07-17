@@ -28,7 +28,5 @@ export default async (req, res) => {
             workouts: FieldValue.arrayUnion(workoutRef.id)
         });
         res.status(200).json({ workoutId: workoutRef.id });
-    } else if (req.method === 'GET') {
-        res.send('Hi lol');
     }
 }
