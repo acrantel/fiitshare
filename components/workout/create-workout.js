@@ -1,7 +1,8 @@
 import styles from './create-workout.module.css';
 import { MdAdd } from 'react-icons/md';
 import Exercise from './exercise.js';
-import { exerciseData, workoutData, userData } from '../../database/database.js';
+import { exerciseData, workoutData, userData, USERID } from '../../database/database.js';
+import { newWorkout } from '../../utils/api.js';
 
 function newExercise(key) {
     const exerciseIds = Object.keys(exerciseData)
@@ -22,6 +23,7 @@ export default class CreateWorkout extends React.Component {
         this.changeName = this.changeName.bind(this);
         this.changeSets = this.changeSets.bind(this);
         this.changeCalories = this.changeCalories.bind(this);
+        this.createWorkout = this.createWorkout.bind(this);
         this.state = {
             exercises: [newExercise(0)],
             nextKey: 1,
@@ -91,11 +93,28 @@ export default class CreateWorkout extends React.Component {
         })
     }
 
-    createWorkout()
-    {
-        // add to workout data
-        // add the workout id to userdata
-        console.log("TODO: implement create workout functionality. Using firestore, we need to insert a workout with the 'next' workout id.");
+    async createWorkout() {
+        const { name, sets, calories, exercises } = this.state;
+        const exerciseId = [];
+        const times = [];
+        let totalTime = 0;
+        for (const {exercise, time} of exercises) {
+            exerciseId.push(exercise);
+            times.push(time);
+            totalTime += time;
+        }
+        const workout = {
+            calories,
+            creator: USERID, // TEMP
+            exercises: { exerciseId, time: times },
+            intensity: 1, // TODO
+            length: totalTime * sets,
+            name,
+            sets
+        };
+        const { workoutId } = await newWorkout(workout);
+        // TODO: add the workout id to userdata
+        console.log(workoutId);
     }
     
     render() {

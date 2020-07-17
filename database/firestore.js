@@ -1,5 +1,6 @@
 import admin from 'firebase-admin';
 
+export const { firestore: { FieldValue } } = admin;
 
 try {
   admin.initializeApp({

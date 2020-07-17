@@ -75,3 +75,6 @@ export function getWorkout (workoutId) {
 export function setWorkout (workoutId, data) {
     return fetchOk(`/workout/${workoutId}`, 'POST', data)
 }
+export function newWorkout (data) {
+    return fetchOk(`/workout/new`, 'POST', data).then(r => r.json())
+}

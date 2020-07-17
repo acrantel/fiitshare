@@ -8,6 +8,7 @@ import Workout from '../components/workout/workout.js';
 import WorkoutCard from '../components/cards/workout-card.js'
 import Link from 'next/link';
 import { MdAddCircleOutline } from 'react-icons/md';
+import { getUser } from '../utils/api.js';
 
 function ScheduledWorkouts({ userId }) {
     // get the scheduled workouts for all the groups the user is in
@@ -33,39 +34,49 @@ function ScheduledWorkouts({ userId }) {
                 workoutId={workoutId}
                 workoutDatum={workoutData[workoutId]}
                 dueDate={scheduledWorkout.dueBy}
-                completed=/*temp*/{workoutId === 'wk2'} />);
+                completed={/* TEMP */ workoutId === 'wk2'}
+            />);
         }
-        
-        result.sort(function(a,b){
-            // Turn your strings into dates, and then subtract them
-            // to get a value that is either negative, positive, or zero.
-            return new Date(b.props.dueDate) - new Date(a.dueDate);
-          });
     }
+    result.sort(function(a, b) {
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.props.dueDate) - new Date(a.props.dueDate);
+    });
     return result;
-    userData[userId].workouts.map(workoutId => (
-        <Workout
-            key={workoutId}
-            workoutId={workoutId}
-            groupId={groupId}
-            workoutDatum={workoutData[workoutId]}
-            completed={/* TEMP */ workoutId === 'wk2'}
-        />
-    ));
 }
 
-
-function MyLibrary ({ userId }) {
-    return <div className={styles.myWorkoutsLibrary}>
-        {userData[userId].workouts.map(workoutId => (
-            <WorkoutCard
-                key={workoutId}
-                workoutId={workoutId}
-                displayName={userData[userId].name}
-                workoutDatum={workoutData[workoutId]}
-            />
-        ))}
-    </div>;
+class MyLibrary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            workouts: [],
+            authorName: ''
+        };
+    }
+    
+    async componentDidMount() {
+        // This is nonideal because it gets EVERYTHING about the user *and*
+        // doesn't even get the workout data
+        const { workouts, name } = await getUser(this.props.userId);
+        this.setState({
+            workouts,
+            authorName: name
+        });
+    }
+    
+    render() {
+        return <div className={styles.myWorkoutsLibrary}>
+            {this.state.workouts.map(workoutId => (
+                <WorkoutCard
+                    key={workoutId}
+                    workoutId={workoutId}
+                    displayName={this.state.authorName}
+                    workoutDatum={workoutData[workoutId]}
+                />
+            ))}
+        </div>;
+    }
 }
 
 class Workouts extends React.Component {
