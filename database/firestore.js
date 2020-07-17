@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-export const { firestore: { FieldValue } } = admin;
+//export const { firestore: { FieldValue } } = admin;
 
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,

@@ -3,7 +3,7 @@ import styles from '../dashboard/sidebar.module.css';
 import { BsFillPeopleFill} from 'react-icons/bs';
 import {AiFillThunderbolt} from 'react-icons/ai';
 
-export default function GroupSidebar({ groupId, groupDatum }) {
+export default function GroupSidebar({ groupDatum }) {
     return <div className={styles.sidebar}>
         <img className={styles.image} src={groupDatum['image']} alt={groupDatum['name']} />
         <h1 className={styles.title}>{groupDatum['name']}</h1>
