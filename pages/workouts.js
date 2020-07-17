@@ -3,68 +3,77 @@ import Header from '../components/header.js';
 import styles from './page.module.css';
 import Tabs from '../components/tabs.js';
 import SearchBar from '../components/search-bar.js';
-import { userData, workoutData, groupData, USERID } from '../database/database.js';
+import { USERID } from '../database/database.js';
 import Workout from '../components/workout/workout.js';
 import WorkoutCard from '../components/cards/workout-card.js'
 import Link from 'next/link';
 import { MdAddCircleOutline } from 'react-icons/md';
+import { getUserWorkouts, getUserScheduledWorkouts } from '../utils/api.js';
 
-function ScheduledWorkouts({ userId }) {
-    // get the scheduled workouts for all the groups the user is in
-    let result = [];
-    for (let groupId of userData[userId].groups) {
-        for (let scheduledWorkout of groupData[groupId].schedule) {
-            /*
-            result.push({
-                groupId: groupId,
-                workoutId: scheduledWorkout[workoutId],
-                workoutDatum: workoutData[scheduledWorkout[workoutId]],
-                dueDate: scheduledWorkout[dueBy],
-                completed: (workoutId === 'wk2'),
-            });
-            */
-
-            let workoutId = scheduledWorkout.workoutId;
-
-            result.push(<Workout
-                groupId={groupId}
-                groupImg={groupData[groupId].image}
-                workoutId={workoutId}
-                workoutDatum={workoutData[workoutId]}
-                dueDate={scheduledWorkout.dueBy}
-                completed=/*temp*/{workoutId === 'wk2'} />);
-        }
-        
-        result.sort(function(a,b){
+class ScheduledWorkouts extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            scheduledWorkouts: []
+        };
+    }
+    
+    async componentDidMount() {
+        const scheduledWorkouts = await getUserScheduledWorkouts(this.props.userId);
+        this.setState({ scheduledWorkouts });
+    }
+    
+    render() {
+        return this.state.scheduledWorkouts.sort((a, b) => {
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
-            return new Date(b.props.dueDate) - new Date(a.dueDate);
-          });
-    }
-    return result;
-    userData[userId].workouts.map(workoutId => (
-        <Workout
+            return new Date(b.dueBy) - new Date(a.dueBy);
+        }).map(({
+            workoutId,
+            workoutName,
+            groupImage,
+            dueBy,
+            completed
+        }) => <Workout
             key={workoutId}
+            groupImg={groupImage}
             workoutId={workoutId}
-            groupId={groupId}
-            workoutDatum={workoutData[workoutId]}
-            completed={/* TEMP */ workoutId === 'wk2'}
-        />
-    ));
+            workoutName={workoutName}
+            dueDate={new Date(dueBy)}
+            completed={completed}
+        />);
+    }
 }
 
-
-function MyLibrary ({ userId }) {
-    return <div className={styles.myWorkoutsLibrary}>
-        {userData[userId].workouts.map(workoutId => (
-            <WorkoutCard
-                key={workoutId}
-                workoutId={workoutId}
-                displayName={userData[userId].name}
-                workoutDatum={workoutData[workoutId]}
-            />
-        ))}
-    </div>;
+class MyLibrary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            workouts: [],
+            authorName: ''
+        };
+    }
+    
+    async componentDidMount() {
+        const { workouts, name } = await getUserWorkouts(this.props.userId);
+        this.setState({
+            workouts,
+            authorName: name
+        });
+    }
+    
+    render() {
+        return <div className={styles.myWorkoutsLibrary}>
+            {this.state.workouts.map(({ id: workoutId, ...workoutDatum }) => (
+                <WorkoutCard
+                    key={workoutId}
+                    workoutId={workoutId}
+                    displayName={this.state.authorName}
+                    workoutDatum={workoutDatum}
+                />
+            ))}
+        </div>;
+    }
 }
 
 class Workouts extends React.Component {

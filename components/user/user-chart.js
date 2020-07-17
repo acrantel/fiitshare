@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styles from '../user/user-chart.module.css';
-import { userData } from '../../database/database.js';
 
 import {
     BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
@@ -34,11 +33,13 @@ class UserChart extends React.Component {
         // create the data arrays
         let data = [];
         let index = 0;
+        let value = [];
+        if (this.props.valArr) {value=this.props.valArr}
         while (index < 7)
         {
             data[index] = {
                 day: daysX[index],
-                value: this.props.valArr[index],
+                value: value,
             };
 
             index++;

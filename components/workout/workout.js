@@ -10,12 +10,9 @@ export default class Workout extends React.Component {
 
     render() {
         const {
-            groupId,
             groupImg,
             workoutId,
-            workoutDatum: {
-                name = 'Unknown Workout',
-            } = {},
+            workoutName = 'Unknown Workout',
             dueDate,
             completed,
         } = this.props;
@@ -24,12 +21,12 @@ export default class Workout extends React.Component {
                 <div className={styles.groupImgContainer}>
                     <img className={styles.groupImg} src={groupImg}></img>
                 </div>
-                <DateCard dateArr={dueDate}/>
+                <DateCard date={dueDate}/>
                 <div className={styles.label}>
                     <Link href='/workout/[workoutid]' as={`/workout/${workoutId}`}>
                         <a>
                     {'Complete '}
-                    <div style={{fontWeight: 'bold'}}>{name}</div></a>
+                    <div style={{fontWeight: 'bold'}}>{workoutName}</div></a>
                     </Link>
                     
                 </div>
@@ -98,11 +95,11 @@ class DateCard extends React.Component
     }
 
     render() {
-        const year = this.props.dateArr[0];
-        const month = this.props.dateArr[1];
-        const day = this.props.dateArr[2];
-        const hour = this.props.dateArr[3];
-        const min = this.props.dateArr[4];
+        const year = this.props.date.getFullYear();
+        const month = this.props.date.getMonth();
+        const day = this.props.date.getDate();
+        const hour = this.props.date.getHours();
+        const min = this.props.date.getMinutes();
     return <div className={styles.datetime}>
         {this.monthToStr(month)}{" "}{day}
         <div className={styles.time}>

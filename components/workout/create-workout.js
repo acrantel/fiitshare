@@ -1,7 +1,9 @@
 import styles from './create-workout.module.css';
 import { MdAdd } from 'react-icons/md';
 import Exercise from './exercise.js';
-import { exerciseData, workoutData, userData } from '../../database/database.js';
+import { exerciseData, USERID } from '../../database/database.js';
+import { newWorkout } from '../../utils/api.js';
+import Router from 'next/router';
 
 function newExercise(key) {
     const exerciseIds = Object.keys(exerciseData)
@@ -19,11 +21,16 @@ export default class CreateWorkout extends React.Component {
         this.setExercise = this.setExercise.bind(this);
         this.setTime = this.setTime.bind(this);
         this.removeExercise = this.removeExercise.bind(this);
+        this.changeName = this.changeName.bind(this);
         this.changeSets = this.changeSets.bind(this);
+        this.changeCalories = this.changeCalories.bind(this);
+        this.createWorkout = this.createWorkout.bind(this);
         this.state = {
             exercises: [newExercise(0)],
             nextKey: 1,
-            sets: 1
+            name: '',
+            sets: 1,
+            calories: 0
         };
     }
     
@@ -69,32 +76,78 @@ export default class CreateWorkout extends React.Component {
         });
     }
     
+    changeName(e) {
+        this.setState({
+            name: e.target.value
+        })
+    }
+    
     changeSets(e) {
         this.setState({
             sets: +e.target.value
         })
     }
+    
+    changeCalories(e) {
+        this.setState({
+            calories: +e.target.value
+        })
+    }
 
-    createWorkout()
-    {
-        // add to workout data
-        // add the workout id to userdata
-        console.log("TODO: implement create workout functionality. Using firestore, we need to insert a workout with the 'next' workout id.");
+    async createWorkout() {
+        const { name, sets, calories, exercises } = this.state;
+        const exerciseId = [];
+        const times = [];
+        let totalTime = 0;
+        for (const {exercise, time} of exercises) {
+            exerciseId.push(exercise);
+            times.push(time);
+            totalTime += time;
+        }
+        const workout = {
+            calories,
+            creator: USERID, // TEMP
+            exercises: { exerciseId, time: times },
+            intensity: 1, // TODO
+            length: totalTime * sets,
+            name,
+            sets
+        };
+        const { workoutId } = await newWorkout(workout);
+        Router.push('/workout/[workoutid]', `/workout/${workoutId}`);
     }
     
     render() {
-        const { exercises, sets } = this.state;
+        const { exercises, name, sets, calories } = this.state;
         return <div className={styles.wrapper}>
             <h1 className='section-title'><span>Create a new workout</span></h1>
             <div className={styles.headerWrapper}>
                 <div className={styles.leftWrapper}>
-                    <label className={styles.setsWrapper}>
+                    <label className={styles.inputWrapper}>
+                        {'Name: '}
+                        <input
+                            type="text"
+                            className={styles.input}
+                            value={name}
+                            onChange={this.changeName}
+                        />
+                    </label>
+                    <label className={styles.inputWrapper}>
                         {'Number of sets: '}
                         <input
                             type="number"
-                            className={styles.sets}
+                            className={styles.input}
                             value={sets}
                             onChange={this.changeSets}
+                        />
+                    </label>
+                    <label className={styles.inputWrapper}>
+                        {'Calories: '}
+                        <input
+                            type="number"
+                            className={styles.input}
+                            value={calories}
+                            onChange={this.changeCalories}
                         />
                     </label>
                 </div>

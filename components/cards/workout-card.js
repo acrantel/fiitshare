@@ -15,6 +15,7 @@ export default class WorkoutCard extends React.Component {
             workoutId,
             displayName,
             workoutDatum = {},
+            dueBy = [],
         } = this.props
         const {
             name = 'Unknown Workout',
@@ -22,7 +23,6 @@ export default class WorkoutCard extends React.Component {
             intensity = 3,
             calories = 0,
             length = 0,
-            dueBy = [],
         } = workoutDatum
 
         // add circles accordingly
@@ -77,7 +77,7 @@ export default class WorkoutCard extends React.Component {
                             (<div className={styles.infoLineEntry}>
                                 <h3 className={styles.infoLineTitle}>Due By</h3>
                                 <div className={styles.infoValue}>
-                                    {formatDateTime(new Date(...dueBy))}
+                                    {formatDateTime(new Date(dueBy))}
                                 </div>
                             </div>)
                             : <></>
@@ -87,18 +87,3 @@ export default class WorkoutCard extends React.Component {
         </Link>;
     }
 }
-
-/*
- <div className={styles.infoEntry}>
-                    <h3 className={styles.infoTitle}>Intensity</h3>
-                    <div className={styles.infoValue}>{intensity}</div>
-                </div>
-                <div className={styles.infoEntry}>
-                    <h3 className={styles.infoTitle}>Calories</h3>
-                    <div className={styles.infoValue}>{calories}</div>
-                </div>
-                <div className={styles.infoEntry}>
-                    <h3 className={styles.infoTitle}>Time</h3>
-                    <div className={styles.infoValue}>{`${length} min.`}</div>
-                </div>
-*/

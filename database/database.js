@@ -4,7 +4,7 @@ var userData = {
         recent_workouts: ['wk1', 'wk3', 'wk5'],
         groups: ['group1', 'group2'],
         name: 'John Doe',
-        picture: '/images/user1.jpeg',
+        profile_picture: '/images/user1.jpeg',
         cover_picture: '/images/user1-cover.jpg',
         calories: 2000,
         // minutes
@@ -20,7 +20,7 @@ var userData = {
         recent_workouts: ['wk1', 'wk3', 'wk5'],
         groups: ['group1', 'group2', 'group3', 'group4'],
         name: 'Jane Doe',
-        picture: '/images/user2.jpg',
+        profile_picture: '/images/user2.jpg',
         cover_picture: '/images/user1-cover.jpg',
         calories: 2000,
         // minutes
@@ -37,7 +37,7 @@ var userData = {
         recent_workouts: ['wk1', 'wk3', 'wk5'],
         groups: ['group4'],
         name: 'Susan Smith',
-        picture: '/images/user3.jpg',
+        profile_picture: '/images/user3.jpg',
         cover_picture: '/images/user1-cover.jpg',
         calories: 1000,
         // minutes
