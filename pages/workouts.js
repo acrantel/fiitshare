@@ -3,7 +3,7 @@ import Header from '../components/header.js';
 import styles from './page.module.css';
 import Tabs from '../components/tabs.js';
 import SearchBar from '../components/search-bar.js';
-import { userData, workoutData, groupData, USERID } from '../database/database.js';
+import { USERID } from '../database/database.js';
 import Workout from '../components/workout/workout.js';
 import WorkoutCard from '../components/cards/workout-card.js'
 import Link from 'next/link';

@@ -1,31 +1,55 @@
 import React, { Component } from 'react';
 import styles from './dashboard.module.css';
-import { userData, workoutData, exerciseData, groupData } from '../../database/database.js';
 import WorkoutCard from '../cards/workout-card.js'
 import Link from 'next/link';
 import { MdAddCircleOutline } from 'react-icons/md';
-import DashboardRight from '../groups-sidebar.js';
+import DashboardRight from './dashboard-right.js';
+import { getWorkoutList, getUserGroups } from '../../utils/api';
 
 class Dashboard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            recentWorkouts: [],
+            userGroups: []
+        }
+    }
+    componentDidMount() {
+        getWorkoutList(this.props.userDatum['recent_workouts'])
+            .then(data => {
+                this.setState({
+                    recentWorkouts: data
+                });
+            });
+        getUserGroups(this.props.userId)
+            .then(data => {
+                this.setState({
+                    userGroups: data['yours']
+                })
+            });
+    }
     render() {
+        const { userId, userDatum, userDisplayName } = this.props;
+        const { recentWorkouts, userGroups } = this.state;
         return <div className={styles.dashboard}>
-            <DashboardCenter userId={this.props.userId} />
+            <DashboardCenter userId={userId} userDatum={userDatum}
+                userDisplayName={userDisplayName} recentWorkouts={recentWorkouts} />
             <div className={styles.dashboardRight}>
-            <DashboardRight userId={this.props.userId} />
+                <DashboardRight userId={userId} userGroups={userGroups}/>
             </div>
         </div>
     }
 }
 
-function DashboardCenter({ userId }) {
+function DashboardCenter({ userId, userDatum, userDisplayName, recentWorkouts }) {
     return <div className={styles.dashboardCenter}>
 
-        <Recent userId={userId} />
+        <Recent userId={userId} userDatum={userDatum} userDisplayName={userDisplayName} recentWorkouts={recentWorkouts} />
         <Feed />
     </div>
 }
 
-function Recent({ userId }) {
+function Recent({ userId, userDatum, userDisplayName, recentWorkouts }) {
     return <div className={styles.recentSection}>
         <div className={styles.recentHeader}>
             <h1 className='section-title'><span>Recent</span></h1>
@@ -42,12 +66,12 @@ function Recent({ userId }) {
         </div>
 
         <ul className={styles.sectionList}>
-            {userData[userId]['recent_workouts'].map(function (item) {
-                return <li className={styles.listItem} key={item}>
+            {recentWorkouts.map(workoutStuff => {
+                return <li className={styles.listItem} key={workoutStuff['workoutId']}>
                     <WorkoutCard
-                        workoutId={item}
-                        displayName={userData[userId].name}
-                        workoutDatum={workoutData[item]}
+                        workoutId={workoutStuff['workoutId']}
+                        displayName={userDisplayName}
+                        workoutDatum={workoutStuff['workoutDatum']}
                     />
                 </li>
             })}

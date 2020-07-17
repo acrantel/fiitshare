@@ -33,7 +33,7 @@ export function getGroup(groupId) {
 export function setGroup(groupId, data) {
     return fetchOk(`/group/${groupId}`, 'POST', data);
 }
-export function newGroup (data) {
+export function newGroup(data) {
     return fetchOk(`/group/new`, 'POST', data).then(r => r.json())
 }
 
@@ -124,7 +124,7 @@ export function getUserScheduledWorkouts(userId) {
 //     yours: GroupCard[],
 //     searchable: GroupCard[]
 // }
-export function getUserGroups (userId) {
+export function getUserGroups(userId) {
     return fetchOk(`/user/${userId}/groups`).then(r => r.json());
 }
 
@@ -143,9 +143,19 @@ export function getUserGroups (userId) {
 export function getWorkout(workoutId) {
     return fetchOk(`/workout/${workoutId}`).then(r => r.json())
 }
+
+// workoutList is an array of workout ids
+/* [{
+    workoutId: workoutId,
+    workoutDatum: doc.data()
+    }, ...]*/
+export function getWorkoutList(workoutList) {
+    return fetchOk(`/workout/list`, 'POST', workoutList).then(r => r.json());
+}
 export function setWorkout(workoutId, data) {
     return fetchOk(`/workout/${workoutId}`, 'POST', data)
 }
 export function newWorkout(data) {
     return fetchOk(`/workout/new`, 'POST', data).then(r => r.json())
 }
+

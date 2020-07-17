@@ -18,9 +18,7 @@ const validateUser = validate({
 });
 
 export default async (req, res) => {
-    console.log(req.body);
     const userId = req.query.userid;
-    console.log('request from, ', userId);
     
     if (req.method === 'GET') {
         const userData = db.collection('users').doc(userId);

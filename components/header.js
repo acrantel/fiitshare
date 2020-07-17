@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Link from 'next/link'
 import styles from './header.module.css'
-import SearchBar from './search-bar.js'
-import {userData, USERID} from '../database/database.js'
-import {MdExpandMore} from 'react-icons/md'
+import SearchBar from './search-bar.js';
+import {auth} from '../database/firestore.js';
+import {MdExpandMore} from 'react-icons/md';
 
 function NavLink ({ link, label, id, current }) {
     return <Link href={link}>
@@ -16,8 +16,9 @@ function NavLink ({ link, label, id, current }) {
 class Header extends React.Component {
     render() {
         const {
-            userId = USERID,
-            current
+            userId = 'XSk95SD4hJcHke4ZK5y3vo9QqHl2',
+            current,
+            userDatum = {}
         } = this.props;
         return <div className={styles.header}>
             <div className={styles.headerContent}>
@@ -29,7 +30,7 @@ class Header extends React.Component {
                 </div>
                 <SearchBar/>
                 <span className={styles.space} />
-                <RightNavBar userId={userId}/>
+                <RightNavBar userId={userId} userDatum={userDatum}/>
             </div>
         </div>
     }
@@ -38,17 +39,18 @@ class Header extends React.Component {
 class RightNavBar extends React.Component {
     render() {
         const {
-            userId
+            userId,
+            userDatum
         } = this.props;
         return <div className={styles.rightNavBar}>
                 <Link href="/user/[userId]" as={`/user/${userId}`}>
-                    <a><img className={styles.userImage} src={userData[userId].picture} /></a>
+                    <a><img className={styles.userImage} src={userDatum['profile_picture']} /></a>
                 </Link>
             <div className={styles.dropdown}>
                 <MdExpandMore className={styles.arrowIcon} />
                 <div className={styles.dropdownContent}>
                     <div className={styles.linkBox}>
-                        <Link href="/user/[userId]" as={`/user/${USERID}`}>
+                        <Link href="/user/[userId]" as={`/user/${userId}`}>
                             <a href="/user/[userId]">Profile</a>
                         </Link>
                     </div>
@@ -60,5 +62,15 @@ class RightNavBar extends React.Component {
         </div>
     }
 }
+Header.getInitialProps = async () => {
+    const userId = auth.currentUser.uid;
+    try {
+        const userDatum = await getUser(userId);
+        return { userId, userDatum };
+    } catch ({ message: error }) {
+        return { error };
+    }
+};
+
 
 export default Header
