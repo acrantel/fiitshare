@@ -89,3 +89,7 @@ button:hover, .button:hover {
 .tab-list-item:not(.tab-list-active):hover > span::after {
     background-color: #ffc1e3;
 }
+
+:disabled {
+    opacity: 0.5;
+}

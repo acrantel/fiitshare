@@ -3,13 +3,21 @@ import { auth, db } from '../database/firestore.js';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import styles from '../pages/page.module.css';
+import SignInComponent from '../components/sign-in.js';
 
 class SignIn extends React.Component {
 
     constructor(props)
 {
     super(props);
-    this.state = {createEmail: '', createPassword: '', email: '', password: ''};
+    this.state = {
+        createEmail: '',
+        createPassword: '',
+        email: '',
+        password: '',
+        error: null,
+        loading: false
+    };
 
     this.handleSignInGoogle = this.handleSignInGoogle.bind(this);
     this.handleSignInEmailPassword = this.handleSignInEmailPassword.bind(this);
@@ -23,13 +31,24 @@ class SignIn extends React.Component {
     handleSignInGoogle = () => {
         var provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        this.setState({
+            error: '',
+            loading: true
+        });
         auth.signInWithPopup(provider)
             .then(() => {
-                alert('Signed in successfully.');
+                console.log('Signed in successfully.');
+                this.setState({
+                    loading: false
+                });
             })
             .catch(err => {
-                alert('Oops, something went wrong, check your console.');
+                console.log('Oops, something went wrong, check your console.');
                 console.log(err);
+                this.setState({
+                    error: err.message,
+                    loading: false
+                });
             });
     }
 
@@ -39,13 +58,26 @@ class SignIn extends React.Component {
     handleCreatePasswordChange = (e) => {
         this.setState({createPassword: e.target.value });
     }
-    handleCreateEmailPassword = () => {
+    handleCreateEmailPassword = (e) => {
+        e.preventDefault();
         console.log(this.state.createEmail);
         console.log(this.state.createPassword);
-        auth.createUserWithEmailAndPassword(this.state.createEmail, this.state.createPassword).catch(function (error) {
+        this.setState({
+            error: '',
+            loading: true
+        });
+        auth.createUserWithEmailAndPassword(this.state.createEmail, this.state.createPassword).then(() => {
+            this.setState({
+                loading: false
+            });
+        }).catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.error(errorCode + errorMessage);
+            this.setState({
+                error: errorMessage,
+                loading: false
+            });
         });
     }
 
@@ -55,37 +87,51 @@ class SignIn extends React.Component {
     handlePasswordChange = (e) => {
         this.setState({password: e.target.value});
     }
-    handleSignInEmailPassword = () => {
-        auth.signInWithEmailAndPassword(this.state.email, this.state.password).catch(function (error) {
+    handleSignInEmailPassword = (e) => {
+        e.preventDefault();
+        this.setState({
+            error: '',
+            loading: true
+        });
+        auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(() => {
+            this.setState({
+                loading: false
+            });
+        }).catch((error) => {
             console.error (error.code + error.message);
+            this.setState({
+                error: error.message,
+                loading: false
+            });
         });
     }
 
     render() {
-        return <div className={styles.pageWrapper}>
-            <h1 className={styles.headingWrapper}>Welcome to Firebase Authentication in Next.js!</h1>
-            <div className={styles.contentWrapper}>
-                <div className={styles.signInSection}>
-                    <button onClick={this.handleSignInGoogle}>Sign in using Google</button>
-                </div>
-                <div className={styles.signInSection}>
-                    <label>Email: </label>
-                    <input type="text" onChange={this.handleCreateEmailChange} placeholder="Enter your email"></input>
-                    <label>Password: </label>
-                    <input type="text" onChange={this.handleCreatePasswordChange} placeholder="Enter your password"></input>
-                    
-                    <button onClick={this.handleCreateEmailPassword}>Create account</button>
-                </div>
-
-                <div className={styles.signInSection}>
-                    <label>Email: </label>
-                    <input type="text" onChange={this.handleEmailChange} placeholder="Enter your email"></input>
-                    <label>Password: </label>
-                    <input type="text" onChange={this.handlePasswordChange} placeholder="Enter your password"></input>
-                    
-                    <button onClick={this.handleSignInEmailPassword}>Sign in</button>
-                </div>
-            </div></div>
+        const {
+            createEmail,
+            createPassword,
+            email,
+            password,
+            error,
+            loading
+        } = this.state;
+        return <div className={styles.pageWrapper} style={{ justifyContent: 'center' }}>
+            <SignInComponent
+                onSignInGoogle={this.handleSignInGoogle}
+                newAccountEmail={createEmail}
+                newAccountPassword={createPassword}
+                onChangeNewAccountEmail={this.handleCreateEmailChange}
+                onChangeNewAccountPassword={this.handleCreatePasswordChange}
+                onNewAccount={this.handleCreateEmailPassword}
+                signInEmail={email}
+                signInPassword={password}
+                onChangeSignInEmail={this.handleEmailChange}
+                onChangeSignInPassword={this.handlePasswordChange}
+                onSignIn={this.handleSignInEmailPassword}
+                error={error}
+                loading={loading}
+            />
+        </div>;
     }
 }
 

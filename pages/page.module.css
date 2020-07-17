@@ -229,10 +229,3 @@ height: 460px;
 .profileTextDes {
     
 }
-
-.signInSection {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
