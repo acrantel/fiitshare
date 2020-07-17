@@ -131,6 +131,19 @@
     margin-top: 20px;
     flex: auto;
 }
+.startWorkoutWrapper {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+.startWorkoutSpan {
+    font-size: 100px;
+}
+.startWorkoutSpan:hover {
+    cursor: pointer;
+}
 
 .profileContainer {
     /* Width of 0 so it tries to be the smallest it can be, but it FLEXES to the
