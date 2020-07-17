@@ -9,7 +9,7 @@ async function fetchOk (route, method = 'GET', body = null) {
     if (response.ok) {
         return response;
     } else {
-        throw new Error(`${res.status}: ${await res.text()}`);
+        throw new Error(`${response.status}: ${await response.text()}`);
     }
 }
 
@@ -83,9 +83,27 @@ export function getUserWorkouts (userId) {
 //     dueBy: Int,
 //     completed: boolean
 // }
+// type UserScheduledWorkoutsResult = {
+//     name: string,
+//     workouts: ScheduledWorkout[]
+// }
 export function getUserScheduledWorkouts (userId) {
-    // { name: string, workouts: ScheduledWorkout[] }
     return fetchOk(`/user/${userId}/scheduled-workouts`).then(r => r.json())
+}
+// type GroupCard = {
+//     description: string,
+//     id: GroupId,
+//     image: Url,
+//     level: 'Beginner' | 'Intermediate' | 'Advanced',
+//     memberCount: int,
+//     name: string
+// }
+// type UserGroups = {
+//     yours: GroupCard[],
+//     searchable: GroupCard[]
+// }
+export function getUserGroups (userId) {
+    return fetchOk(`/user/${userId}/groups`).then(r => r.json());
 }
 
 // type Workout = {
