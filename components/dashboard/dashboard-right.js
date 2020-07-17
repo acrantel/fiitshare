@@ -3,23 +3,23 @@ import styles from './dashboard-right.module.css';
 import { userData, workoutData, exerciseData, groupData } from '../../database/database.js';
 import Link from 'next/link';
 
-function DashboardRight({ userId }) {
+function DashboardRight({ userId, userGroups }) {
     let result;
-    if (userData[userId]['groups'] === undefined) {
-        userData[userId]['groups'] = []
+    if (userGroups === undefined) {
+        userGroups = []
     }
     return <div className={styles.groupsContainer}>
         <h1 className='section-title'><span>Groups</span></h1>
         {
-            userData[userId]['groups'].length == 0
+            userGroups.length == 0
                 ? <a href="#">Join a Group</a>
-                : userData[userId]['groups'].map(function (item) {
-                    return <Link key={item} href="/group/[groupid]" as={`/group/${item}`}>
+                : userGroups.map(function (item) {
+                    return <Link key={item['id']} href="/group/[groupid]" as={`/group/${item['id']}`}>
                         <a className={styles.groupLink}>
                             <div className={styles.groupImgWrapper}>
-                                <img className={styles.groupImg} src={groupData[item].image} />
+                                <img className={styles.groupImg} src={item['image'].image} />
                                 <div className={styles.groupName}>
-                                    {groupData[item].name}
+                                    {item['name'].name}
                                 </div>
                             </div>
                         </a>

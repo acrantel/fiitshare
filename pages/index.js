@@ -22,7 +22,6 @@ class Home extends React.Component {
         auth.onAuthStateChanged(async authUser => {
             if (authUser) {
                 const userDatum = await getUser(authUser.uid);
-                console.log('index.js, compoennetdidmount', userDatum);
                 this.setState({
                     status: 'SIGNED_IN',
                     userId: authUser.uid,
