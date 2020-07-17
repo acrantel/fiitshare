@@ -5,9 +5,15 @@ import Dashboard from '../components/dashboard/dashboard.js';
 import { userData, workoutData, exerciseData, groupData, USERID } from '../database/database.js';
 import styles from './page.module.css';
 
+import withAuth from '../helpers/withAuth.js';
+
 class Home extends React.Component {
+
     render() {
         return <div className={styles.pageWrapper}>
+
+          
+
             <Header current={'dashboard'} />
             <div className={styles.pageContent}>
                 <Sidebar imageSrc={userData[USERID]['picture']} title={userData[USERID]['name']}
@@ -18,4 +24,5 @@ class Home extends React.Component {
         </div>
     }
 }
-export default Home
+
+export default withAuth(Home)
