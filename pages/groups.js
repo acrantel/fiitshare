@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Link from 'next/link'
 import Header from '../components/header.js';
 import GroupCard from '../components/cards/group-card.js';
-import { userData, groupData, USERID } from '../database/database.js';
+import { USERID } from '../database/database.js';
 import CreateGroup from '../components/add-group/create-group.js';
+import { getUserGroups } from '../utils/api.js';
 
 import styles from './page.module.css';
 import SearchBar from '../components/search-bar.js';
@@ -17,31 +18,40 @@ class Groups extends React.Component {
         this.searchGroups = this.searchGroups.bind(this);
         this.togglePopup = this.togglePopup.bind(this);
 
-        // get only the search results that the user is not in
-        let searchResults = [];
-        for (let curGroupID of Object.keys(groupData)) {
-            if (!(userData[USERID].groups).includes(curGroupID)) {
-                searchResults.push(curGroupID);
-            }
-        }
-        // initial 'search results' (display any group that does not contain user)
-        this.state = { togglePopup: false, searchResults: searchResults, nameSearch: '', levelSearch: 0 };
+        this.state = {
+            togglePopup: false,
+            yourGroups: [],
+            searchableGroups: [],
+            searchResults: [],
+            nameSearch: '',
+            levelSearch: 0
+        };
+    }
+    
+    async componentDidMount() {
+        const { yours, searchable } = await getUserGroups(USERID /* TEMP */);
+        this.setState({
+            yourGroups: yours,
+            searchableGroups: searchable,
+            // initial 'search results' (display any group that does not contain user)
+            searchResults: [...searchable]
+        });
     }
 
     searchGroups() {
-        // clear out array
-        this.setState({ searchResults: [] });
         let results = [];
         // uses state variables nameSearch and levelSearch
-        for (let curGroupID of Object.keys(groupData)) {
+        const nameSearch = this.state.nameSearch.toLowerCase();
+        const levelSearch = this.state.levelSearch.toLowerCase();
+        for (const group of this.state.searchableGroups) {
             // add to results if matching and user is not in the group already
-            if (
-                ((this.state.nameSearch && ((groupData[curGroupID].name).toLowerCase()).includes(this.state.nameSearch.toLowerCase())) || !this.state.nameSearch)
-                &&
-                ((this.state.levelSearch && (groupData[curGroupID].level).toLowerCase() == (this.state.levelSearch).toLowerCase()) || !this.state.levelSearch)
-                && !(userData[USERID].groups).includes(curGroupID)) {
-                results.push(curGroupID); // add the group id to search results
+            if (nameSearch) {
+                if (!group.name.toLowerCase().include(nameSearch)) continue;
             }
+            if (levelSearch) {
+                if (group.level.toLowerCase() !== levelSearch) continue;
+            }
+            results.push(group); // add the group to search results
         }
         this.setState({ searchResults: results });
     };
@@ -59,13 +69,13 @@ class Groups extends React.Component {
     render() {
         var myGroupsRender = [];
         // for each of the user's groups
-        for (let userGroup of (userData[USERID].groups)) {
-            myGroupsRender.push(<GroupCard key={userGroup} groupID={userGroup} isYours={true} />);
+        for (let { id, ...group } of this.state.yourGroups) {
+            myGroupsRender.push(<GroupCard key={id} groupID={id} groupDatum={group} isYours={true} />);
         }
 
         var searchResultsRender = [];
-        for (let groupID of (this.state.searchResults)) {
-            searchResultsRender.push(<GroupCard key={groupID} groupID={groupID} isYours={false} />);
+        for (let { id, ...group } of this.state.searchResults) {
+            searchResultsRender.push(<GroupCard key={id} groupID={id} groupDatum={group} isYours={false} />);
         }
 
         return <div className={styles.pageWrapper}>
