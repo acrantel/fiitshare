@@ -127,6 +127,10 @@ var workoutData = {
 
 var exerciseData = {
     // gifs cropped to 4:3 aspect ratio, keeping the bottom left corner the same
+    0: {
+        name: 'Lunge pulses',
+        video_link: 'https://cdn.discordapp.com/attachments/732852292776362019/732859354298056734/lungepulses.gif'
+    },
     1: {
         name: 'Deadlift',
         // video_link: '/exercise/1.gif'
