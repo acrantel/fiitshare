@@ -18,7 +18,7 @@ div.card:hover {
 }
 .card a:hover {
     /*text-decoration: underline;*/
-    color: #ff73d7;
+    color: var(--dark-color);
 }
 
 .metaWrapper {

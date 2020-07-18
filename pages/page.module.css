@@ -223,7 +223,7 @@ height: 460px;
 }
 .profileTextTitle {
     font-weight: bold;
-    color:  #c93fa5;
+    color:  var(--dark-color);
 }
 
 .profileTextDes {

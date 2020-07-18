@@ -40,7 +40,7 @@ div.workout:hover {
 
 .label a:hover {
     text-decoration: none;
-    color: #ff73d7;
+    color: var(--dark-color);
 }
 
 .groupImgContainer {
