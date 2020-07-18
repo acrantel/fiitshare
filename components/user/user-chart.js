@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styles from '../user/user-chart.module.css';
 
 import {
     BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
@@ -39,11 +38,12 @@ class UserChart extends React.Component {
         {
             data[index] = {
                 day: daysX[index],
-                value: value,
+                value: value[index],
             };
 
             index++;
         }
+        console.log(data);
 
         return <BarChart
         width={500}
@@ -55,7 +55,7 @@ class UserChart extends React.Component {
       >
         <XAxis dataKey="day" type='category' tickLine={false}/>
     <YAxis tickFormatter={this.tickFormatter}/>
-        <Bar dataKey="value" fill="#ff73d7" />
+        <Bar dataKey="value" fill="#64b5f6" />
       </BarChart>
     }
 }
