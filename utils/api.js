@@ -17,6 +17,10 @@ async function fetchOk(route, method = 'GET', body = null) {
 export function getExercise(exerciseId) {
     return fetchOk(`/exercise/${exerciseId}`).then(r => r.json());
 }
+// type ExerciseData = { [ExerciseId]: Exercise }
+export function getExerciseData() {
+    return fetchOk('/exercise/list').then(r => r.json());
+}
 
 // type Group = {
 //     admins: UserId[],
@@ -91,8 +95,12 @@ export function setUser(userId, data) {
     console.warn(new Error('setUser: You really shouldn\'t be setting ALL user data. Consider making a more specific API endpoint thingithing instead.'));
     return fetchOk(`/user/${userId}`, 'POST', data);
 }
+export function setUserValues(userId, update) {
+    return fetchOk(`/user/${userId}`, 'PUT', update);
+}
 export function ensureUserExists (userId, data) {
-    return fetchOk(`/user/${userId}/ensure-exists`, 'POST', data);
+    return fetchOk(`/user/${userId}/ensure-exists`, 'POST', data)
+        .then(r => r.json());
 }
 // type WorkoutCard = {
 //     calories: number,
