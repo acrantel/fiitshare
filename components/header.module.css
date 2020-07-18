@@ -28,8 +28,21 @@
 
 .logo {
     height:40px;
-    padding: 10px;
+    margin: 10px;
+}
+.logoLarge {
     margin-right:20px;
+}
+.logoSmall {
+    display: none;
+}
+@media (max-height: 950px) {
+    .logoSmall {
+        display: inline-block;
+    }
+    .logoLarge {
+        display: none;
+    }
 }
 .navElement {
     font-family: Verdana, Geneva, Tahoma, sans-serif;

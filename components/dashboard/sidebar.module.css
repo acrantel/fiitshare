@@ -8,11 +8,13 @@
     background-color: #fff;
     font-family: 'Roboto', sans-serif;
     height: fit-content;
+    max-width: 250px;
 }
 
 .title {
     font-weight: 100;
     color: rgb(77, 77, 77);
+    word-break: break-word;
 }
 
 .description {

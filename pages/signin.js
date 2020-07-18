@@ -144,4 +144,8 @@ export class SignIn extends React.Component {
     }
 }
 
-export default withAuth(SignIn);
+export default function SignInPage (props) {
+    // Inside to avoid circular dependency
+    const AuthSignIn = withAuth(SignIn);
+    return <AuthSignIn {...props} />;
+};

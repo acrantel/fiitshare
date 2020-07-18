@@ -23,10 +23,12 @@ class Header extends React.Component {
         } = this.props;
         return <div className={styles.header}>
             <div className={styles.headerContent}>
-                <img className={styles.logo} src="/images/logo.png" alt="Logo" />
                 {loading ? <>
+                    <img className={styles.logo} src="/images/logo.png" alt="Logo" />
                     <span className={styles.space} />
                 </> : userId ? <>
+                    <img className={`${styles.logo} ${styles.logoLarge}`} src="/images/logo.png" alt="Logo" />
+                    <img className={`${styles.logo} ${styles.logoSmall}`} src="/images/iconlogo.png" alt="Logo" />
                     <div className={styles.navBar}>
                         <NavLink link="/" label="Dashboard" id="dashboard" current={current} />
                         <NavLink link="/groups" label="Groups" id="groups" current={current} />
@@ -36,6 +38,7 @@ class Header extends React.Component {
                     <span className={styles.space} />
                     <RightNavBar userId={userId} userDatum={userDatum}/>
                 </> : <>
+                    <img className={styles.logo} src="/images/logo.png" alt="Logo" />
                     <span className={styles.space} />
                     <NavLink link="/signin" label="Sign in" id="sign-in" current={current} />
                 </>}

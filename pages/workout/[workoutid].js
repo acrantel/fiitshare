@@ -134,7 +134,7 @@ class WorkoutPage extends React.Component {
             </div>;
         } else if (!this.state.started) {
             workoutCenter = <div className={styles.startWorkoutWrapper}>
-                <span className={styles.startWorkoutSpan} onClick={this.startWorkout}>Click to start workout</span>
+                <button className={styles.startWorkoutSpan} onClick={this.startWorkout}>Click to start workout</button>
             </div>;
         } else {
             workoutCenter = <WorkoutVideo

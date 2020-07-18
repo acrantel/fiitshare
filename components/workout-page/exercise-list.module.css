@@ -4,7 +4,8 @@
     margin-right: 20px;
     padding: 10px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    white-space: nowrap;
+    max-width: 250px;
+    word-break: break-word;
 }
 .exercise {
     display: flex;
@@ -26,4 +27,5 @@
 .time {
     flex: auto;
     text-align: right;
+    white-space: nowrap;
 }

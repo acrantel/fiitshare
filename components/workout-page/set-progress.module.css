@@ -14,11 +14,19 @@
 }
 
 .label {
+    width: 0;
     flex: 1 0 0;
     text-align: center;
     text-transform: uppercase;
     border-right: 1px solid rgba(0, 0, 0, 0.5);
     margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    /* HACK: If there's a ton of sets, it'll overflow by cutting off the left
+    /* "SET" first. This is nonideal because RTL text has its own complications.
+    /* A more ideal solution might be to position absolute the text or
+    /* something. */
+    direction: rtl;
 }
 .label:last-child {
     border-right: none;

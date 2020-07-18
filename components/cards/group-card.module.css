@@ -30,6 +30,8 @@
     margin-bottom: 5px;
     font-weight: normal;
     font-size: 1.5em;
+    text-align: center;
+    word-break: break-word;
 }
 
 .groupNameLink {
@@ -46,7 +48,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    word-break: break-word;
 }
 .infoWrapper {
     display: flex;
