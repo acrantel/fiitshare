@@ -38,13 +38,14 @@
 }
 .groupNameLink:hover {
     /*text-decoration: underline;*/
-    color: #ff73d7;
+    color: var(--dark-color);
 }
 
 .infoContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
 }
 .infoWrapper {
