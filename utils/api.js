@@ -17,6 +17,10 @@ async function fetchOk(route, method = 'GET', body = null) {
 export function getExercise(exerciseId) {
     return fetchOk(`/exercise/${exerciseId}`).then(r => r.json());
 }
+// type ExerciseData = { [ExerciseId]: Exercise }
+export function getExerciseData() {
+    return fetchOk('/exercise/list').then(r => r.json());
+}
 
 // type Group = {
 //     admins: UserId[],

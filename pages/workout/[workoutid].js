@@ -5,7 +5,7 @@ import SetProgress from '../../components/workout-page/set-progress.js';
 import WorkoutVideo from '../../components/workout-page/workout-video.js';
 import ExerciseList from '../../components/workout-page/exercise-list.js';
 import ErrorPage from '../../components/error.js';
-import { getWorkout } from '../../utils/api.js';
+import { getWorkout, getExerciseData } from '../../utils/api.js';
 import { AuthHeader } from '../../helpers/withAuth.js';
 
 //import ExerciseCard from '../../components/cards/exercise-card.js';
@@ -124,8 +124,12 @@ class WorkoutPage extends React.Component {
 
     render() {
         const {
+            workoutDatum = {},
+            exerciseData
+        } = this.props;
+        const {
             name = 'Unknown workout'
-        } = this.props.workoutDatum || {}
+        } = workoutDatum;
 
         let workoutCenter;
         if (this.state.completed) {
@@ -138,12 +142,14 @@ class WorkoutPage extends React.Component {
             </div>;
         } else {
             workoutCenter = <WorkoutVideo
+                exerciseData={exerciseData}
                 exerciseID={this.state.exerciseIds[this.state.exerciseIndex]}
                 time={msToSeconds(this.state.exerciseTimeLeft)}
                 paused={this.state.paused}
                 onPlayWorkout={this.playWorkout}
                 onPauseWorkout={this.pauseWorkout}
-                onSkipNextExercise={this.nextExercise} />;
+                onSkipNextExercise={this.nextExercise}
+            />;
         }
 
         return <div className={styles.contentWrapper}>
@@ -151,6 +157,7 @@ class WorkoutPage extends React.Component {
             <SetProgress set={this.state.currentSet + 1} sets={this.state.numSets} />
             <div className={styles.workoutWrapper}>
                 <ExerciseList
+                    exerciseData={exerciseData}
                     exerciseIds={this.state.exerciseIds}
                     times={this.state.timeArr}
                     current={this.state.exerciseIndex}
@@ -164,13 +171,17 @@ class WorkoutPage extends React.Component {
     }
 }
 
-function Workout({ error, workoutid, workoutDatum }) {
+function Workout({ error, workoutid, workoutDatum, exerciseData }) {
     return <div className={styles.pageWrapper}>
         <AuthHeader current={'workouts'} />
         <div className={styles.pageContent}>
             {error
                 ? <ErrorPage error={error} />
-                : <WorkoutPage workoutId={workoutid} workoutDatum={workoutDatum} />}
+                : <WorkoutPage
+                    workoutId={workoutid}
+                    workoutDatum={workoutDatum}
+                    exerciseData={exerciseData}
+                />}
         </div>
     </div>;
 }
@@ -179,7 +190,8 @@ Workout.getInitialProps = async ({ query }) => {
     const { workoutid } = query;
     try {
         const workoutDatum = await getWorkout(workoutid);
-        return { workoutid, workoutDatum };
+        const exerciseData = await getExerciseData();
+        return { workoutid, workoutDatum, exerciseData };
     } catch ({ message: error }) {
         return { error };
     }

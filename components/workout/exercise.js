@@ -1,5 +1,4 @@
 import styles from './exercise.module.css';
-import { exerciseData } from '../../database/database.js';
 import { MdDelete } from 'react-icons/md';
 
 export default class Exercise extends React.Component {
@@ -24,6 +23,7 @@ export default class Exercise extends React.Component {
     
     render() {
         const {
+            exerciseData,
             exercise,
             time
         } = this.props;

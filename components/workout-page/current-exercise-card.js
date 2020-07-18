@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './current-exercise-card.module.css';
-import {exerciseData} from '../../database/database.js';
 
 export default class CurrentExerciseCard extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
+        const { exerciseData } = this.props;
         const {
             video_link,
             name = 'Unknown exercise'
