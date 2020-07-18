@@ -8,6 +8,10 @@
 .groupsContainer > h1 {
     margin-left: 20px;
 }
+.groupDefaultWrapper {
+    text-align: center;
+    margin: 5px;
+}
 .groupLink {
     display: block;
     color: inherit;

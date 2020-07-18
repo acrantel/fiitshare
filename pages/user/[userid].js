@@ -17,7 +17,7 @@ function randomGradient() {
         }))`;
 }
 
-function User({ error, userid, userDatum = {} }) {
+function User({ error, userid, userDatum = {}, userGroups = []}) {
     const {
         cover_picture,
         profile_picture,
@@ -77,7 +77,7 @@ function User({ error, userid, userDatum = {} }) {
                             No activity in the past week. :(
                         </div>}
                     <div className={styles.profileContainerRight}>
-                        <DashboardRight userId={userid} />
+                        <DashboardRight userId={userid} userGroups={userGroups} />
                     </div>
                 </div>
             </div>
@@ -89,7 +89,9 @@ User.getInitialProps = async ({ query }) => {
     const { userid } = query;
     try {
         const userDatum = await getUser(userid);
-        return { userid, userDatum };
+        const result = await getUserGroups(userid);
+        const userGroups = result['yours'];
+        return { userid, userDatum, userGroups };
     } catch ({ message: error }) {
         return { error };
     }
