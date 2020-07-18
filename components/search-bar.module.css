@@ -1,6 +1,7 @@
 .searchBar {
     display: inline-flex;
     align-items: center;
+    align-self: center;
     flex-direction: row;
     border-radius: 10px;
     padding-left: 2px;
