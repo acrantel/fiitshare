@@ -1,4 +1,4 @@
-# fiitshare
+# Fiitshare
 
 A fitness website for the community, by the community.
 
