@@ -4,6 +4,8 @@ A fitness website for the community, by the community.
 
 Share your workouts!
 
+Devpost: https://devpost.com/software/fiitshare
+
 ## What you can do
 
 Join a workout group to access personalized workout schedules.
