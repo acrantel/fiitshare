@@ -4,7 +4,6 @@ A fitness website for the community, by the community.
 
 Share your workouts!
 
-
 ## What you can do
 
 Join a workout group to access personalized workout schedules.
@@ -21,22 +20,26 @@ We built our web app with Next.js (React + Node.js). We used Firestore as our da
 
 ## Running the app
 
-```
+```sh
 git clone https://github.com/acrantel/fiitshare.git
+cd fiitshare
 yarn install
 ```
 
-Create a Firebase project and add a web app to it ([Instructions](https://firebase.google.com/docs/web/setup))
+Create a Firebase project and add a web app to it ([Instructions](https://firebase.google.com/docs/web/setup)).
 
-Create a `.env.local` file in fiitshare's root directory and add your firebase keys:
+Create a `firebaseConfig.json` file in fiitshare's root directory and add your firebase keys (you can find these in Project settings > General > Your apps > Firebase SDK snippet):
 
-```
-FIREBASE_API_KEY=your api key
-FIREBASE_AUTH_DOMAIN=your auth domain
-FIREBASE_DATABASE_URL=your database url
-FIREBASE_PROJECT_ID=your project Id
-FIREBASE_STORAGE_BUCKET=your storage bucket
-FIREBASE_MESSAGING_SENDER_ID=your messaging sender id
+```json
+{
+  "apiKey": "your api key",
+  "authDomain": "your auth domain",
+  "databaseURL": "your database url",
+  "projectId": "your project ID",
+  "storageBucket": "your storage bucket",
+  "messagingSenderId": "your messaging sender ID",
+  "appId": "your app ID"
+}
 ```
 
 Run `yarn run` in the root directory and follow the instructions for building/running the app.
