@@ -27,7 +27,6 @@ function User({ error, userid, userDatum, userGroups = [] }) {
         completed_workouts,
         this_week
     } = userDatum;
-    console.log(this_week.activity);
     return <div className={styles.pageWrapper}>
         <AuthHeader current={'user'} />
         {error ? <ErrorPage error={error} /> : <div className={styles.pageContent}>
