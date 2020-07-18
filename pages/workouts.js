@@ -94,7 +94,7 @@ class Workouts extends React.Component {
                     </Link>
 
                 </div>
-                <div className={styles.content}>
+                <div className={[styles.workoutsTitle, styles.content].join(' ')}>
                     <Tabs>
                         <div label="Scheduled Workouts">
                             <ScheduledWorkouts userId={userId} />
