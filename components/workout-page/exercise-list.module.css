@@ -4,7 +4,7 @@
     margin-right: 20px;
     padding: 10px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    max-width: 250px;
+    width: 250px;
     word-break: break-word;
 }
 .exercise {
