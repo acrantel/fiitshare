@@ -19,10 +19,10 @@ function randomGradient() {
 
 // TODO: Confusing distinction between `userid` (user whose profile is being
 // viewed) and `userId` (currently signed in user)
-function User({ error, userid, userId, userDatum }) {
+function User({ error, userid, userId, userDatum, userGroups = [] }) {
     const {
         cover_picture,
-        profile_picture: picture,
+        profile_picture,
         name,
         calories,
         time_spent,
@@ -41,7 +41,7 @@ function User({ error, userid, userId, userDatum }) {
                             style={{ backgroundImage: randomGradient() }}
                         />
                         <div className={styles.profilePicImgContainer}>
-                            <img className={styles.profilePicImg} src={picture} />
+                            <img className={styles.profilePicImg} src={profile_picture} />
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@ function User({ error, userid, userId, userDatum }) {
                             No activity in the past week. :(
                         </div>}
                     <div className={styles.profileContainerRight}>
-                        <DashboardRight userId={userid} />
+                        <DashboardRight userId={userid} userGroups={userGroups} />
                     </div>
                 </div>
             </div>
@@ -95,7 +95,9 @@ User.getInitialProps = async ({ query }) => {
     const { userid } = query;
     try {
         const userDatum = await getUser(userid);
-        return { userid, userDatum };
+        const result = await getUserGroups(userid);
+        const userGroups = result['yours'];
+        return { userid, userDatum, userGroups };
     } catch ({ message: error }) {
         return { error };
     }

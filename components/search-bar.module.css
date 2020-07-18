@@ -1,6 +1,7 @@
 .searchBar {
     display: inline-flex;
     align-items: center;
+    align-self: center;
     flex-direction: row;
     border-radius: 10px;
     padding-left: 2px;
@@ -11,12 +12,13 @@
 
 .searchIcon {
     font-size: larger;
-    color: rgb(32, 32, 32);
+    color: var(--dark-color);
     padding:5px;
     cursor: pointer;
 }
 
 .searchInput {
+    outline: none;
     border-style: none;
     display:flex;
     background-color: #eeeeee;

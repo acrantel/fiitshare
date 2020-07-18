@@ -44,7 +44,7 @@ div.userCard:hover {
 .userCard a:hover {
     margin:10px;
     /*text-decoration: underline;*/
-    color: #ff73d7;
+    color: var(--dark-color);
 }
 
 .userImage {

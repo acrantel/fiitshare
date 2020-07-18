@@ -24,9 +24,9 @@ export {
 };
 
 // Frankly I can't be bothered to write this whole thing every time
-export async function getDoc (collectionName, docName, parent = db) {
-    const doc = await parent.collection(collectionName).doc(docName).get();
-    return doc.exists ? doc.data() : null;
+export async function getDoc(collectionName, docName, parent = db) {
+  const doc = await parent.collection(collectionName).doc(docName).get();
+  return doc.exists ? doc.data() : null;
 }
 
 export const { firestore: { FieldValue } } = firebase;

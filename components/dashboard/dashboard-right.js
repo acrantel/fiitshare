@@ -16,7 +16,7 @@ function DashboardRight({ userId, userGroups }) {
                     return <Link key={item['id']} href="/group/[groupid]" as={`/group/${item['id']}`}>
                         <a className={styles.groupLink}>
                             <div className={styles.groupImgWrapper}>
-                                <img className={styles.groupImg} src={item['image'].image} />
+                                <img className={styles.groupImg} src={item['image']} />
                                 <div className={styles.groupName}>
                                     {item['name'].name}
                                 </div>
