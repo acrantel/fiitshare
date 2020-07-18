@@ -4,7 +4,7 @@ import 'firebase/auth';
 import styles from '../pages/page.module.css';
 import SignInComponent from '../components/sign-in.js';
 import withAuth, { AuthHeader } from '../helpers/withAuth.js';
-import Router, { useRouter } from 'next/router';
+import Router from 'next/router';
 
 export class SignIn extends React.Component {
 
@@ -18,6 +18,13 @@ export class SignIn extends React.Component {
             error: null,
             loading: false
         };
+    }
+    
+    componentDidMount() {
+        // Don't show if signed in
+        if (this.props.userId) {
+            Router.push('/');
+        }
     }
 
     handleSignInGoogle = async () => {
@@ -95,9 +102,6 @@ export class SignIn extends React.Component {
         this.setState({
             loading: false
         });
-        if (this.props.onSignInPage) {
-            Router.push('/');
-        }
     }
     
     handleAuthError({ code, message }) {
@@ -140,11 +144,4 @@ export class SignIn extends React.Component {
     }
 }
 
-export default function SignInWrapper({ ...props }) {
-    const AuthSignIn = withAuth(SignIn);
-    const router = useRouter();
-    return <AuthSignIn
-        onSignInPage={router.pathname === '/signin'}
-        {...props}
-    />;
-};
+export default withAuth(SignIn);

@@ -7,10 +7,6 @@ import Loading from '../components/loading.js';
 import Header from '../components/header.js';
 
 // TEMP
-const names = ['Billy', 'Jane', 'Joe', 'Bob', 'Gugliana', 'Ferris', 'Johanna']
-function randomName() {
-    return names[Math.random() * names.length | 0];
-}
 function randomProfilePicture () {
     return `/images/user${(Math.random() * 6 | 0) + 1}.jpg`;
 }
@@ -42,12 +38,11 @@ const withAuth = (Component, { header = false } = {}) => {
                     const userDatum = await ensureUserExists(userId, {
                         // displayName and photoURL are null if signing in the
                         // non-Google way
-                        name: authUser.displayName || randomName(),
+                        name: authUser.displayName || '[Name coming shortly]',
                         profile_picture: authUser.photoURL || randomProfilePicture(),
                         cover_picture: randomCoverPicture()
                     });
                     const queuedUpdate = this.state.queuedUpdate;
-                    console.log(authUser.uid);
                     this.setState({
                         status: 'SIGNED_IN',
                         userId: authUser.uid,
