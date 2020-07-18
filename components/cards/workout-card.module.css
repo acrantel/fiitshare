@@ -34,9 +34,11 @@ div.card:hover {
     margin-bottom: 10px;
     font-weight: normal;
     font-size: 1.5em;
+    word-break: break-word;
 }
 .creator {
     opacity: 0.7;
+    word-break: break-word;
 }
 
 .infoWrapper {
@@ -58,7 +60,7 @@ div.card:hover {
     font-size: 1em;
     text-transform: uppercase;
 }
-/* used only for the due date now*/ 
+/* used only for the due date now*/
 
 
 .info {

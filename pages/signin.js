@@ -3,115 +3,121 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import styles from '../pages/page.module.css';
 import SignInComponent from '../components/sign-in.js';
-import { AuthHeader } from '../helpers/withAuth.js';
-import Router, { useRouter } from 'next/router';
+import withAuth, { AuthHeader } from '../helpers/withAuth.js';
+import Router from 'next/router';
 
-class SignIn extends React.Component {
+export class SignIn extends React.Component {
 
-    constructor(props)
-{
-    super(props);
-    this.state = {
-        createEmail: '',
-        createPassword: '',
-        email: '',
-        password: '',
-        error: null,
-        loading: false
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            email: '',
+            password: '',
+            passwordAgain: '',
+            error: null,
+            loading: false
+        };
+    }
+    
+    componentDidMount() {
+        // Don't show if signed in
+        if (this.props.userId) {
+            Router.push('/');
+        }
+    }
 
-    this.handleSignInGoogle = this.handleSignInGoogle.bind(this);
-    this.handleSignInEmailPassword = this.handleSignInEmailPassword.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleCreateEmailPassword = this.handleCreateEmailPassword.bind(this);
-    this.handleCreateEmailChange = this.handleCreateEmailChange.bind(this);
-    this.handleCreatePasswordChange = this.handleCreatePasswordChange.bind(this);
-    this.handleAuthenticated = this.handleAuthenticated.bind(this);
-}
-
-    handleSignInGoogle = () => {
+    handleSignInGoogle = async () => {
         var provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
         this.setState({
             error: '',
             loading: true
         });
-        auth.signInWithPopup(provider)
-            .then(this.handleAuthenticated)
-            .catch(err => {
-                console.log('Oops, something went wrong, check your console.');
-                console.log(err);
-                this.setState({
-                    error: err.message,
-                    loading: false
-                });
-            });
-    }
+        try {
+            await auth.signInWithPopup(provider);
+            this.handleAuthenticated();
+        } catch (error) {
+            this.handleAuthError(error);
+        }
+    };
 
-    handleCreateEmailChange = (e) => {
-        this.setState({createEmail: e.target.value});
-    }
-    handleCreatePasswordChange = (e) => {
-        this.setState({createPassword: e.target.value });
-    }
-    handleCreateEmailPassword = (e) => {
+    handleCreateAccount = async (e) => {
         e.preventDefault();
+        if (this.state.password !== this.state.passwordAgain) {
+            this.setState({
+                error: 'Passwords do not match.'
+            });
+            return;
+        }
         this.setState({
             error: '',
             loading: true
         });
-        auth.createUserWithEmailAndPassword(this.state.createEmail, this.state.createPassword)
-            .then(this.handleAuthenticated)
-            .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.error(errorCode + errorMessage);
-                this.setState({
-                    error: errorMessage,
-                    loading: false
-                });
-            });
-    }
+        try {
+            await auth.createUserWithEmailAndPassword(this.state.email, this.state.password);
+            await this.props.updateUser({ name: this.state.name });
+            this.handleAuthenticated();
+        } catch (error) {
+            this.handleAuthError(error);
+        }
+    };
 
+    handleNameChange = (e) => {
+        this.setState({name: e.target.value});
+    };
+    
     handleEmailChange = (e) => {
         this.setState({email: e.target.value});
-    }
+    };
+    
     handlePasswordChange = (e) => {
         this.setState({password: e.target.value});
-    }
-    handleSignInEmailPassword = (e) => {
+    };
+    
+    handlePasswordAgainChange = (e) => {
+        this.setState({
+            passwordAgain: e.target.value,
+            error: this.state.password === e.target.value
+                ? null
+                : 'Passwords do not match.'
+        });
+    };
+    
+    handleSignIn = async (e) => {
         e.preventDefault();
         this.setState({
             error: '',
             loading: true
         });
-        auth.signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then(this.handleAuthenticated)
-            .catch((error) => {
-                console.error (error.code + error.message);
-                this.setState({
-                    error: error.message,
-                    loading: false
-                });
-            });
-    }
+        try {
+            await auth.signInWithEmailAndPassword(this.state.email, this.state.password);
+            this.handleAuthenticated();
+        } catch (error) {
+            this.handleAuthError(error);
+        }
+    };
     
     handleAuthenticated() {
         this.setState({
             loading: false
         });
-        if (this.props.onSignInPage) {
-            Router.push('/');
-        }
+    }
+    
+    handleAuthError({ code, message }) {
+        console.error (code, message);
+        this.setState({
+            error: message,
+            loading: false
+        });
     }
 
     render() {
         const {
-            createEmail,
-            createPassword,
+            name,
             email,
             password,
+            passwordAgain,
             error,
             loading
         } = this.state;
@@ -120,16 +126,16 @@ class SignIn extends React.Component {
             <div className={styles.pageContent} style={{ alignItems: 'center' }}>
                 <SignInComponent
                     onSignInGoogle={this.handleSignInGoogle}
-                    newAccountEmail={createEmail}
-                    newAccountPassword={createPassword}
-                    onChangeNewAccountEmail={this.handleCreateEmailChange}
-                    onChangeNewAccountPassword={this.handleCreatePasswordChange}
-                    onNewAccount={this.handleCreateEmailPassword}
-                    signInEmail={email}
-                    signInPassword={password}
-                    onChangeSignInEmail={this.handleEmailChange}
-                    onChangeSignInPassword={this.handlePasswordChange}
-                    onSignIn={this.handleSignInEmailPassword}
+                    name={name}
+                    onName={this.handleNameChange}
+                    email={email}
+                    onEmail={this.handleEmailChange}
+                    password={password}
+                    onPassword={this.handlePasswordChange}
+                    passwordAgain={passwordAgain}
+                    onPasswordAgain={this.handlePasswordAgainChange}
+                    onCreateAccount={this.handleCreateAccount}
+                    onSignIn={this.handleSignIn}
                     error={error}
                     loading={loading}
                 />
@@ -138,10 +144,8 @@ class SignIn extends React.Component {
     }
 }
 
-export default function SignInWrapper({ ...props }) {
-    const router = useRouter();
-    return <SignIn
-        onSignInPage={router.pathname === '/signin'}
-        {...props}
-    />;
+export default function SignInPage (props) {
+    // Inside to avoid circular dependency
+    const AuthSignIn = withAuth(SignIn);
+    return <AuthSignIn {...props} />;
 };

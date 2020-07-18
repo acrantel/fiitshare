@@ -6,15 +6,15 @@ export default class SignIn extends React.Component {
     render() {
         const {
             onSignInGoogle,
-            newAccountEmail,
-            newAccountPassword,
-            onChangeNewAccountEmail,
-            onChangeNewAccountPassword,
-            onNewAccount,
-            signInEmail,
-            signInPassword,
-            onChangeSignInEmail,
-            onChangeSignInPassword,
+            name,
+            onName,
+            email,
+            onEmail,
+            password,
+            onPassword,
+            passwordAgain,
+            onPasswordAgain,
+            onCreateAccount,
             onSignIn,
             error,
             loading
@@ -28,14 +28,24 @@ export default class SignIn extends React.Component {
             <span className={styles.or}>or</span>
             <Tabs>
                 <div label="Create an account">
-                    <form className={styles.section} onSubmit={onNewAccount}>
+                    <form className={styles.section} onSubmit={onCreateAccount}>
+                        <label>
+                            Name:
+                            <input
+                                type="text"
+                                onChange={onName}
+                                placeholder="Enter your full name"
+                                value={name}
+                                disabled={loading}
+                            />
+                        </label>
                         <label>
                             Email:
                             <input
                                 type="text"
-                                onChange={onChangeNewAccountEmail}
+                                onChange={onEmail}
                                 placeholder="Enter your email"
-                                value={newAccountEmail}
+                                value={email}
                                 disabled={loading}
                             />
                         </label>
@@ -43,9 +53,19 @@ export default class SignIn extends React.Component {
                             Password:
                             <input
                                 type="password"
-                                onChange={onChangeNewAccountPassword}
+                                onChange={onPassword}
                                 placeholder="Enter your password"
-                                value={newAccountPassword}
+                                value={password}
+                                disabled={loading}
+                            />
+                        </label>
+                        <label>
+                            Confirm password:
+                            <input
+                                type="password"
+                                onChange={onPasswordAgain}
+                                placeholder="Confirm your password"
+                                value={passwordAgain}
                                 disabled={loading}
                             />
                         </label>
@@ -64,9 +84,9 @@ export default class SignIn extends React.Component {
                             Email:
                             <input
                                 type="text"
-                                onChange={onChangeSignInEmail}
+                                onChange={onEmail}
                                 placeholder="Enter your email"
-                                value={signInEmail}
+                                value={email}
                                 disabled={loading}
                             />
                         </label>
@@ -74,9 +94,9 @@ export default class SignIn extends React.Component {
                             Password:
                             <input
                                 type="password"
-                                onChange={onChangeSignInPassword}
+                                onChange={onPassword}
                                 placeholder="Enter your password"
-                                value={signInPassword}
+                                value={password}
                                 disabled={loading}
                             />
                         </label>

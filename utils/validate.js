@@ -62,7 +62,7 @@ export function optional (validator) {
 
 // This is an angry higher-order function: it throws errors instead of returning
 // false.
-export function validate (validatorObj) {
+export function validate (validatorObj, { partial = false } = {}) {
     const entries = Object.entries(validatorObj);
     
     return function isObject (value) {
@@ -72,6 +72,9 @@ export function validate (validatorObj) {
         
         // Each entry in value must be valid
         for (const [key, validator] of entries) {
+            // If partial mode is enabled, then skip omitted keys.
+            if (partial && !value.hasOwnProperty(key)) continue;
+            
             try {
                 if (!validator(value[key])) {
                     throw new TypeError(`Property \`${key}\` does not satisfy \`${validator.name}\`.`);

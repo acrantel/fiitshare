@@ -27,7 +27,8 @@
 
 .inputWrapper {
     margin: 10px;
-    text-align: center;
+    display: flex;
+    align-items: center;
 }
 .input {
     background: none;
@@ -36,4 +37,5 @@
     border-radius: 5px;
     height: 40px;
     box-sizing: border-box;
+    margin-left: 10px;
 }

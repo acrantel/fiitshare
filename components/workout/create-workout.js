@@ -1,12 +1,11 @@
 import styles from './create-workout.module.css';
 import { MdAdd } from 'react-icons/md';
 import Exercise from './exercise.js';
-import { exerciseData } from '../../database/database.js';
-import { newWorkout } from '../../utils/api.js';
+import { newWorkout, getExerciseData } from '../../utils/api.js';
 import Router from 'next/router';
 
-function newExercise(key) {
-    const exerciseIds = Object.keys(exerciseData)
+function newExercise(key, exerciseData) {
+    const exerciseIds = Object.keys(exerciseData);
     return {
         key: key,
         exercise: exerciseIds[Math.floor(Math.random() * exerciseIds.length)],
@@ -21,17 +20,31 @@ export default class CreateWorkout extends React.Component {
         this.setExercise = this.setExercise.bind(this);
         this.setTime = this.setTime.bind(this);
         this.removeExercise = this.removeExercise.bind(this);
+        this.changeIntensity = this.changeIntensity.bind(this);
         this.changeName = this.changeName.bind(this);
         this.changeSets = this.changeSets.bind(this);
         this.changeCalories = this.changeCalories.bind(this);
         this.createWorkout = this.createWorkout.bind(this);
         this.state = {
-            exercises: [newExercise(0)],
-            nextKey: 1,
+            exerciseData: {},
+            exercises: [],
+            nextKey: 0,
+            intensity: 1,
             name: '',
             sets: 1,
             calories: 0
         };
+    }
+    
+    async componentDidMount() {
+        const exerciseData = await getExerciseData();
+        this.setState({
+            exerciseData,
+            exercises: this.state.exercises.length === 0
+                ? [newExercise(this.state.nextKey, exerciseData)]
+                : this.state.exercises,
+            nextKey: this.state.nextKey + 1
+        });
     }
     
     addExercise() {
@@ -39,7 +52,7 @@ export default class CreateWorkout extends React.Component {
             exercises: [
                 ...this.state.exercises,
                 // Give each exercise a unique key
-                newExercise(this.state.nextKey)
+                newExercise(this.state.nextKey, this.state.exerciseData)
             ],
             nextKey: this.state.nextKey + 1
         });
@@ -76,26 +89,32 @@ export default class CreateWorkout extends React.Component {
         });
     }
     
+    changeIntensity(e) {
+        this.setState({
+            intensity: +e.target.value
+        });
+    }
+    
     changeName(e) {
         this.setState({
             name: e.target.value
-        })
+        });
     }
     
     changeSets(e) {
         this.setState({
             sets: +e.target.value
-        })
+        });
     }
     
     changeCalories(e) {
         this.setState({
             calories: +e.target.value
-        })
+        });
     }
 
     async createWorkout() {
-        const { name, sets, calories, exercises } = this.state;
+        const { intensity, name, sets, calories, exercises } = this.state;
         const exerciseId = [];
         const times = [];
         let totalTime = 0;
@@ -108,7 +127,7 @@ export default class CreateWorkout extends React.Component {
             calories,
             creator: this.props.userId,
             exercises: { exerciseId, time: times },
-            intensity: 1, // TODO
+            intensity,
             length: totalTime * sets,
             name,
             sets
@@ -118,13 +137,20 @@ export default class CreateWorkout extends React.Component {
     }
     
     render() {
-        const { exercises, name, sets, calories } = this.state;
+        const {
+            exerciseData,
+            exercises,
+            intensity,
+            name,
+            sets,
+            calories
+        } = this.state;
         return <div className={styles.wrapper}>
             <h1 className='section-title'><span>Create a new workout</span></h1>
             <div className={styles.headerWrapper}>
                 <div className={styles.leftWrapper}>
                     <label className={styles.inputWrapper}>
-                        {'Name: '}
+                        Name:
                         <input
                             type="text"
                             className={styles.input}
@@ -133,7 +159,7 @@ export default class CreateWorkout extends React.Component {
                         />
                     </label>
                     <label className={styles.inputWrapper}>
-                        {'Number of sets: '}
+                        Number of sets:
                         <input
                             type="number"
                             className={styles.input}
@@ -142,12 +168,23 @@ export default class CreateWorkout extends React.Component {
                         />
                     </label>
                     <label className={styles.inputWrapper}>
-                        {'Calories: '}
+                        Calories:
                         <input
                             type="number"
                             className={styles.input}
                             value={calories}
                             onChange={this.changeCalories}
+                        />
+                    </label>
+                    <label className={styles.inputWrapper}>
+                        Intensity:
+                        <input
+                            type="range"
+                            min="1"
+                            max="5"
+                            className={styles.input}
+                            value={intensity}
+                            onChange={this.changeIntensity}
                         />
                     </label>
                 </div>
@@ -158,6 +195,7 @@ export default class CreateWorkout extends React.Component {
             {exercises.map(({ key, exercise, time }) => (
                 <Exercise
                     key={key.toString()}
+                    exerciseData={exerciseData}
                     exerciseKey={key}
                     exercise={exercise}
                     time={time}
