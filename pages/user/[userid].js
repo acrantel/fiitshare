@@ -20,7 +20,7 @@ function randomGradient() {
 function User({ error, userid, userDatum = {} }) {
     const {
         cover_picture,
-        picture,
+        profile_picture,
         name,
         calories,
         time_spent,
@@ -39,7 +39,7 @@ function User({ error, userid, userDatum = {} }) {
                             style={{ backgroundImage: randomGradient() }}
                         />
                         <div className={styles.profilePicImgContainer}>
-                            <img className={styles.profilePicImg} src={picture} />
+                            <img className={styles.profilePicImg} src={profile_picture} />
                         </div>
                     </div>
                 </div>
