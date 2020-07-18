@@ -60,8 +60,6 @@ class SignIn extends React.Component {
     }
     handleCreateEmailPassword = (e) => {
         e.preventDefault();
-        console.log(this.state.createEmail);
-        console.log(this.state.createPassword);
         this.setState({
             error: '',
             loading: true

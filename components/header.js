@@ -37,6 +37,11 @@ class Header extends React.Component {
 }
 
 class RightNavBar extends React.Component {
+    async signOut(e) {
+        e.preventDefault();
+        console.log('bye');
+        await auth.signOut();
+    }
     render() {
         const {
             userId,
@@ -55,7 +60,7 @@ class RightNavBar extends React.Component {
                         </Link>
                     </div>
                     <div className={styles.linkBox}>
-                        <a href="#TODO-sign-out">Sign out</a>
+                        <a href="#" onClick={this.signOut}>Sign out</a>
                     </div>
                 </div>
             </div>

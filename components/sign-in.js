@@ -42,7 +42,7 @@ export default class SignIn extends React.Component {
                         <label>
                             Password:
                             <input
-                                type="text"
+                                type="password"
                                 onChange={onChangeNewAccountPassword}
                                 placeholder="Enter your password"
                                 value={newAccountPassword}
@@ -73,7 +73,7 @@ export default class SignIn extends React.Component {
                         <label>
                             Password:
                             <input
-                                type="text"
+                                type="password"
                                 onChange={onChangeSignInPassword}
                                 placeholder="Enter your password"
                                 value={signInPassword}

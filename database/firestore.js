@@ -2,18 +2,18 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-const config = {
-  apiKey: "AIzaSyCwNaX7MorYWCvGt4wuULyiIHBZMsrzVqM",	
-  authDomain: "bay-area-hacks-74e5d.firebaseapp.com",	
-  databaseURL: "https://bay-area-hacks-74e5d.firebaseio.com",	
-  projectId: "bay-area-hacks-74e5d",	
-  storageBucket: "bay-area-hacks-74e5d.appspot.com",	
-  messagingSenderId: "924296123476",	
-  appId: "1:924296123476:web:6e564230e01e5f59d2c9c1"
+const firebaseConfig = {
+  apiKey: "AIzaSyA1OEYkGbExSFQWVF3U2bX4xm3K0UvHgQ4",
+  authDomain: "bay-area-hacks.firebaseapp.com",
+  databaseURL: "https://bay-area-hacks.firebaseio.com",
+  projectId: "bay-area-hacks",
+  storageBucket: "bay-area-hacks.appspot.com",
+  messagingSenderId: "694610619201",
+  appId: "1:694610619201:web:029eacc8f995fd70fb8fc0"
 };
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(config);
+  firebase.initializeApp(firebaseConfig);
 }
 const auth = firebase.auth();
 const db = firebase.firestore();

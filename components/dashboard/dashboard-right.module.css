@@ -48,3 +48,6 @@ img.groupImg:hover {
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+.joinGroup {
+    margin: 10px 20px;
+}

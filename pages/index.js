@@ -5,7 +5,7 @@ import Dashboard from '../components/dashboard/dashboard.js';
 import styles from './page.module.css';
 
 import {auth} from '../database/firestore.js';
-import {getUser} from '../utils/api.js';
+import {getUser, ensureUserExists} from '../utils/api.js';
 import SignIn from './signin.js';
 
 class Home extends React.Component {
@@ -21,6 +21,14 @@ class Home extends React.Component {
     componentDidMount() {
         auth.onAuthStateChanged(async authUser => {
             if (authUser) {
+                const userId = authUser.uid;
+                await ensureUserExists(userId, {
+                    // displayName and photoURL are null if signing in the non-Google way
+                    // TEMP values
+                    name: authUser.displayName || 'Billy',
+                    profile_picture: authUser.photoURL || 'https://www.learning.uclg.org/sites/default/files/styles/featured_home_left/public/no-user-image-square.jpg',
+                    cover_picture: "https://www.learning.uclg.org/sites/default/files/styles/featured_home_left/public/no-user-image-square.jpg"
+                });
                 const userDatum = await getUser(authUser.uid);
                 this.setState({
                     status: 'SIGNED_IN',
@@ -28,29 +36,6 @@ class Home extends React.Component {
                     userDisplayName: authUser.displayName,
                     userDatum: userDatum
                 })
-                if (authUser.metadata.creationTime === authUser.metadata.lastSignInTime) {
-                    let userid = authUser.uid;
-                    const data = {
-                        workouts: [],
-                        recent_workouts: [],
-                        completed_workouts: 0,
-                        groups: [],
-                        name: authUser.displayName,
-                        profile_picture: authUser.photoURL,
-                        cover_picture: "",
-                        calories: 0,
-                        time_spent: 0,
-                        this_week: {}
-                    };
-
-                    fetch(`http://localhost:3000/api/user/${userid}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    });
-                }
             } else {
                 this.setState({ status: 'LOADING' });
             }

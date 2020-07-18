@@ -20,7 +20,7 @@ function randomGradient() {
 function User({ error, userid, userDatum = {} }) {
     const {
         cover_picture,
-        picture,
+        profile_picture: picture,
         name,
         calories,
         time_spent,
@@ -68,10 +68,14 @@ function User({ error, userid, userDatum = {} }) {
                 <div className={styles.profileSectionContainer}>
                     {this_week ? <div className={styles.profileContainerLeft}>
                         <h1 className='section-title'><span>Activity</span></h1>
-                        <p className={styles.profileTextTitle}>This week: 5 workouts</p>
+                        <p className={styles.profileTextTitle}>
+                            This week: {this_week.activity.reduce((acc, curr) => acc + curr, 0)} workout(s)
+                        </p>
                         <UserChart valArr={this_week.activity} type='time' />
                         <h1 className='section-title'><span>Calories</span></h1>
-                        <p className={styles.profileTextTitle}>This week: 300 calories</p>
+                        <p className={styles.profileTextTitle}>
+                            This week: {this_week.calories.reduce((acc, curr) => acc + curr, 0)} cal.
+                        </p>
                         <UserChart valArr={this_week.calories} type='' />
                     </div> : <div className={styles.profileContainerLeft}>
                             No activity in the past week. :(

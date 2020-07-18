@@ -11,7 +11,7 @@ function DashboardRight({ userId, userGroups }) {
         <h1 className='section-title'><span>Groups</span></h1>
         {
             userGroups.length == 0
-                ? <a href="#">Join a Group</a>
+                ? <Link href="/join-group"><a className={`button ${styles.joinGroup}`}>Join a Group</a></Link>
                 : userGroups.map(function (item) {
                     return <Link key={item['id']} href="/group/[groupid]" as={`/group/${item['id']}`}>
                         <a className={styles.groupLink}>
