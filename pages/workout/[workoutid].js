@@ -164,9 +164,9 @@ class WorkoutPage extends React.Component {
     }
 }
 
-function Workout({ error, workoutid, workoutDatum }) {
+function Workout({ error, workoutid, workoutDatum, userId, userDatum }) {
     return <div className={styles.pageWrapper}>
-        <Header current={'workouts'} />
+        <Header current={'workouts'} userId={userId} userDatum={userDatum} />
         <div className={styles.pageContent}>
             {error
                 ? <ErrorPage error={error} />

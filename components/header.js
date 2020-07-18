@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link'
 import styles from './header.module.css'
 import SearchBar from './search-bar.js';
-import {auth, USERID} from '../database/firestore.js';
+import {auth} from '../database/firestore.js';
 import {MdExpandMore} from 'react-icons/md';
 
 function NavLink ({ link, label, id, current }) {
@@ -16,9 +16,9 @@ function NavLink ({ link, label, id, current }) {
 class Header extends React.Component {
     render() {
         const {
-            userId = USERID,
+            userId,
             current,
-            userDatum = {}
+            userDatum
         } = this.props;
         return <div className={styles.header}>
             <div className={styles.headerContent}>
@@ -67,15 +67,6 @@ class RightNavBar extends React.Component {
         </div>
     }
 }
-Header.getInitialProps = async () => {
-    const userId = auth.currentUser.uid;
-    try {
-        const userDatum = await getUser(userId);
-        return { userId, userDatum };
-    } catch ({ message: error }) {
-        return { error };
-    }
-};
 
 
 export default Header

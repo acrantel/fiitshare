@@ -17,7 +17,9 @@ function randomGradient() {
         }))`;
 }
 
-function User({ error, userid, userDatum = {} }) {
+// TODO: Confusing distinction between `userid` (user whose profile is being
+// viewed) and `userId` (currently signed in user)
+function User({ error, userid, userId, userDatum }) {
     const {
         cover_picture,
         profile_picture: picture,
@@ -28,7 +30,7 @@ function User({ error, userid, userDatum = {} }) {
         this_week
     } = userDatum;
     return <div className={styles.pageWrapper}>
-        <Header />
+        <Header userId={userId} userDatum={userDatum} />
         {error ? <ErrorPage error={error} /> : <div className={styles.pageContent}>
             <div className={styles.profileContainerSmaller}>
                 <div className={styles.profileImageContainer}>

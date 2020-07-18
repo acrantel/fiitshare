@@ -36,8 +36,9 @@ export default class JoinGroup extends React.Component {
     }
     
     render() {
+        const { userId, userDatum } = this.props;
         return <div className={styles.pageWrapper}>
-            <Header current={'groups'} />
+            <Header current={'groups'} userId={userId} userDatum={userDatum} />
             <div className={styles.pageContent} style={{alignItems: 'center'}}>
                 <AddGroup title="Join a group" submitLabel="Join" onSubmit={this.onJoin}>
                     <LabelledInput label="Group ID">

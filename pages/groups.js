@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Link from 'next/link'
 import Header from '../components/header.js';
 import GroupCard from '../components/cards/group-card.js';
-import { USERID } from '../database/database.js';
 import CreateGroup from '../components/add-group/create-group.js';
 import { getUserGroups } from '../utils/api.js';
 
@@ -29,7 +28,7 @@ class Groups extends React.Component {
     }
     
     async componentDidMount() {
-        const { yours, searchable } = await getUserGroups(USERID /* TEMP */);
+        const { yours, searchable } = await getUserGroups(this.props.userId);
         this.setState({
             yourGroups: yours,
             searchableGroups: searchable,
@@ -67,6 +66,8 @@ class Groups extends React.Component {
     levelChangeHandler = (event) => { this.setState({ levelSearch: event.target.value }) };
 
     render() {
+        const { userId, userDatum } = this.props;
+        
         var myGroupsRender = [];
         // for each of the user's groups
         for (let { id, ...group } of this.state.yourGroups) {
@@ -79,14 +80,14 @@ class Groups extends React.Component {
         }
 
         return <div className={styles.pageWrapper}>
-            <Header current={'groups'} />
+            <Header current={'groups'} userId={userId} userDatum={userDatum} />
             <div className={styles.pageContent} style={{ flexDirection: 'column' }}>
                 <div className={styles.myGroupsContainer}>
                     <div className={styles.groupSection}>
                         <h1 className='section-title'><span>My Groups</span></h1>
                         <div>
                                 <a className='button' onClick={this.togglePopup}>Create a Group</a>
-                            {this.state.togglePopup && <CreateGroup />}
+                            {this.state.togglePopup && <CreateGroup userId={this.props.userId} />}
                         </div>
                     </div>
                     <div className={styles.myGroupsList}>{myGroupsRender}</div>

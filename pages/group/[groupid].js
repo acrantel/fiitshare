@@ -6,9 +6,9 @@ import ErrorPage from '../../components/error.js';
 import { getGroupData } from '../../utils/api.js';
 import styles from '../page.module.css';
 
-function Group({ error, groupid, groupDatum, scheduledWorkouts, users }) {
+function Group({ error, groupid, groupDatum, scheduledWorkouts, users, userId, userDatum }) {
     return <div className={styles.pageWrapper}>
-        <Header current={'groups'} />
+        <Header current={'groups'} userId={userId} userDatum={userDatum} />
         <div className={`${styles.pageContent} group-page`}>
             {error ? <ErrorPage error={error} /> : <>
                 <GroupSidebar groupDatum={groupDatum} />

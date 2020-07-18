@@ -18,16 +18,6 @@ if (!firebase.apps.length) {
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-
-var USERID;
-auth.onAuthStateChanged(authUser => {
-  if (authUser) {
-    USERID = authUser.uid;
-  }
-});
-
-export {USERID};
-
 export {
   auth,
   db

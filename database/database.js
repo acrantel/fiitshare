@@ -230,6 +230,4 @@ var groupData = {
     }
 }
 
-const USERID = 'user1';
-
-export { userData, workoutData, exerciseData, groupData, USERID };
+export { userData, workoutData, exerciseData, groupData };
