@@ -60,11 +60,11 @@ export default class SignIn extends React.Component {
                             />
                         </label>
                         <label>
-                            Password again:
+                            Confirm password:
                             <input
                                 type="password"
                                 onChange={onPasswordAgain}
-                                placeholder="Enter your password again"
+                                placeholder="Confirm your password"
                                 value={passwordAgain}
                                 disabled={loading}
                             />

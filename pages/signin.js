@@ -140,8 +140,8 @@ export class SignIn extends React.Component {
     }
 }
 
-const AuthSignIn = withAuth(SignIn);
 export default function SignInWrapper({ ...props }) {
+    const AuthSignIn = withAuth(SignIn);
     const router = useRouter();
     return <AuthSignIn
         onSignInPage={router.pathname === '/signin'}

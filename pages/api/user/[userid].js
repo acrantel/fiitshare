@@ -41,7 +41,7 @@ export default async (req, res) => {
         
         const userRef = db.collection('users').doc(userId);
         if (!(await userRef.get()).exists) {
-            res.status(404).send(`User ID ${userId} not found.`);
+            return res.status(404).send(`User ID ${userId} not found.`);
         }
         await userRef.update(req.body);
         res.status(201).end();

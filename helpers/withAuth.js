@@ -26,13 +26,18 @@ const withAuth = (Component, { header = false } = {}) => {
             this.state = {
                 status: 'LOADING',
                 userId: null,
-                userDatum: null
+                userDatum: null,
+                queuedUpdate: null
             };
         }
         
         componentDidMount() {
             auth.onAuthStateChanged(async authUser => {
                 if (authUser) {
+                    this.setState({
+                        status: 'LOADING',
+                        queuedUpdate: null
+                    });
                     const userId = authUser.uid;
                     const userDatum = await ensureUserExists(userId, {
                         // displayName and photoURL are null if signing in the
@@ -41,11 +46,19 @@ const withAuth = (Component, { header = false } = {}) => {
                         profile_picture: authUser.photoURL || randomProfilePicture(),
                         cover_picture: randomCoverPicture()
                     });
+                    const queuedUpdate = this.state.queuedUpdate;
+                    console.log(authUser.uid);
                     this.setState({
                         status: 'SIGNED_IN',
                         userId: authUser.uid,
-                        userDatum: userDatum
-                    })
+                        userDatum: userDatum,
+                        queuedUpdate: null
+                    }, async () => {
+                        if (queuedUpdate) {
+                            console.log('There was a queued update! I shall update now.');
+                            await this.updateUser(queuedUpdate);
+                        }
+                    });
                 } else {
                     this.setState({ status: 'SIGNED_OUT' });
                 }
@@ -53,6 +66,16 @@ const withAuth = (Component, { header = false } = {}) => {
         }
         
         async updateUser(update) {
+            if (this.state.status === 'SIGNED_OUT') {
+                throw new Error('User is not signed in, contrary to what you may believe.');
+            }
+            if (this.state.status === 'LOADING') {
+                console.log('I received an update, but I\'m still loading! Queuing for later.');
+                this.setState({
+                    queuedUpdate: { ...(this.state.queuedUpdate || {}), ...update }
+                });
+                return;
+            }
             await setUserValues(this.state.userId, update);
             this.setState({
                 userDatum: { ...this.state.userDatum, ...update }
