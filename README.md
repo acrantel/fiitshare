@@ -6,6 +6,8 @@ Share your workouts!
 
 Devpost: https://devpost.com/software/fiitshare
 
+Youtube: https://youtu.be/gXVfnnBSmhI
+
 ## What you can do
 
 Join a workout group to access personalized workout schedules.
@@ -45,4 +47,18 @@ Create a `firebaseConfig.json` file in fiitshare's root directory and add your f
 ```
 
 Run `yarn run` in the root directory and follow the instructions for building/running the app.
+
+## Screenshots
+
+![Screenshot of personal dashboard](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/156/484/datas/gallery.jpg)
+
+![Screenshot of members tab in group page](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/156/486/datas/gallery.jpg)
+
+![Screenshot of profile page](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/156/488/datas/gallery.jpg)
+
+![Workout creator](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/156/493/datas/gallery.jpg)
+
+![Workout page](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/156/513/datas/gallery.jpg)
+
+![Sign in page](https://cdn.discordapp.com/attachments/732852292776362019/734167514644480020/signin_2.jpg)
 
