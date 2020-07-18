@@ -1,8 +1,8 @@
 import React from 'react';
 import { auth } from '../database/firestore.js';
-import {getUser, ensureUserExists} from '../utils/api.js';
+import {ensureUserExists, setUserValues} from '../utils/api.js';
 
-import SignIn from '../pages/signin.js';
+import { SignIn } from '../pages/signin.js';
 import Loading from '../components/loading.js';
 import Header from '../components/header.js';
 
@@ -22,24 +22,25 @@ const withAuth = (Component, { header = false } = {}) => {
     return class extends React.Component {
         constructor(props) {
             super(props);
+            this.updateUser = this.updateUser.bind(this);
             this.state = {
                 status: 'LOADING',
                 userId: null,
                 userDatum: null
             };
         }
+        
         componentDidMount() {
             auth.onAuthStateChanged(async authUser => {
                 if (authUser) {
                     const userId = authUser.uid;
-                    await ensureUserExists(userId, {
+                    const userDatum = await ensureUserExists(userId, {
                         // displayName and photoURL are null if signing in the
                         // non-Google way
                         name: authUser.displayName || randomName(),
                         profile_picture: authUser.photoURL || randomProfilePicture(),
                         cover_picture: randomCoverPicture()
                     });
-                    const userDatum = await getUser(authUser.uid);
                     this.setState({
                         status: 'SIGNED_IN',
                         userId: authUser.uid,
@@ -50,6 +51,14 @@ const withAuth = (Component, { header = false } = {}) => {
                 }
             });
         }
+        
+        async updateUser(update) {
+            await setUserValues(this.state.userId, update);
+            this.setState({
+                userDatum: { ...this.state.userDatum, ...update }
+            });
+        }
+        
         render() {
             const { status, userId, userDatum } = this.state;
             if (status == 'LOADING') {
@@ -59,9 +68,14 @@ const withAuth = (Component, { header = false } = {}) => {
             } else if (status == 'SIGNED_OUT') {
                 return header
                     ? <Component {...this.props} />
-                    : <SignIn />;
+                    : <SignIn updateUser={this.updateUser} />;
             } else if (status == 'SIGNED_IN') {
-                return <Component userId={userId} userDatum={userDatum} {...this.props} />;
+                return <Component
+                    userId={userId}
+                    userDatum={userDatum}
+                    updateUser={this.updateUser}
+                    {...this.props}
+                />;
             }
         }
     };

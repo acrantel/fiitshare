@@ -20,7 +20,9 @@ export default async (req, res) => {
         const userData = db.collection('users').doc(userId);
         const doc = await userData.get();
         
-        if (!doc.exists)  {
+        if (doc.exists) {
+            res.json(doc.data());
+        } else {
             const { cover_picture, name, profile_picture } = req.body;
             const newUser = {
                 calories: 0,
@@ -38,8 +40,7 @@ export default async (req, res) => {
                 workouts: []
             }
             await userData.set(newUser);
+            res.json(newUser);
         }
-
-        res.status(201).end();
     }
 }
