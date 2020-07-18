@@ -37,6 +37,9 @@ export function setGroup(groupId, data) {
 export function newGroup(data) {
     return fetchOk(`/group/new`, 'POST', data).then(r => r.json())
 }
+export function joinGroup(groupId, joiner) {
+    return fetchOk(`/group/${groupId}/join`, 'POST', { joiner })
+}
 
 // {
 //     groupDatum: {

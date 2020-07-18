@@ -4,6 +4,8 @@ import styles from './page.module.css';
 import AddGroup from '../components/add-group/add-group.js';
 import LabelledInput from '../components/add-group/labelled-input.js';
 import withAuth from '../helpers/withAuth.js';
+import { joinGroup } from '../utils/api.js';
+import Router from 'next/router';
 
 class JoinGroup extends React.Component {
     constructor(props) {
@@ -18,9 +20,12 @@ class JoinGroup extends React.Component {
         };
     }
     
-    onJoin(e) {
-        console.log('join', this.state.groupId);
+    async onJoin(e) {
         e.preventDefault();
+        const { groupId } = this.state;
+        const { userId } = this.props;
+        await joinGroup(groupId, userId);
+        Router.push('/group/[groupid]', `/group/${groupId}`);
     }
     
     onGroupIdChange(e) {
