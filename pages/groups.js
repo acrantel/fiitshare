@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link'
 import Header from '../components/header.js';
 import GroupCard from '../components/cards/group-card.js';
-import { USERID } from '../database/database.js';
+import { USERID } from '../database/firestore.js';
 import CreateGroup from '../components/add-group/create-group.js';
 import { getUserGroups } from '../utils/api.js';
 

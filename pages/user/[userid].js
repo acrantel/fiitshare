@@ -17,10 +17,10 @@ function randomGradient() {
         }))`;
 }
 
-function User({ error, userid, userDatum = {} }) {
+function User({ error, userid, userDatum = {}, userGroups = []}) {
     const {
         cover_picture,
-        picture,
+        profile_picture,
         name,
         calories,
         time_spent,
@@ -28,7 +28,7 @@ function User({ error, userid, userDatum = {} }) {
         this_week
     } = userDatum;
     return <div className={styles.pageWrapper}>
-        <Header />
+        <Header userId={userid} userDatum={userDatum}/>
         {error ? <ErrorPage error={error} /> : <div className={styles.pageContent}>
             <div className={styles.profileContainerSmaller}>
                 <div className={styles.profileImageContainer}>
@@ -39,7 +39,7 @@ function User({ error, userid, userDatum = {} }) {
                             style={{ backgroundImage: randomGradient() }}
                         />
                         <div className={styles.profilePicImgContainer}>
-                            <img className={styles.profilePicImg} src={picture} />
+                            <img className={styles.profilePicImg} src={profile_picture} />
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ function User({ error, userid, userDatum = {} }) {
                             No activity in the past week. :(
                         </div>}
                     <div className={styles.profileContainerRight}>
-                        <DashboardRight userId={userid} />
+                        <DashboardRight userId={userid} userGroups={userGroups} />
                     </div>
                 </div>
             </div>
@@ -89,7 +89,9 @@ User.getInitialProps = async ({ query }) => {
     const { userid } = query;
     try {
         const userDatum = await getUser(userid);
-        return { userid, userDatum };
+        const result = await getUserGroups(userid);
+        const userGroups = result['yours'];
+        return { userid, userDatum, userGroups };
     } catch ({ message: error }) {
         return { error };
     }

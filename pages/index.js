@@ -65,6 +65,8 @@ class Home extends React.Component {
             userDatum
         } = this.state
 
+        console.log(userId);
+
         if (status === 'LOADING') {
             return <SignIn />
         } else if (status === 'SIGNED_IN') {
