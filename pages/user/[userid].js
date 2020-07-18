@@ -5,6 +5,9 @@ import UserChart from '../../components/user/user-chart.js';
 import DashboardRight from '../../components/dashboard/dashboard-right.js';
 import ErrorPage from '../../components/error.js';
 import { getUser, getUserGroups } from '../../utils/api.js';
+import withAuth from '../../helpers/withAuth.js';
+
+const AuthHeader = withAuth(Header, { header: true });
 
 function randomGradient() {
     const channels = Array.from('rgbrgb', () => Math.floor(Math.random() * 256));
@@ -17,9 +20,7 @@ function randomGradient() {
         }))`;
 }
 
-// TODO: Confusing distinction between `userid` (user whose profile is being
-// viewed) and `userId` (currently signed in user)
-function User({ error, userid, userId, userDatum, userGroups = [] }) {
+function User({ error, userid, userDatum, userGroups = [] }) {
     const {
         cover_picture,
         profile_picture,
@@ -30,7 +31,7 @@ function User({ error, userid, userId, userDatum, userGroups = [] }) {
         this_week
     } = userDatum;
     return <div className={styles.pageWrapper}>
-        <Header userId={userId} userDatum={userDatum} />
+        <AuthHeader current={'user'} />
         {error ? <ErrorPage error={error} /> : <div className={styles.pageContent}>
             <div className={styles.profileContainerSmaller}>
                 <div className={styles.profileImageContainer}>
@@ -103,4 +104,4 @@ User.getInitialProps = async ({ query }) => {
     }
 };
 
-export default User
+export default User;

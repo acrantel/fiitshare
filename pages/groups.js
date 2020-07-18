@@ -4,6 +4,7 @@ import Header from '../components/header.js';
 import GroupCard from '../components/cards/group-card.js';
 import CreateGroup from '../components/add-group/create-group.js';
 import { getUserGroups } from '../utils/api.js';
+import withAuth from '../helpers/withAuth.js';
 
 import styles from './page.module.css';
 import SearchBar from '../components/search-bar.js';
@@ -120,4 +121,4 @@ class Groups extends React.Component {
         </div>
     };
 };
-export default Groups;
+export default withAuth(Groups);

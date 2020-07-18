@@ -8,6 +8,7 @@ import WorkoutCard from '../components/cards/workout-card.js'
 import Link from 'next/link';
 import { MdAddCircleOutline } from 'react-icons/md';
 import { getUserWorkouts, getUserScheduledWorkouts } from '../utils/api.js';
+import withAuth from '../helpers/withAuth.js';
 
 class ScheduledWorkouts extends React.Component {
     constructor(props) {
@@ -107,4 +108,4 @@ class Workouts extends React.Component {
         </div>;
     }
 }
-export default Workouts
+export default withAuth(Workouts);

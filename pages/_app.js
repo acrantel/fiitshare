@@ -9,10 +9,7 @@ var firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/firestore");
 
-import withAuth from '../helpers/withAuth.js';
-
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
-    const AuthComponent = withAuth(Component);
-    return <AuthComponent {...pageProps} />;
+    return <Component {...pageProps} />;
 }

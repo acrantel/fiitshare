@@ -1,9 +1,12 @@
-
 import { auth, db } from '../database/firestore.js';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import styles from '../pages/page.module.css';
 import SignInComponent from '../components/sign-in.js';
+import Header from '../components/header.js';
+import withAuth from '../helpers/withAuth.js';
+
+const AuthHeader = withAuth(Header, { header: true });
 
 class SignIn extends React.Component {
 
@@ -113,22 +116,25 @@ class SignIn extends React.Component {
             error,
             loading
         } = this.state;
-        return <div className={styles.pageWrapper} style={{ justifyContent: 'center' }}>
-            <SignInComponent
-                onSignInGoogle={this.handleSignInGoogle}
-                newAccountEmail={createEmail}
-                newAccountPassword={createPassword}
-                onChangeNewAccountEmail={this.handleCreateEmailChange}
-                onChangeNewAccountPassword={this.handleCreatePasswordChange}
-                onNewAccount={this.handleCreateEmailPassword}
-                signInEmail={email}
-                signInPassword={password}
-                onChangeSignInEmail={this.handleEmailChange}
-                onChangeSignInPassword={this.handlePasswordChange}
-                onSignIn={this.handleSignInEmailPassword}
-                error={error}
-                loading={loading}
-            />
+        return <div className={styles.pageWrapper}>
+            <AuthHeader current="sign-in" />
+            <div className={styles.pageContent} style={{ alignItems: 'center' }}>
+                <SignInComponent
+                    onSignInGoogle={this.handleSignInGoogle}
+                    newAccountEmail={createEmail}
+                    newAccountPassword={createPassword}
+                    onChangeNewAccountEmail={this.handleCreateEmailChange}
+                    onChangeNewAccountPassword={this.handleCreatePasswordChange}
+                    onNewAccount={this.handleCreateEmailPassword}
+                    signInEmail={email}
+                    signInPassword={password}
+                    onChangeSignInEmail={this.handleEmailChange}
+                    onChangeSignInPassword={this.handlePasswordChange}
+                    onSignIn={this.handleSignInEmailPassword}
+                    error={error}
+                    loading={loading}
+                />
+            </div>
         </div>;
     }
 }

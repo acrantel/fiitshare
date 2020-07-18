@@ -5,10 +5,13 @@ import GroupMainSection from '../../components/group/group-main-section.js';
 import ErrorPage from '../../components/error.js';
 import { getGroupData } from '../../utils/api.js';
 import styles from '../page.module.css';
+import withAuth from '../../helpers/withAuth.js';
 
-function Group({ error, groupid, groupDatum, scheduledWorkouts, users, userId, userDatum }) {
+const AuthHeader = withAuth(Header, { header: true });
+
+function Group({ error, groupid, groupDatum, scheduledWorkouts, users }) {
     return <div className={styles.pageWrapper}>
-        <Header current={'groups'} userId={userId} userDatum={userDatum} />
+        <AuthHeader current={'groups'} />
         <div className={`${styles.pageContent} group-page`}>
             {error ? <ErrorPage error={error} /> : <>
                 <GroupSidebar groupDatum={groupDatum} />
@@ -27,4 +30,4 @@ Group.getInitialProps = async ({ query }) => {
         return { error };
     }
 };
-export default Group
+export default Group;

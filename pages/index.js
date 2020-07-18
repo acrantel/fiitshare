@@ -3,6 +3,7 @@ import Header from '../components/header.js';
 import Sidebar from '../components/dashboard/sidebar.js';
 import Dashboard from '../components/dashboard/dashboard.js';
 import styles from './page.module.css';
+import withAuth from '../helpers/withAuth.js';
 
 class Home extends React.Component {
     render() {
@@ -23,4 +24,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home
+export default withAuth(Home);

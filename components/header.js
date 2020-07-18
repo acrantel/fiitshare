@@ -17,20 +17,28 @@ class Header extends React.Component {
     render() {
         const {
             userId,
-            current,
-            userDatum
+            userDatum,
+            current = null,
+            loading = false
         } = this.props;
         return <div className={styles.header}>
             <div className={styles.headerContent}>
                 <img className={styles.logo} src="/images/logo.png" alt="Logo" />
-                <div className={styles.navBar}>
-                    <NavLink link="/" label="Dashboard" id="dashboard" current={current} />
-                    <NavLink link="/groups" label="Groups" id="groups" current={current} />
-                    <NavLink link="/workouts" label="Workouts" id="workouts" current={current} />
-                </div>
-                <SearchBar/>
-                <span className={styles.space} />
-                <RightNavBar userId={userId} userDatum={userDatum}/>
+                {loading ? <>
+                    <span className={styles.space} />
+                </> : userId ? <>
+                    <div className={styles.navBar}>
+                        <NavLink link="/" label="Dashboard" id="dashboard" current={current} />
+                        <NavLink link="/groups" label="Groups" id="groups" current={current} />
+                        <NavLink link="/workouts" label="Workouts" id="workouts" current={current} />
+                    </div>
+                    <SearchBar/>
+                    <span className={styles.space} />
+                    <RightNavBar userId={userId} userDatum={userDatum}/>
+                </> : <>
+                    <span className={styles.space} />
+                    <NavLink link="/signin" label="Sign in" id="sign-in" current={current} />
+                </>}
             </div>
         </div>
     }

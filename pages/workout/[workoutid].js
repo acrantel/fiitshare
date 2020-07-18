@@ -7,6 +7,9 @@ import WorkoutVideo from '../../components/workout-page/workout-video.js';
 import ExerciseList from '../../components/workout-page/exercise-list.js';
 import ErrorPage from '../../components/error.js';
 import { getWorkout } from '../../utils/api.js';
+import withAuth from '../../helpers/withAuth.js';
+
+const AuthHeader = withAuth(Header, { header: true });
 
 //import ExerciseCard from '../../components/cards/exercise-card.js';
 import { MdSkipPrevious, MdPlayArrow, MdPause, MdSkipNext } from 'react-icons/md'
@@ -164,9 +167,9 @@ class WorkoutPage extends React.Component {
     }
 }
 
-function Workout({ error, workoutid, workoutDatum, userId, userDatum }) {
+function Workout({ error, workoutid, workoutDatum }) {
     return <div className={styles.pageWrapper}>
-        <Header current={'workouts'} userId={userId} userDatum={userDatum} />
+        <AuthHeader current={'workouts'} />
         <div className={styles.pageContent}>
             {error
                 ? <ErrorPage error={error} />

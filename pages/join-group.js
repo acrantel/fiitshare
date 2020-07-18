@@ -3,8 +3,9 @@ import Header from '../components/header.js';
 import styles from './page.module.css';
 import AddGroup from '../components/add-group/add-group.js';
 import LabelledInput from '../components/add-group/labelled-input.js';
+import withAuth from '../helpers/withAuth.js';
 
-export default class JoinGroup extends React.Component {
+class JoinGroup extends React.Component {
     constructor(props) {
         super(props);
         this.onJoin = this.onJoin.bind(this);
@@ -54,3 +55,5 @@ export default class JoinGroup extends React.Component {
         </div>
     }
 }
+
+export default withAuth(JoinGroup);

@@ -5,7 +5,7 @@ import {getUser, ensureUserExists} from '../utils/api.js';
 import SignIn from '../pages/signin.js';
 import Loading from '../components/loading.js';
 
-const withAuth = (Component) => {
+const withAuth = (Component, { header = false } = {}) => {
     return class extends React.Component {
         constructor(props) {
             super(props);
@@ -40,9 +40,13 @@ const withAuth = (Component) => {
         render() {
             const { status, userId, userDatum } = this.state;
             if (status == 'LOADING') {
-                return <Loading />;
+                return header
+                    ? <Component loading={true} {...this.props} />
+                    : <Loading />;
             } else if (status == 'SIGNED_OUT') {
-                return <SignIn />;
+                return header
+                    ? <Component {...this.props} />
+                    : <SignIn />;
             } else if (status == 'SIGNED_IN') {
                 return <Component userId={userId} userDatum={userDatum} {...this.props} />;
             }
