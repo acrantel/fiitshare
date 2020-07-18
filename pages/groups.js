@@ -42,7 +42,7 @@ class Groups extends React.Component {
         let results = [];
         // uses state variables nameSearch and levelSearch
         const nameSearch = this.state.nameSearch.toLowerCase();
-        const levelSearch = this.state.levelSearch.toLowerCase();
+        const levelSearch = this.state.levelSearch && this.state.levelSearch.toLowerCase();
         for (const group of this.state.searchableGroups) {
             // add to results if matching and user is not in the group already
             if (nameSearch) {

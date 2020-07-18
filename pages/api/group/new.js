@@ -8,6 +8,11 @@ const validateNewGroup = validate({
     creator: isId // TEMP?
 });
 
+// TEMP
+function randomGroupImage() {
+    return `/images/groups/group${(Math.random() * 7 | 0) + 1}.jpg`
+}
+
 export default async (req, res) => {
     if (req.method === 'POST') {
         try {
@@ -20,7 +25,7 @@ export default async (req, res) => {
         const group = {
             admins: [creator],
             description,
-            image: 'https://cdn.discordapp.com/attachments/710932856809193497/733549780382384148/download_2.jpeg', // TEMP
+            image: randomGroupImage(),
             level,
             members: [creator],
             name,

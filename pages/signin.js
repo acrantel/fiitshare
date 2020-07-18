@@ -3,10 +3,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import styles from '../pages/page.module.css';
 import SignInComponent from '../components/sign-in.js';
-import Header from '../components/header.js';
-import withAuth from '../helpers/withAuth.js';
-
-const AuthHeader = withAuth(Header, { header: true });
+import { AuthHeader } from '../helpers/withAuth.js';
+import Router, { useRouter } from 'next/router';
 
 class SignIn extends React.Component {
 
@@ -29,6 +27,7 @@ class SignIn extends React.Component {
     this.handleCreateEmailPassword = this.handleCreateEmailPassword.bind(this);
     this.handleCreateEmailChange = this.handleCreateEmailChange.bind(this);
     this.handleCreatePasswordChange = this.handleCreatePasswordChange.bind(this);
+    this.handleAuthenticated = this.handleAuthenticated.bind(this);
 }
 
     handleSignInGoogle = () => {
@@ -39,12 +38,7 @@ class SignIn extends React.Component {
             loading: true
         });
         auth.signInWithPopup(provider)
-            .then(() => {
-                console.log('Signed in successfully.');
-                this.setState({
-                    loading: false
-                });
-            })
+            .then(this.handleAuthenticated)
             .catch(err => {
                 console.log('Oops, something went wrong, check your console.');
                 console.log(err);
@@ -67,19 +61,17 @@ class SignIn extends React.Component {
             error: '',
             loading: true
         });
-        auth.createUserWithEmailAndPassword(this.state.createEmail, this.state.createPassword).then(() => {
-            this.setState({
-                loading: false
+        auth.createUserWithEmailAndPassword(this.state.createEmail, this.state.createPassword)
+            .then(this.handleAuthenticated)
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.error(errorCode + errorMessage);
+                this.setState({
+                    error: errorMessage,
+                    loading: false
+                });
             });
-        }).catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.error(errorCode + errorMessage);
-            this.setState({
-                error: errorMessage,
-                loading: false
-            });
-        });
     }
 
     handleEmailChange = (e) => {
@@ -94,17 +86,24 @@ class SignIn extends React.Component {
             error: '',
             loading: true
         });
-        auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(() => {
-            this.setState({
-                loading: false
+        auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+            .then(this.handleAuthenticated)
+            .catch((error) => {
+                console.error (error.code + error.message);
+                this.setState({
+                    error: error.message,
+                    loading: false
+                });
             });
-        }).catch((error) => {
-            console.error (error.code + error.message);
-            this.setState({
-                error: error.message,
-                loading: false
-            });
+    }
+    
+    handleAuthenticated() {
+        this.setState({
+            loading: false
         });
+        if (this.props.onSignInPage) {
+            Router.push('/');
+        }
     }
 
     render() {
@@ -139,6 +138,10 @@ class SignIn extends React.Component {
     }
 }
 
-
-
-export default SignIn;
+export default function SignInWrapper({ ...props }) {
+    const router = useRouter();
+    return <SignIn
+        onSignInPage={router.pathname === '/signin'}
+        {...props}
+    />;
+};

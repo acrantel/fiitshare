@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-import Header from '../../components/header.js';
 import styles from '../page.module.css';
 import UserChart from '../../components/user/user-chart.js';
 import DashboardRight from '../../components/dashboard/dashboard-right.js';
 import ErrorPage from '../../components/error.js';
 import { getUser, getUserGroups } from '../../utils/api.js';
-import withAuth from '../../helpers/withAuth.js';
-
-const AuthHeader = withAuth(Header, { header: true });
+import { AuthHeader } from '../../helpers/withAuth.js';
 
 function randomGradient() {
     const channels = Array.from('rgbrgb', () => Math.floor(Math.random() * 256));

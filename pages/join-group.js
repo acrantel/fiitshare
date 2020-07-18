@@ -14,7 +14,7 @@ class JoinGroup extends React.Component {
         this.state = {
             groupId: '',
             code: '',
-            showCode: false
+            showCode: false // QUESTION: Do we need this?
         };
     }
     
@@ -25,8 +25,7 @@ class JoinGroup extends React.Component {
     
     onGroupIdChange(e) {
         this.setState({
-            groupId: e.target.value,
-            showCode: true // TEMP
+            groupId: e.target.value
         });
     }
     

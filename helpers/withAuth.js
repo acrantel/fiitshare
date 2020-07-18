@@ -4,6 +4,19 @@ import {getUser, ensureUserExists} from '../utils/api.js';
 
 import SignIn from '../pages/signin.js';
 import Loading from '../components/loading.js';
+import Header from '../components/header.js';
+
+// TEMP
+const names = ['Billy', 'Jane', 'Joe', 'Bob', 'Gugliana', 'Ferris', 'Johanna']
+function randomName() {
+    return names[Math.random() * names.length | 0];
+}
+function randomProfilePicture () {
+    return `/images/user${(Math.random() * 6 | 0) + 1}.jpg`;
+}
+function randomCoverPicture () {
+    return `/images/user${(Math.random() * 3 | 0) + 1}-cover.jpg`;
+}
 
 const withAuth = (Component, { header = false } = {}) => {
     return class extends React.Component {
@@ -20,11 +33,11 @@ const withAuth = (Component, { header = false } = {}) => {
                 if (authUser) {
                     const userId = authUser.uid;
                     await ensureUserExists(userId, {
-                        // displayName and photoURL are null if signing in the non-Google way
-                        // TEMP values
-                        name: authUser.displayName || 'Billy',
-                        profile_picture: authUser.photoURL || 'https://www.learning.uclg.org/sites/default/files/styles/featured_home_left/public/no-user-image-square.jpg',
-                        cover_picture: "https://www.learning.uclg.org/sites/default/files/styles/featured_home_left/public/no-user-image-square.jpg"
+                        // displayName and photoURL are null if signing in the
+                        // non-Google way
+                        name: authUser.displayName || randomName(),
+                        profile_picture: authUser.photoURL || randomProfilePicture(),
+                        cover_picture: randomCoverPicture()
                     });
                     const userDatum = await getUser(authUser.uid);
                     this.setState({
@@ -54,3 +67,5 @@ const withAuth = (Component, { header = false } = {}) => {
     };
 }
 export default withAuth;
+
+export const AuthHeader = withAuth(Header, { header: true });
