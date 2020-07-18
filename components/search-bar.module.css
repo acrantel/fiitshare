@@ -11,12 +11,13 @@
 
 .searchIcon {
     font-size: larger;
-    color: rgb(32, 32, 32);
+    color: var(--dark-color);
     padding:5px;
     cursor: pointer;
 }
 
 .searchInput {
+    outline: none;
     border-style: none;
     display:flex;
     background-color: #eeeeee;
