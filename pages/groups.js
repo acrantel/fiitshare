@@ -26,7 +26,7 @@ class Groups extends React.Component {
             searchableGroups: [],
             searchResults: [],
             nameSearch: '',
-            levelSearch: 0
+            levelSearch: 'None'
         };
     }
     
@@ -39,23 +39,26 @@ class Groups extends React.Component {
             searchResults: [...searchable]
         });
     }
-
-    searchGroups() {
+    
+    performSearch(nameSearchRaw, levelSearch) {
         let results = [];
         // uses state variables nameSearch and levelSearch
-        const nameSearch = this.state.nameSearch.toLowerCase();
-        const levelSearch = this.state.levelSearch && this.state.levelSearch.toLowerCase();
+        const nameSearch = nameSearchRaw.toLowerCase();
         for (const group of this.state.searchableGroups) {
             // add to results if matching and user is not in the group already
             if (nameSearch) {
                 if (!group.name.toLowerCase().includes(nameSearch)) continue;
             }
-            if (levelSearch) {
-                if (group.level.toLowerCase() !== levelSearch) continue;
+            if (levelSearch !== 'None') {
+                if (group.level !== levelSearch) continue;
             }
             results.push(group); // add the group to search results
         }
-        this.setState({ searchResults: results });
+        return results;
+    }
+
+    searchGroups() {
+        this.setState({ searchResults: this.performSearch(this.state.nameSearch, this.state.levelSearch) });
     };
 
     togglePopup() {
@@ -63,10 +66,20 @@ class Groups extends React.Component {
     }
 
     // onchange handler for the group name search text field
-    nameChangeHandler = (event) => { this.setState({ nameSearch: event.target.value }) };
+    nameChangeHandler = (event) => {
+        this.setState({
+            nameSearch: event.target.value,
+            searchResults: this.performSearch(event.target.value, this.state.levelSearch)
+        });
+    };
 
     // onchange handler for the group name search text field
-    levelChangeHandler = (event) => { this.setState({ levelSearch: event.target.value }) };
+    levelChangeHandler = (event) => {
+        this.setState({
+            levelSearch: event.target.value,
+            searchResults: this.performSearch(this.state.nameSearch, event.target.value)
+        });
+    };
     
     async handleJoin(groupId) {
         await joinGroup(groupId, this.props.userId);
@@ -124,11 +137,11 @@ class Groups extends React.Component {
                     <div className={styles.groupSection}>
                         <div className={styles.groupSearchBar}>
                             <SearchBar onSearch={this.searchGroups} onChange={this.nameChangeHandler} placeholder="Group Name"/>
-                            <select defaultValue={0} className={styles.groupSelectLevel} onChange={this.levelChangeHandler}>
-                                <option value={0}>None</option>
-                                <option value="beginner">Beginner</option>
-                                <option value="intermediate">Intermediate</option>
-                                <option value="advanced">Advanced</option>
+                            <select defaultValue="None" className={styles.groupSelectLevel} onChange={this.levelChangeHandler}>
+                                <option value="None">None</option>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
                             </select>
                         </div>
                         <div>
