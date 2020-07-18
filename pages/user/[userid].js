@@ -28,7 +28,7 @@ function User({ error, userid, userDatum = {} }) {
         this_week
     } = userDatum;
     return <div className={styles.pageWrapper}>
-        <Header />
+        <Header userId={userid} userDatum={userDatum}/>
         {error ? <ErrorPage error={error} /> : <div className={styles.pageContent}>
             <div className={styles.profileContainerSmaller}>
                 <div className={styles.profileImageContainer}>
