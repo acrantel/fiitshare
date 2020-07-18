@@ -36,7 +36,7 @@
 .logoSmall {
     display: none;
 }
-@media (max-height: 950px) {
+@media (max-width: 950px) {
     .logoSmall {
         display: inline-block;
     }
