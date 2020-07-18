@@ -6,7 +6,7 @@ export default async (req, res) => {
 
     const workoutData = []
     if (req.method === 'POST') {
-        for (workoutId of workoutIds) {
+        for (let workoutId of workoutIds) {
             const workoutDatum = db.collection('workouts').doc(workoutId);
             const doc = await workoutDatum.get();
             if (!doc.exists) {
