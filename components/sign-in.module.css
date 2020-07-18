@@ -11,7 +11,6 @@
     display: flex;
     align-items: center;
     margin-top: 20px;
-    margin-bottom: -24px;
 }
 .or::before,
 .or::after {
@@ -33,7 +32,8 @@
     margin: 10px 0;
     align-items: center;
 }
-.section input[type=text] {
+.section input[type=text],
+.section input[type=password] {
     -webkit-appearance: none;
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 10px;

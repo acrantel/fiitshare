@@ -1,66 +1,71 @@
 import React from 'react';
 import { auth } from '../database/firestore.js';
+import {getUser, ensureUserExists} from '../utils/api.js';
 
 import SignIn from '../pages/signin.js';
+import Loading from '../components/loading.js';
+import Header from '../components/header.js';
 
-const withAuth = (Component) => {
+// TEMP
+const names = ['Billy', 'Jane', 'Joe', 'Bob', 'Gugliana', 'Ferris', 'Johanna']
+function randomName() {
+    return names[Math.random() * names.length | 0];
+}
+function randomProfilePicture () {
+    return `/images/user${(Math.random() * 6 | 0) + 1}.jpg`;
+}
+function randomCoverPicture () {
+    return `/images/user${(Math.random() * 3 | 0) + 1}-cover.jpg`;
+}
+
+const withAuth = (Component, { header = false } = {}) => {
     return class extends React.Component {
         constructor(props) {
             super(props);
             this.state = {
                 status: 'LOADING',
-                userId: '',
-            }
+                userId: null,
+                userDatum: null
+            };
         }
         componentDidMount() {
-            auth.onAuthStateChanged(authUser => {
+            auth.onAuthStateChanged(async authUser => {
                 if (authUser) {
+                    const userId = authUser.uid;
+                    await ensureUserExists(userId, {
+                        // displayName and photoURL are null if signing in the
+                        // non-Google way
+                        name: authUser.displayName || randomName(),
+                        profile_picture: authUser.photoURL || randomProfilePicture(),
+                        cover_picture: randomCoverPicture()
+                    });
+                    const userDatum = await getUser(authUser.uid);
                     this.setState({
                         status: 'SIGNED_IN',
                         userId: authUser.uid,
-                    });
-
-                    if (authUser.metadata.creationTime === authUser.metadata.lastSignInTime) {
-                        let userid = authUser.uid;
-                        const data = {
-                            workouts: [],
-                            recent_workouts: [],
-                            completed_workouts: 0,
-                            groups: [],
-                            name: authUser.displayName,
-                            profile_picture: "",
-                            cover_picture: "",
-                            calories: 0,
-                            time_spent: 0,
-                            this_week: {}
-                        };
-
-                        fetch(`http://localhost:3000/api/user/${userid}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(data)
-                        });
-                    }
-
-                    
+                        userDatum: userDatum
+                    })
                 } else {
-                    this.setState({ status: 'LOADING' });
+                    this.setState({ status: 'SIGNED_OUT' });
                 }
             });
         }
-        renderContent() {
-            const { status } = this.state;
-            if (status == 'LOADING') {
-                return <SignIn></SignIn>;
-            } else if (status == 'SIGNED_IN') {
-                return <Component {...this.props} />
-            }
-        }
         render() {
-            return <div>{this.renderContent()}</div>
+            const { status, userId, userDatum } = this.state;
+            if (status == 'LOADING') {
+                return header
+                    ? <Component loading={true} {...this.props} />
+                    : <Loading />;
+            } else if (status == 'SIGNED_OUT') {
+                return header
+                    ? <Component {...this.props} />
+                    : <SignIn />;
+            } else if (status == 'SIGNED_IN') {
+                return <Component userId={userId} userDatum={userDatum} {...this.props} />;
+            }
         }
     };
 }
 export default withAuth;
+
+export const AuthHeader = withAuth(Header, { header: true });

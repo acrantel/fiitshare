@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-const config = {
+const firebaseConfig = {
   apiKey: "AIzaSyA1OEYkGbExSFQWVF3U2bX4xm3K0UvHgQ4",
   authDomain: "bay-area-hacks.firebaseapp.com",
   databaseURL: "https://bay-area-hacks.firebaseio.com",
@@ -13,20 +13,10 @@ const config = {
 };
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(config);
+  firebase.initializeApp(firebaseConfig);
 }
 const auth = firebase.auth();
 const db = firebase.firestore();
-
-
-var USERID;
-auth.onAuthStateChanged(authUser => {
-  if (authUser) {
-    USERID = authUser.uid;
-  }
-});
-
-export { USERID };
 
 export {
   auth,

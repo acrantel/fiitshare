@@ -6,6 +6,12 @@ import styles from '../cards/group-card.module.css';
 class GroupCard extends React.Component {
     constructor(props) {
         super(props);
+        this.handleJoin = this.handleJoin.bind(this);
+    }
+    
+    handleJoin(e) {
+        e.stopPropagation();
+        this.props.onJoin(this.props.groupID);
     }
 
     render() {
@@ -32,7 +38,10 @@ class GroupCard extends React.Component {
                             <div className={styles.infoValue}>{level}</div>
                         </div>
                     </div>
-                    <JoinButton isYours={this.props.isYours} groupID={groupID} />
+                    {this.props.isYours ? null : <JoinButton
+                        groupID={groupID}
+                        joinOnClick={this.handleJoin}
+                    /> }
                 </div>
             </div>
         </Link>;
@@ -40,19 +49,9 @@ class GroupCard extends React.Component {
 }
 
 
-function JoinButton(props) {
-    // if this is part of  "Your Groups"
-    if (props.isYours) {
-        // no button will be displayed
-        return null;
-    }
+function JoinButton({ groupID, joinOnClick }) {
     // otherwise display a Join Button
-    return <button className={styles.joinButton} onClick={joinOnClick(props.groupID)}>Join</button>;
-}
-
-function joinOnClick(groupID) {
-    // TODO add new values into database
-
+    return <button className={styles.joinButton} onClick={joinOnClick}>Join</button>;
 }
 
 

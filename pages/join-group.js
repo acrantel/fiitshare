@@ -3,8 +3,11 @@ import Header from '../components/header.js';
 import styles from './page.module.css';
 import AddGroup from '../components/add-group/add-group.js';
 import LabelledInput from '../components/add-group/labelled-input.js';
+import withAuth from '../helpers/withAuth.js';
+import { joinGroup } from '../utils/api.js';
+import Router from 'next/router';
 
-export default class JoinGroup extends React.Component {
+class JoinGroup extends React.Component {
     constructor(props) {
         super(props);
         this.onJoin = this.onJoin.bind(this);
@@ -13,19 +16,21 @@ export default class JoinGroup extends React.Component {
         this.state = {
             groupId: '',
             code: '',
-            showCode: false
+            showCode: false // QUESTION: Do we need this?
         };
     }
     
-    onJoin(e) {
-        console.log('join', this.state.groupId);
+    async onJoin(e) {
         e.preventDefault();
+        const { groupId } = this.state;
+        const { userId } = this.props;
+        await joinGroup(groupId, userId);
+        Router.push('/group/[groupid]', `/group/${groupId}`);
     }
     
     onGroupIdChange(e) {
         this.setState({
-            groupId: e.target.value,
-            showCode: true // TEMP
+            groupId: e.target.value
         });
     }
     
@@ -36,8 +41,9 @@ export default class JoinGroup extends React.Component {
     }
     
     render() {
+        const { userId, userDatum } = this.props;
         return <div className={styles.pageWrapper}>
-            <Header current={'groups'} />
+            <Header current={'groups'} userId={userId} userDatum={userDatum} />
             <div className={styles.pageContent} style={{alignItems: 'center'}}>
                 <AddGroup title="Join a group" submitLabel="Join" onSubmit={this.onJoin}>
                     <LabelledInput label="Group ID">
@@ -53,3 +59,5 @@ export default class JoinGroup extends React.Component {
         </div>
     }
 }
+
+export default withAuth(JoinGroup);

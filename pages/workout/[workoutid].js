@@ -1,5 +1,4 @@
 import { useRouter, withRouter } from 'next/router';
-import Header from '../../components/header.js';
 import styles from '../page.module.css';
 import React from 'react';
 import SetProgress from '../../components/workout-page/set-progress.js';
@@ -7,6 +6,7 @@ import WorkoutVideo from '../../components/workout-page/workout-video.js';
 import ExerciseList from '../../components/workout-page/exercise-list.js';
 import ErrorPage from '../../components/error.js';
 import { getWorkout } from '../../utils/api.js';
+import { AuthHeader } from '../../helpers/withAuth.js';
 
 //import ExerciseCard from '../../components/cards/exercise-card.js';
 import { MdSkipPrevious, MdPlayArrow, MdPause, MdSkipNext } from 'react-icons/md'
@@ -166,7 +166,7 @@ class WorkoutPage extends React.Component {
 
 function Workout({ error, workoutid, workoutDatum }) {
     return <div className={styles.pageWrapper}>
-        <Header current={'workouts'} />
+        <AuthHeader current={'workouts'} />
         <div className={styles.pageContent}>
             {error
                 ? <ErrorPage error={error} />

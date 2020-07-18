@@ -3,12 +3,12 @@ import Header from '../components/header.js';
 import styles from './page.module.css';
 import Tabs from '../components/tabs.js';
 import SearchBar from '../components/search-bar.js';
-import { USERID } from '../database/database.js';
 import Workout from '../components/workout/workout.js';
 import WorkoutCard from '../components/cards/workout-card.js'
 import Link from 'next/link';
 import { MdAddCircleOutline } from 'react-icons/md';
 import { getUserWorkouts, getUserScheduledWorkouts } from '../utils/api.js';
+import withAuth from '../helpers/withAuth.js';
 
 class ScheduledWorkouts extends React.Component {
     constructor(props) {
@@ -78,10 +78,9 @@ class MyLibrary extends React.Component {
 
 class Workouts extends React.Component {
     render() {
-        // TODO: Get from prop or something later
-        const userId = USERID;
+        const { userId, userDatum } = this.props;
         return <div className={styles.pageWrapper}>
-            <Header current={'workouts'} />
+            <Header current={'workouts'} userId={userId} userDatum={userDatum} />
             <div className={`${styles.pageContent} ${styles.workoutContainer}`}>
                 <div className={styles.headingWrapper}>
                     <h1 className={styles.heading}>Workouts</h1>
@@ -109,4 +108,4 @@ class Workouts extends React.Component {
         </div>;
     }
 }
-export default Workouts
+export default withAuth(Workouts);

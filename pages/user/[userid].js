@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Header from '../../components/header.js';
 import styles from '../page.module.css';
 import UserChart from '../../components/user/user-chart.js';
 import DashboardRight from '../../components/dashboard/dashboard-right.js';
 import ErrorPage from '../../components/error.js';
-import { getUser } from '../../utils/api.js';
+import { getUser, getUserGroups } from '../../utils/api.js';
+import { AuthHeader } from '../../helpers/withAuth.js';
 
 function randomGradient() {
     const channels = Array.from('rgbrgb', () => Math.floor(Math.random() * 256));
@@ -17,7 +17,7 @@ function randomGradient() {
         }))`;
 }
 
-function User({ error, userid, userDatum = {}, userGroups = []}) {
+function User({ error, userid, userDatum, userGroups = [] }) {
     const {
         cover_picture,
         profile_picture,
@@ -28,7 +28,7 @@ function User({ error, userid, userDatum = {}, userGroups = []}) {
         this_week
     } = userDatum;
     return <div className={styles.pageWrapper}>
-        <Header userId={userid} userDatum={userDatum}/>
+        <AuthHeader current={'user'} />
         {error ? <ErrorPage error={error} /> : <div className={styles.pageContent}>
             <div className={styles.profileContainerSmaller}>
                 <div className={styles.profileImageContainer}>
@@ -68,10 +68,14 @@ function User({ error, userid, userDatum = {}, userGroups = []}) {
                 <div className={styles.profileSectionContainer}>
                     {this_week ? <div className={styles.profileContainerLeft}>
                         <h1 className='section-title'><span>Activity</span></h1>
-                        <p className={styles.profileTextTitle}>This week: 5 workouts</p>
+                        <p className={styles.profileTextTitle}>
+                            This week: {this_week.activity.reduce((acc, curr) => acc + curr, 0)} workout(s)
+                        </p>
                         <UserChart valArr={this_week.activity} type='time' />
                         <h1 className='section-title'><span>Calories</span></h1>
-                        <p className={styles.profileTextTitle}>This week: 300 calories</p>
+                        <p className={styles.profileTextTitle}>
+                            This week: {this_week.calories.reduce((acc, curr) => acc + curr, 0)} cal.
+                        </p>
                         <UserChart valArr={this_week.calories} type='' />
                     </div> : <div className={styles.profileContainerLeft}>
                             No activity in the past week. :(
@@ -97,4 +101,4 @@ User.getInitialProps = async ({ query }) => {
     }
 };
 
-export default User
+export default User;

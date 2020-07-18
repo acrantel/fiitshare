@@ -1,7 +1,7 @@
 import styles from './create-workout.module.css';
 import { MdAdd } from 'react-icons/md';
 import Exercise from './exercise.js';
-import { exerciseData, USERID } from '../../database/database.js';
+import { exerciseData } from '../../database/database.js';
 import { newWorkout } from '../../utils/api.js';
 import Router from 'next/router';
 
@@ -106,7 +106,7 @@ export default class CreateWorkout extends React.Component {
         }
         const workout = {
             calories,
-            creator: USERID, // TEMP
+            creator: this.props.userId,
             exercises: { exerciseId, time: times },
             intensity: 1, // TODO
             length: totalTime * sets,
