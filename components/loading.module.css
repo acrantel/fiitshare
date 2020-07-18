@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     
     background-image: linear-gradient(#eee, white, #eee);
     background-size: 100% 200%;
@@ -18,8 +19,13 @@
     }
 }
 
-.logo {
-    width: 50px;
+.wordLogo {
+    width: 50%;
+    opacity: 0.8;
+}
+
+.iconLogo {
+    width: 20%;
     opacity: 0.8;
     animation: lift 3s infinite;
 }
