@@ -12,14 +12,12 @@ function DashboardRight({ userId, userGroups }) {
         {
             userGroups.length == 0
                 ? <Link href="/join-group"><a className={`button ${styles.joinGroup}`}>Join a Group</a></Link>
-                : userGroups.map(function (item) {
-                    return <Link key={item['id']} href="/group/[groupid]" as={`/group/${item['id']}`}>
+                : userGroups.map(function ({ id, name, image }) {
+                    return <Link key={id} href="/group/[groupid]" as={`/group/${id}`}>
                         <a className={styles.groupLink}>
                             <div className={styles.groupImgWrapper}>
-                                <img className={styles.groupImg} src={item['image']} />
-                                <div className={styles.groupName}>
-                                    {item['name'].name}
-                                </div>
+                                <img className={styles.groupImg} src={image} />
+                                <div className={styles.groupName}>{name}</div>
                             </div>
                         </a>
                     </Link>;

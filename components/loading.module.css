@@ -1,0 +1,40 @@
+.wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-image: linear-gradient(#eee, white, #eee);
+    background-size: 100% 200%;
+    animation: shimmer 1s linear infinite;
+}
+
+@keyframes shimmer {
+    from {
+        background-position-y: 0;
+    }
+    to {
+        background-position-y: 200%;
+    }
+}
+
+.logo {
+    width: 50px;
+    opacity: 0.8;
+    animation: lift 3s infinite;
+}
+
+@keyframes lift {
+    0% {
+        transform: translateY(0);
+    }
+    20% {
+        transform: translateY(0);
+    }
+    70% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}

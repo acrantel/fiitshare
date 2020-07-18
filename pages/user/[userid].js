@@ -4,7 +4,7 @@ import styles from '../page.module.css';
 import UserChart from '../../components/user/user-chart.js';
 import DashboardRight from '../../components/dashboard/dashboard-right.js';
 import ErrorPage from '../../components/error.js';
-import { getUser } from '../../utils/api.js';
+import { getUser, getUserGroups } from '../../utils/api.js';
 
 function randomGradient() {
     const channels = Array.from('rgbrgb', () => Math.floor(Math.random() * 256));

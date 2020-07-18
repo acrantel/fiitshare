@@ -3,6 +3,7 @@ import { auth } from '../database/firestore.js';
 import {getUser, ensureUserExists} from '../utils/api.js';
 
 import SignIn from '../pages/signin.js';
+import Loading from '../components/loading.js';
 
 const withAuth = (Component) => {
     return class extends React.Component {
@@ -36,16 +37,15 @@ const withAuth = (Component) => {
                 }
             });
         }
-        renderContent() {
+        render() {
             const { status, userId, userDatum } = this.state;
-            if (status == 'SIGNED_OUT' || /* TEMP */ status == 'LOADING') {
-                return <SignIn></SignIn>;
+            if (status == 'LOADING') {
+                return <Loading />;
+            } else if (status == 'SIGNED_OUT') {
+                return <SignIn />;
             } else if (status == 'SIGNED_IN') {
                 return <Component userId={userId} userDatum={userDatum} {...this.props} />;
             }
-        }
-        render() {
-            return <div>{this.renderContent()}</div>
         }
     };
 }
